@@ -1,0 +1,59 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.short-button {
+  width: $tn-font-size + $tn-line-height + $tn-font-size;
+  height: $tn-font-size + $tn-line-height + $tn-font-size;
+  color: inherit;
+  background-color: $comp-color;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  transition: all 0.2s ease-in-out;
+  border-radius: $border-radius;
+  background-image: url(../../../assets/icons/telegram-dark.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: $step-size * 3 $step-size * 3;
+  user-select: none;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: $hover-comp-color;
+    background-image: url(../../../assets/icons/telegram-light.svg);
+    outline: none;
+    color: $white-color;
+    box-shadow: $box-shadow;
+  }
+  &:active {
+    background-color: $active-comp-color;
+    background-image: url(../../../assets/icons/telegram-light.svg);
+    outline: none;
+    color: $white-color;
+    box-shadow: $box-shadow;
+  }
+  &:disabled {
+    background-color: $grey-color;
+    background-image: url(../../../assets/icons/telegram-light.svg);
+    outline: none;
+    color: $white-color;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  &--wo-background {
+    background-color: transparent;
+
+    &:hover,
+    &:active,
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+  &--circle {
+    border-radius: 50%;
+  }
+}

@@ -1,0 +1,41 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.button {
+  color: inherit;
+  background: $comp-color;
+  margin: 0;
+  padding: $tn-font-size $tn-font-size * 3;
+  outline: none;
+  border: 0;
+  border-radius: $border-radius;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+
+  &--full-width {
+    width: 100%;
+  }
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: $hover-comp-color;
+    outline: none;
+    color: $white-color;
+    box-shadow: $box-shadow;
+  }
+  &:active {
+    background: $active-comp-color;
+    outline: none;
+    color: $white-color;
+    box-shadow: $box-shadow;
+  }
+  &:disabled {
+    background: $grey-color;
+    outline: none;
+    color: $white-color;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
