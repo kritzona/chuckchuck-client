@@ -1,0 +1,48 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.toggle {
+  width: $step-size * 6;
+  height: $step-size * 3;
+  background-color: $white-color;
+  border: 2px solid $text-color;
+  box-sizing: border-box;
+  border-radius: $border-radius * 3;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &::after {
+    content: '';
+    width: $step-size * 3;
+    height: $step-size * 3;
+    background-color: $white-color;
+    border: 2px solid $text-color;
+    box-sizing: border-box;
+    border-radius: 50%;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &:hover {
+    &::after {
+      background-color: $text-color;
+    }
+  }
+
+  &--active {
+    background-color: $text-color;
+
+    &::after {
+      left: calc(100% - 22px);
+    }
+
+    &:hover {
+      &::after {
+        background-color: $white-color;
+      }
+    }
+  }
+}

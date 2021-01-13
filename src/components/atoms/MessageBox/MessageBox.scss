@@ -1,0 +1,50 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.message-box {
+  width: max-content;
+  min-width: 60%;
+  max-width: 80%;
+  margin: 0;
+  padding: $step-size $step-size * 2;
+  background-color: $comp-color;
+  border-radius: $border-radius * 3;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: $hover-comp-color;
+    color: $white-color;
+  }
+  &:active {
+    background-color: $active-comp-color;
+    color: $white-color;
+  }
+
+  &--left {
+    background-color: $comp-color;
+
+    &:hover {
+      background-color: $hover-comp-color;
+      color: $white-color;
+    }
+    &:active {
+      background-color: $active-comp-color;
+      color: $white-color;
+    }
+  }
+  &--right {
+    color: $white-color;
+    background-color: $primary-color;
+    text-align: right;
+
+    &:hover {
+      background-color: $hover-primary-color;
+      color: $white-color;
+    }
+    &:active {
+      background-color: $active-primary-color;
+      color: $white-color;
+    }
+  }
+}

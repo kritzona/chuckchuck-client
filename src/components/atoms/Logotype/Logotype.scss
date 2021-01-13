@@ -1,0 +1,12 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.logotype {
+  width: $tn-font-size + $tn-line-height + $tn-font-size;
+  height: $tn-font-size + $tn-line-height + $tn-font-size;
+  background-image: url(../../../assets/images/logotype-on-white.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  cursor: pointer;
+}

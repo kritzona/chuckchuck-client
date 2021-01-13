@@ -2,24 +2,39 @@ import React, { useState } from 'react'
 import InputField from '../../atoms/InputField/InputField'
 import InputLabel from '../../atoms/InputLabel/InputLabel'
 import InputTextElement from '../../atoms/InputTextElement/InputTextElement'
+import InputTextareaElement from '../../atoms/InputTextareaElement/InputTextareaElement'
 
-const InputText = () => {
+interface IProps {
+  type: string
+}
+
+const InputText = (props: IProps) => {
   let inputTextElementRef = {
+    current: {
+      focus: () => null,
+    },
+  }
+  let inputTextareaElementRef = {
     current: {
       focus: () => null,
     },
   }
   const [inFocus, setInFocus] = useState(false)
 
+  const handleInputFieldClick = () => {
+    if (props.type === 'text') {
+      inputTextElementRef.current.focus()
+    } else if (props.type === 'textarea') {
+      inputTextareaElementRef.current.focus()
+    }
+
+    setInFocus(true)
+  }
   const handleInputTextBuildRef = (ref: any) => {
     inputTextElementRef = ref
   }
-  const handleInputFieldClick = () => {
-    console.log(inputTextElementRef)
-    if (inputTextElementRef) {
-      inputTextElementRef.current.focus()
-      setInFocus(true)
-    }
+  const handleInputTextareaBuildRef = (ref: any) => {
+    inputTextareaElementRef = ref
   }
   const handleInputTextFocus = () => {
     setInFocus(true)
@@ -27,16 +42,31 @@ const InputText = () => {
   const handleInputTextBlur = () => {
     setInFocus(false)
   }
+  const handleInputTextareaFocus = () => {
+    setInFocus(true)
+  }
+  const handleInputTextareaBlur = () => {
+    setInFocus(false)
+  }
 
   return (
     <div className="input-text">
       <InputLabel></InputLabel>
       <InputField onClick={() => handleInputFieldClick()} inFocus={inFocus}>
-        <InputTextElement
-          onFocus={() => handleInputTextFocus()}
-          onBlur={() => handleInputTextBlur()}
-          onBuildRef={(ref: any) => handleInputTextBuildRef(ref)}
-        ></InputTextElement>
+        {(!props.type || props.type === 'text') && (
+          <InputTextElement
+            onFocus={() => handleInputTextFocus()}
+            onBlur={() => handleInputTextBlur()}
+            onBuildRef={(ref: any) => handleInputTextBuildRef(ref)}
+          ></InputTextElement>
+        )}
+        {props.type === 'textarea' && (
+          <InputTextareaElement
+            onFocus={() => handleInputTextareaFocus()}
+            onBlur={() => handleInputTextareaBlur()}
+            onBuildRef={(ref: any) => handleInputTextareaBuildRef(ref)}
+          ></InputTextareaElement>
+        )}
       </InputField>
     </div>
   )

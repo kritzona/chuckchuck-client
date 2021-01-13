@@ -1,0 +1,17 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.circle-status {
+  width: $step-size;
+  height: $step-size;
+  box-shadow: $box-shadow;
+  background-color: $success-color;
+  border-radius: 50%;
+
+  &--error {
+    background-color: $error-color;
+  }
+  &--success {
+    background-color: $success-color;
+  }
+}

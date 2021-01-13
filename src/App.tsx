@@ -10,6 +10,11 @@ import InputField from './components/atoms/InputField/InputField'
 import InputTextElement from './components/atoms/InputTextElement/InputTextElement'
 import InputText from './components/molecules/InputText/InputText'
 import InputLabel from './components/atoms/InputLabel/InputLabel'
+import Toggle from './components/atoms/Toggle/Toggle'
+import CircleStatus from './components/atoms/CircleStatus/CircleStatus'
+import InputStatus from './components/atoms/InputStatus/InputStatus'
+import MessageBox from './components/atoms/MessageBox/MessageBox'
+import Logotype from './components/atoms/Logotype/Logotype'
 
 interface IProps {}
 
@@ -45,10 +50,28 @@ const App = (props: IProps) => {
             <InputTextElement></InputTextElement>
           </div>
           <div className="col-lg-3">
-            <InputText></InputText>
+            <InputText type="text"></InputText>
           </div>
           <div className="col-lg-3">
             <InputLabel></InputLabel>
+          </div>
+          <div className="col-lg-3">
+            <Toggle></Toggle>
+          </div>
+          <div className="col-lg-3">
+            <CircleStatus></CircleStatus>
+          </div>
+          <div className="col-lg-3">
+            <InputStatus></InputStatus>
+          </div>
+          <div className="col-lg-3">
+            <MessageBox></MessageBox>
+          </div>
+          <div className="col-lg-3">
+            <Logotype></Logotype>
+          </div>
+          <div className="col-lg-3">
+            <InputText type="textarea"></InputText>
           </div>
         </div>
       </div>

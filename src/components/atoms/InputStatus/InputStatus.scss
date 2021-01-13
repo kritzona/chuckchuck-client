@@ -1,0 +1,22 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.input-status {
+  width: $step-size * 4;
+  height: $step-size * 4;
+  background-color: $success-color;
+  background-image: url(../../../assets/icons/check-light.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: $step-size + $step-size / 2 $step-size + $step-size / 2;
+  border-radius: 50%;
+
+  &--error {
+    background-color: $error-color;
+    background-image: url(../../../assets/icons/cross-light.svg);
+  }
+  &--success {
+    background-color: $success-color;
+    background-image: url(../../../assets/icons/check-light.svg);
+  }
+}
