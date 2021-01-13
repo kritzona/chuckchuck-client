@@ -1,0 +1,9 @@
+@import '../../../../assets/styles/variables/colors.scss';
+@import '../../../../assets/styles/variables/sizes.scss';
+
+.select-field {
+  width: 100%;
+  height: 100%;
+  padding: $tn-font-size $tn-font-size * 2;
+  cursor: pointer;
+}

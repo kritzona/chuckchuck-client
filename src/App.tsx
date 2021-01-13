@@ -15,6 +15,7 @@ import CircleStatus from './components/atoms/CircleStatus/CircleStatus'
 import InputStatus from './components/atoms/InputStatus/InputStatus'
 import MessageBox from './components/atoms/MessageBox/MessageBox'
 import Logotype from './components/atoms/Logotype/Logotype'
+import Select from './components/molecules/Select/Select'
 
 interface IProps {}
 
@@ -72,6 +73,11 @@ const App = (props: IProps) => {
           </div>
           <div className="col-lg-3">
             <InputText type="textarea"></InputText>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-3">
+            <Select></Select>
           </div>
         </div>
       </div>
