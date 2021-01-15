@@ -3,11 +3,28 @@ import InputField from '../../../atoms/InputField/InputField'
 import Text from '../../../atoms/Text/Text'
 import './SelectField.scss'
 
-const SelectField = () => {
+interface IProps {
+  active: boolean
+  placeholder: string
+  onClick?: () => void
+}
+
+const SelectField = (props: IProps) => {
+  const handleClick = () => {
+    if (props.onClick) {
+      props.onClick()
+    }
+  }
+
+  const selectFieldClassNames = ['select-field']
+  if (props.active) {
+    selectFieldClassNames.push('select-field--active')
+  }
+
   return (
-    <InputField>
-      <div className="select-field">
-        <Text type="text-normal-bold">Выберите значение</Text>
+    <InputField inFocus={props.active} onClick={() => handleClick()}>
+      <div className={selectFieldClassNames.join(' ')}>
+        <Text type="text-small-bold">{props.placeholder}</Text>
       </div>
     </InputField>
   )

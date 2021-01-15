@@ -2,8 +2,8 @@
 @import '../../../assets/styles/variables/sizes.scss';
 
 .toggle {
-  width: $step-size * 6;
-  height: $step-size * 3;
+  width: $step-size * 5;
+  height: $step-size * 2.5;
   background-color: $white-color;
   border: 2px solid $text-color;
   box-sizing: border-box;
@@ -14,8 +14,8 @@
 
   &::after {
     content: '';
-    width: $step-size * 3;
-    height: $step-size * 3;
+    width: $step-size * 2.5;
+    height: $step-size * 2.5;
     background-color: $white-color;
     border: 2px solid $text-color;
     box-sizing: border-box;
@@ -32,11 +32,11 @@
     }
   }
 
-  &--active {
+  &--checked {
     background-color: $text-color;
 
     &::after {
-      left: calc(100% - 22px);
+      left: calc(100% - 18px);
     }
 
     &:hover {

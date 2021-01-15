@@ -6,7 +6,7 @@ import './Button.scss'
 const Button = () => {
   return (
     <button className="button">
-      <Text type="text-normal-bold">Отправить</Text>
+      <Text type="text-small-bold">Отправить</Text>
     </button>
   )
 }

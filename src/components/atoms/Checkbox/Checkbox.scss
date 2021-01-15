@@ -2,8 +2,8 @@
 @import '../../../assets/styles/variables/sizes.scss';
 
 .checkbox {
-  width: $step-size * 3;
-  height: $step-size * 3;
+  width: $step-size * 2.5;
+  height: $step-size * 2.5;
   background: $white-color;
   border: 2px solid $text-color;
   box-sizing: border-box;
@@ -18,10 +18,10 @@
 
     &::after {
       content: '';
-      width: $step-size + 4px;
-      height: $step-size + 4px;
-      top: calc(50% - 6px);
-      left: calc(50% - 6px);
+      width: $step-size + 2px;
+      height: $step-size + 2px;
+      top: calc(50% - 5px);
+      left: calc(50% - 5px);
       background-image: url(../../../assets/icons/check-light.svg);
       background-repeat: no-repeat;
       background-position: center center;

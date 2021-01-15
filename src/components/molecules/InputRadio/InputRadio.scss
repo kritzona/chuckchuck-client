@@ -1,0 +1,20 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.input-radio {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  & > *:not(:first-child) {
+    margin-left: $step-size * 2;
+  }
+}

@@ -6,11 +6,11 @@
   border: 0;
   font-style: normal;
   font-weight: $bold-font-weight;
-  font-size: $tn-font-size;
-  line-height: $tn-line-height;
+  font-size: $ts-font-size;
+  line-height: $ts-line-height;
   outline: none;
   margin: 0;
-  padding: $tn-font-size $tn-font-size * 2;
+  padding: $ts-font-size $ts-font-size * 2;
 
   &:focus {
     outline: none;

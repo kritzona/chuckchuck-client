@@ -77,7 +77,14 @@ const App = (props: IProps) => {
         </div>
         <div className="row">
           <div className="col-lg-3">
-            <Select></Select>
+            <Select
+              options={[
+                { id: 0, value: 'Первый', checked: false },
+                { id: 1, value: 'Второй', checked: false },
+                { id: 2, value: 'Третий', checked: false },
+              ]}
+              placeholder="Выберите номер"
+            ></Select>
           </div>
         </div>
       </div>

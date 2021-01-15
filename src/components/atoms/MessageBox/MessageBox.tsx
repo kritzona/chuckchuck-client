@@ -5,7 +5,7 @@ import './MessageBox.scss'
 const MessageBox = () => {
   return (
     <div className="message-box">
-      <Text type="text-normal-regular">Hello, Kitty!</Text>
+      <Text type="text-small-bold">Hello, Kitty!</Text>
     </div>
   )
 }

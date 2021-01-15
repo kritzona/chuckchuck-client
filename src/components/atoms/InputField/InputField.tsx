@@ -3,7 +3,7 @@ import './InputField.scss'
 
 interface IProps {
   inFocus?: boolean
-  onClick?: any
+  onClick?: () => void
   children?: React.ReactNode
 }
 
