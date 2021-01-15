@@ -1,0 +1,20 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.online-status {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  & > *:not(:first-child) {
+    margin-left: $step-size;
+  }
+
+  &--online {
+    color: $success-color;
+  }
+  &--offline {
+    color: $error-color;
+  }
+}

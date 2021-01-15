@@ -2,13 +2,13 @@ import React from 'react'
 import './Toggle.scss'
 
 interface IProps {
-  active?: boolean
+  checked?: boolean
 }
 
 const Toggle = (props: IProps) => {
   const toggleClassNames = ['toggle']
-  if (props.active) {
-    toggleClassNames.push('toggle--active')
+  if (props.checked) {
+    toggleClassNames.push('toggle--checked')
   }
 
   return <div className={toggleClassNames.join(' ')}></div>

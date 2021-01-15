@@ -8,10 +8,10 @@
   background-color: $success-color;
   border-radius: 50%;
 
-  &--error {
+  &--red {
     background-color: $error-color;
   }
-  &--success {
+  &--green {
     background-color: $success-color;
   }
 }

@@ -16,6 +16,8 @@ import InputStatus from './components/atoms/InputStatus/InputStatus'
 import MessageBox from './components/atoms/MessageBox/MessageBox'
 import Logotype from './components/atoms/Logotype/Logotype'
 import Select from './components/molecules/Select/Select'
+import OnlineStatus from './components/molecules/OnlineStatus/OnlineStatus'
+import LogotypeWithName from './components/molecules/LogotypeWithName/LogotypeWithName'
 
 interface IProps {}
 
@@ -60,7 +62,7 @@ const App = (props: IProps) => {
             <Toggle></Toggle>
           </div>
           <div className="col-lg-3">
-            <CircleStatus></CircleStatus>
+            <CircleStatus color="green"></CircleStatus>
           </div>
           <div className="col-lg-3">
             <InputStatus></InputStatus>
@@ -78,7 +80,7 @@ const App = (props: IProps) => {
         <div className="row">
           <div className="col-lg-3">
             <Select
-              type="multiselect"
+              type="select"
               options={[
                 { id: 0, value: 'Первый', checked: false },
                 { id: 1, value: 'Второй', checked: false },
@@ -86,6 +88,12 @@ const App = (props: IProps) => {
               ]}
               placeholder="Выберите элементы"
             ></Select>
+          </div>
+          <div className="col-lg-3">
+            <OnlineStatus status="offline"></OnlineStatus>
+          </div>
+          <div className="col-lg-3">
+            <LogotypeWithName></LogotypeWithName>
           </div>
         </div>
       </div>
