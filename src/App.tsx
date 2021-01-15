@@ -78,12 +78,13 @@ const App = (props: IProps) => {
         <div className="row">
           <div className="col-lg-3">
             <Select
+              type="multiselect"
               options={[
                 { id: 0, value: 'Первый', checked: false },
                 { id: 1, value: 'Второй', checked: false },
                 { id: 2, value: 'Третий', checked: false },
               ]}
-              placeholder="Выберите номер"
+              placeholder="Выберите элементы"
             ></Select>
           </div>
         </div>

@@ -9,6 +9,8 @@
   cursor: pointer;
   position: relative;
   user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
 
   &::after {
     content: '';
