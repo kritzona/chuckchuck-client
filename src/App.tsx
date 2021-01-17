@@ -18,6 +18,8 @@ import Logotype from './components/atoms/Logotype/Logotype'
 import Select from './components/molecules/Select/Select'
 import OnlineStatus from './components/molecules/OnlineStatus/OnlineStatus'
 import LogotypeWithName from './components/molecules/LogotypeWithName/LogotypeWithName'
+import User from './components/molecules/User/User'
+import Message from './components/molecules/Message/Message'
 
 interface IProps {}
 
@@ -68,7 +70,7 @@ const App = (props: IProps) => {
             <InputStatus></InputStatus>
           </div>
           <div className="col-lg-3">
-            <MessageBox></MessageBox>
+            <MessageBox message="Hello, Kitty!"></MessageBox>
           </div>
           <div className="col-lg-3">
             <Logotype></Logotype>
@@ -94,6 +96,12 @@ const App = (props: IProps) => {
           </div>
           <div className="col-lg-3">
             <LogotypeWithName></LogotypeWithName>
+          </div>
+          <div className="col-lg-3">
+            <User></User>
+          </div>
+          <div className="col-lg-4">
+            <Message message="Hello, Kitty!!!" align="right"></Message>
           </div>
         </div>
       </div>
