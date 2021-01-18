@@ -43,11 +43,13 @@
 
   &--wo-background {
     background-color: transparent;
+    justify-content: flex-start;
 
     &:hover,
     &:active,
     &:disabled {
       background-color: transparent;
+      justify-content: center;
     }
   }
   &--circle {
