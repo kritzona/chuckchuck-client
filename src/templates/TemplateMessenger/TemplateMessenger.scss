@@ -1,0 +1,31 @@
+@import '../../assets/styles/variables/colors.scss';
+@import '../../assets/styles/variables/sizes.scss';
+
+.template-messenger {
+  height: 100vh;
+  position: relative;
+
+  &__header {
+    padding: $ts-font-size 0;
+    box-sizing: border-box;
+    background-color: $white-color;
+    box-shadow: $box-shadow;
+  }
+  &__messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: $ts-font-size * 2 0;
+    box-sizing: border-box;
+  }
+  &__sendbox {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: $ts-font-size * 2 0;
+    box-sizing: border-box;
+    background-color: $white-color;
+    box-shadow: $box-shadow;
+  }
+}
