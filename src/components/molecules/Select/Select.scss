@@ -2,4 +2,14 @@
 @import '../../../assets/styles/variables/sizes.scss';
 
 .select {
+  position: relative;
+  z-index: 1;
+
+  &__options {
+    width: 100%;
+    top: calc(100% + #{$step-size});
+    left: 0;
+    position: absolute;
+    z-index: 1000;
+  }
 }

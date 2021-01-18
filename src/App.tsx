@@ -20,6 +20,10 @@ import OnlineStatus from './components/molecules/OnlineStatus/OnlineStatus'
 import LogotypeWithName from './components/molecules/LogotypeWithName/LogotypeWithName'
 import User from './components/molecules/User/User'
 import Message from './components/molecules/Message/Message'
+import telegramLightIconSource from './assets/icons/telegram-light.svg'
+import telegramDarkIconSource from './assets/icons/telegram-dark.svg'
+import MessengerHeader from './components/organisms/MessengerHeader/MessengerHeader'
+import Messages from './components/organisms/Messages/Messages'
 
 interface IProps {}
 
@@ -37,7 +41,10 @@ const App = (props: IProps) => {
             <Button></Button>
           </div>
           <div className="col-lg-3">
-            <ShortButton></ShortButton>
+            <ShortButton
+              lightIconSource={telegramLightIconSource}
+              darkIconSource={telegramDarkIconSource}
+            ></ShortButton>
           </div>
           <div className="col-lg-3">
             <Radio></Radio>
@@ -102,6 +109,12 @@ const App = (props: IProps) => {
           </div>
           <div className="col-lg-4">
             <Message message="Hello, Kitty!!!" align="right"></Message>
+          </div>
+          <div className="col-lg-4">
+            <MessengerHeader></MessengerHeader>
+          </div>
+          <div className="col-lg-4">
+            <Messages></Messages>
           </div>
         </div>
       </div>

@@ -1,0 +1,8 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.messages {
+  & > *:not(:first-child) {
+    margin-top: $step-size;
+  }
+}

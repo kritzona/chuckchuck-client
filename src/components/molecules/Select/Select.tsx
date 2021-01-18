@@ -151,18 +151,22 @@ const Select = (props: IProps) => {
 
   return (
     <div className="select" ref={selectRef}>
-      <SelectField
-        active={active}
-        placeholder={placeholder}
-        onClick={() => handleSelectFieldClick()}
-      ></SelectField>
+      <div className="select__field">
+        <SelectField
+          active={active}
+          placeholder={placeholder}
+          onClick={() => handleSelectFieldClick()}
+        ></SelectField>
+      </div>
 
       {active && (
-        <SelectOptions
-          type={type}
-          options={localOptions}
-          onChange={(id: number | string) => handleSelectOptionsChange(id)}
-        ></SelectOptions>
+        <div className="select__options">
+          <SelectOptions
+            type={type}
+            options={localOptions}
+            onChange={(id: number | string) => handleSelectOptionsChange(id)}
+          ></SelectOptions>
+        </div>
       )}
     </div>
   )
