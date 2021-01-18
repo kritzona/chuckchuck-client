@@ -6,6 +6,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  padding: $ts-font-size 0;
 
   & > *:not(:first-child) {
     margin-left: $step-size;

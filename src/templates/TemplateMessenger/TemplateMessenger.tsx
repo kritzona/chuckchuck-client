@@ -9,6 +9,7 @@ const TemplateMessenger = () => {
 
   const templateMessengerHeaderRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesRef = useRef<HTMLDivElement>(null)
+  const templateMessengerMessagesWrapperRef = useRef<HTMLDivElement>(null)
   const templateMessengerSendboxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -29,10 +30,15 @@ const TemplateMessenger = () => {
       templateMessengerMessagesRef.current.style.maxHeight = `calc(100% - ${templateMessengerHeaderHeight}px - ${templateMessengerSendboxHeight}px)`
 
       if (!loaded) {
-        templateMessengerMessagesRef.current.scrollTo(
-          0,
-          templateMessengerMessagesRef.current.scrollHeight,
-        )
+        if (
+          templateMessengerMessagesWrapperRef &&
+          templateMessengerMessagesWrapperRef.current
+        ) {
+          templateMessengerMessagesWrapperRef.current.scrollTo(
+            0,
+            templateMessengerMessagesRef.current.scrollHeight,
+          )
+        }
       }
     }
 
@@ -58,10 +64,15 @@ const TemplateMessenger = () => {
         className="template-messenger__messages"
         ref={templateMessengerMessagesRef}
       >
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <Messages></Messages>
+        <div
+          className="template-messenger__messages-wrapper"
+          ref={templateMessengerMessagesWrapperRef}
+        >
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <Messages></Messages>
+              </div>
             </div>
           </div>
         </div>

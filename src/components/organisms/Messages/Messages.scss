@@ -2,6 +2,9 @@
 @import '../../../assets/styles/variables/sizes.scss';
 
 .messages {
+  height: auto;
+  padding: $ts-font-size * 2 0;
+
   & > *:not(:first-child) {
     margin-top: $step-size;
   }

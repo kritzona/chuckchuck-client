@@ -2,6 +2,8 @@
 @import '../../../assets/styles/variables/sizes.scss';
 
 .sendbox {
+  padding: $ts-font-size 0;
+
   &__textarea {
   }
 
