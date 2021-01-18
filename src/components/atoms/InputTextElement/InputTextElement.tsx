@@ -1,7 +1,14 @@
 import React, { useRef, useEffect } from 'react'
 import './InputTextElement.scss'
 
-const InputTextElement = (props: any) => {
+interface IProps {
+  placeholder?: string
+  onFocus?: () => void
+  onBlur?: () => void
+  onBuildRef?: (ref: any) => void
+}
+
+const InputTextElement = (props: IProps) => {
   const inputTextElementRef = useRef(null)
 
   useEffect(() => {
@@ -25,7 +32,7 @@ const InputTextElement = (props: any) => {
     <input
       type="text"
       className="input-text-element"
-      placeholder="Введите значение"
+      placeholder={props.placeholder ? props.placeholder : 'Введите значение'}
       ref={inputTextElementRef}
       onFocus={() => handleFocus()}
       onBlur={() => handleBlur()}

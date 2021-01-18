@@ -1,0 +1,15 @@
+@import '../../../assets/styles/variables/colors.scss';
+@import '../../../assets/styles/variables/sizes.scss';
+
+.sendbox {
+  &__textarea {
+  }
+
+  &__submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: $step-size * 2;
+  }
+}

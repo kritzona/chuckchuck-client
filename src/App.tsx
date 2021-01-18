@@ -24,6 +24,7 @@ import telegramLightIconSource from './assets/icons/telegram-light.svg'
 import telegramDarkIconSource from './assets/icons/telegram-dark.svg'
 import MessengerHeader from './components/organisms/MessengerHeader/MessengerHeader'
 import Messages from './components/organisms/Messages/Messages'
+import SendBox from './components/organisms/SendBox/SendBox'
 
 interface IProps {}
 
@@ -62,10 +63,10 @@ const App = (props: IProps) => {
             <InputTextElement></InputTextElement>
           </div>
           <div className="col-lg-3">
-            <InputText type="text"></InputText>
+            <InputText type="text" label="Поле"></InputText>
           </div>
           <div className="col-lg-3">
-            <InputLabel></InputLabel>
+            <InputLabel>Лейбл</InputLabel>
           </div>
           <div className="col-lg-3">
             <Toggle></Toggle>
@@ -83,7 +84,7 @@ const App = (props: IProps) => {
             <Logotype></Logotype>
           </div>
           <div className="col-lg-3">
-            <InputText type="textarea"></InputText>
+            <InputText type="textarea" label="Поле"></InputText>
           </div>
         </div>
         <div className="row">
@@ -112,6 +113,7 @@ const App = (props: IProps) => {
           </div>
           <div className="col-lg-4">
             <MessengerHeader></MessengerHeader>
+            <SendBox></SendBox>
           </div>
           <div className="col-lg-4">
             <Messages></Messages>

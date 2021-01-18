@@ -1,7 +1,14 @@
 import React, { useRef, useEffect } from 'react'
 import './InputTextareaElement.scss'
 
-const InputTextareaElement = (props: any) => {
+interface IProps {
+  placeholder?: string
+  onFocus?: () => void
+  onBlur?: () => void
+  onBuildRef?: (ref: any) => void
+}
+
+const InputTextareaElement = (props: IProps) => {
   const inputTextareaElementRef = useRef(null)
 
   useEffect(() => {
@@ -24,7 +31,7 @@ const InputTextareaElement = (props: any) => {
   return (
     <textarea
       className="input-textarea-element"
-      placeholder="Введите значение"
+      placeholder={props.placeholder ? props.placeholder : 'Введите значение'}
       ref={inputTextareaElementRef}
       onFocus={() => handleFocus()}
       onBlur={() => handleBlur()}

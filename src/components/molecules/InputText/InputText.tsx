@@ -5,7 +5,10 @@ import InputTextElement from '../../atoms/InputTextElement/InputTextElement'
 import InputTextareaElement from '../../atoms/InputTextareaElement/InputTextareaElement'
 
 interface IProps {
-  type: string
+  type: 'text' | 'textarea'
+  label?: string
+  placeholder?: string
+  onInput?: (value: string) => void
 }
 
 const InputText = (props: IProps) => {
@@ -51,10 +54,14 @@ const InputText = (props: IProps) => {
 
   return (
     <div className="input-text">
-      <InputLabel></InputLabel>
+      {props.label && <InputLabel>{props.label}</InputLabel>}
+
       <InputField onClick={() => handleInputFieldClick()} inFocus={inFocus}>
         {(!props.type || props.type === 'text') && (
           <InputTextElement
+            placeholder={
+              props.placeholder ? props.placeholder : 'Введите значение'
+            }
             onFocus={() => handleInputTextFocus()}
             onBlur={() => handleInputTextBlur()}
             onBuildRef={(ref: any) => handleInputTextBuildRef(ref)}
@@ -62,6 +69,9 @@ const InputText = (props: IProps) => {
         )}
         {props.type === 'textarea' && (
           <InputTextareaElement
+            placeholder={
+              props.placeholder ? props.placeholder : 'Введите значение'
+            }
             onFocus={() => handleInputTextareaFocus()}
             onBlur={() => handleInputTextareaBlur()}
             onBuildRef={(ref: any) => handleInputTextareaBuildRef(ref)}
