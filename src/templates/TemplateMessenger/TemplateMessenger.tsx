@@ -1,10 +1,12 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Messages from '../../components/organisms/Messages/Messages'
 import MessengerHeader from '../../components/organisms/MessengerHeader/MessengerHeader'
 import SendBox from '../../components/organisms/SendBox/SendBox'
 import './TemplateMessenger.scss'
 
 const TemplateMessenger = () => {
+  const [loaded, setLoaded] = useState(false)
+
   const templateMessengerHeaderRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesRef = useRef<HTMLDivElement>(null)
   const templateMessengerSendboxRef = useRef<HTMLDivElement>(null)
@@ -24,11 +26,22 @@ const TemplateMessenger = () => {
 
     if (templateMessengerMessagesRef && templateMessengerMessagesRef.current) {
       templateMessengerMessagesRef.current.style.height = `calc(100% - ${templateMessengerHeaderHeight}px - ${templateMessengerSendboxHeight}px)`
+      templateMessengerMessagesRef.current.style.maxHeight = `calc(100% - ${templateMessengerHeaderHeight}px - ${templateMessengerSendboxHeight}px)`
+
+      if (!loaded) {
+        templateMessengerMessagesRef.current.scrollTo(
+          0,
+          templateMessengerMessagesRef.current.scrollHeight,
+        )
+      }
     }
-  })
+
+    if (!loaded) setLoaded(true)
+  }, [loaded, setLoaded])
 
   return (
     <div className="template-messenger">
+      <div className="template-messenger__background"></div>
       <div
         className="template-messenger__header"
         ref={templateMessengerHeaderRef}

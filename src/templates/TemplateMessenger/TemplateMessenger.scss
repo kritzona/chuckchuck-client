@@ -5,6 +5,19 @@
   height: 100vh;
   position: relative;
 
+  &__background {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: $white-color;
+    background-image: url(../../assets/images/summer-underwater.jpg);
+    background-repeat: repeat;
+    filter: opacity(0.2);
+    position: absolute;
+    z-index: -1;
+  }
+
   &__header {
     padding: $ts-font-size 0;
     box-sizing: border-box;
@@ -12,11 +25,10 @@
     box-shadow: $box-shadow;
   }
   &__messages {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
     padding: $ts-font-size * 2 0;
     box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
   }
   &__sendbox {
     width: 100%;
