@@ -9,8 +9,17 @@
 
   &--left {
     justify-content: flex-start;
+
+    & > :not(:first-child) {
+      margin-left: $step-size;
+    }
   }
   &--right {
-    justify-content: flex-end;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+
+    & > :not(:first-child) {
+      margin-right: $step-size;
+    }
   }
 }

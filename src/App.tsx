@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './views/Home/Home'
 import UIKit from './views/UIKit/UIKit'
@@ -8,6 +8,22 @@ import './App.scss'
 interface IProps {}
 
 const App = (props: IProps) => {
+  useEffect(() => {
+    updateVH()
+    window.addEventListener('resize', updateVH)
+
+    return () => {
+      window.removeEventListener('resize', updateVH)
+    }
+  }, [])
+
+  const updateVH = () => {
+    document.documentElement.style.setProperty(
+      '--vh',
+      `${window.innerHeight / 100}px`,
+    )
+  }
+
   return (
     <Router>
       <div className="app">

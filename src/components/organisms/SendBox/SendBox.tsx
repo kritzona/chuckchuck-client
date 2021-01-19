@@ -11,7 +11,7 @@ const SendBox = () => {
       <div className="sendbox__textarea">
         <InputText
           type="textarea"
-          label="Сообщение"
+          // label="Сообщение"
           placeholder="Сообщение"
         ></InputText>
       </div>

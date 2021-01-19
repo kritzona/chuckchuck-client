@@ -6,6 +6,7 @@
   font-weight: $regular-font-weight;
   font-style: normal;
   line-height: $tn-line-height;
+  letter-spacing: -0.5px;
 
   &--h1 {
     font-style: normal;
@@ -43,6 +44,12 @@
     font-weight: $regular-font-weight;
     font-size: $ts-font-size;
     line-height: $ts-line-height;
+  }
+  &--sub {
+    font-style: normal;
+    font-weight: $regular-font-weight;
+    font-size: $tsub-font-size;
+    line-height: $tsub-line-height;
   }
 
   &--regular {

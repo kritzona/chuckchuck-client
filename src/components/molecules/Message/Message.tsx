@@ -1,5 +1,6 @@
 import React from 'react'
 import MessageBox from '../../atoms/MessageBox/MessageBox'
+import Time from '../../molecules/Time/Time'
 import './Message.scss'
 
 interface IProps {
@@ -27,6 +28,7 @@ const Message = (props: IProps) => {
         message={props.message}
         align={props.align ? props.align : 'left'}
       ></MessageBox>
+      <Time></Time>
     </div>
   )
 }

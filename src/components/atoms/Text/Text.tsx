@@ -13,7 +13,7 @@ const TextH2Element = (content: React.ReactNode) => (
   <h2 className="text text--h2">{content}</h2>
 )
 const TextH3Element = (content: React.ReactNode) => (
-  <h2 className="text text--h3">{content}</h2>
+  <h3 className="text text--h3">{content}</h3>
 )
 
 const TextNormalRegularElement = (content: React.ReactNode) => (
@@ -28,6 +28,13 @@ const TextSmallRegularElement = (content: React.ReactNode) => (
 )
 const TextSmallBoldElement = (content: React.ReactNode) => (
   <span className="text text--small text--bold">{content}</span>
+)
+
+const TextSubRegularElement = (content: React.ReactNode) => (
+  <span className="text text--sub text--regular">{content}</span>
+)
+const TextSubBoldElement = (content: React.ReactNode) => (
+  <span className="text text--sub text--bold">{content}</span>
 )
 
 const Text = (props: TPropsWithChilder) => {
@@ -53,6 +60,12 @@ const Text = (props: TPropsWithChilder) => {
       break
     case 'text-small-bold':
       textElement = TextSmallBoldElement(props.children)
+      break
+    case 'text-sub-regular':
+      textElement = TextSubRegularElement(props.children)
+      break
+    case 'text-sub-bold':
+      textElement = TextSubBoldElement(props.children)
       break
     default:
       textElement = TextNormalRegularElement(props.children)
