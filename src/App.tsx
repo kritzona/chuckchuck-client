@@ -4,6 +4,7 @@ import Home from './views/Home/Home'
 import UIKit from './views/UIKit/UIKit'
 import Messenger from './views/Messenger/Messenger'
 import './App.scss'
+// import { GlobalStyle } from './components/GlobalStyle'
 
 interface IProps {}
 
