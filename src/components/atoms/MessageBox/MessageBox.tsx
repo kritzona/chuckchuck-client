@@ -1,5 +1,6 @@
 import React from 'react'
 import Text from '../Text/Text'
+import Time from '../Time/Time'
 import './MessageBox.scss'
 
 interface IProps {
@@ -24,6 +25,7 @@ const MessageBox = (props: IProps) => {
   return (
     <div className={messageBoxClassNames.join(' ')}>
       <Text type="text-small-bold">{props.message}</Text>
+      <Time></Time>
     </div>
   )
 }

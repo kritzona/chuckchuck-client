@@ -11,6 +11,14 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  & > *:not(:first-child) {
+    margin-top: $step-size;
+  }
 
   &:hover {
     background-color: $hover-comp-color;
@@ -23,6 +31,7 @@
 
   &--left {
     background-color: $comp-color;
+    align-items: flex-start;
 
     &:hover {
       background-color: $hover-comp-color;
@@ -36,7 +45,7 @@
   &--right {
     color: $white-color;
     background-color: $primary-color;
-    text-align: right;
+    align-items: flex-end;
 
     &:hover {
       background-color: $hover-primary-color;

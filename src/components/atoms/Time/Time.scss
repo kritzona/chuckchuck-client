@@ -2,6 +2,7 @@
 @import '../../../assets/styles/variables/sizes.scss';
 
 .time {
+  width: max-content;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

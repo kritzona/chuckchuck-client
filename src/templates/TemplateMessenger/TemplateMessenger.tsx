@@ -10,6 +10,7 @@ const TemplateMessenger = () => {
   const templateMessengerHeaderRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesWrapperRef = useRef<HTMLDivElement>(null)
+  const templateMessengerMessagesEndRef = useRef<HTMLDivElement>(null)
   const templateMessengerSendboxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -30,15 +31,16 @@ const TemplateMessenger = () => {
       templateMessengerMessagesRef.current.style.maxHeight = `calc(100% - ${templateMessengerHeaderHeight}px - ${templateMessengerSendboxHeight}px)`
 
       if (!loaded) {
-        if (
-          templateMessengerMessagesWrapperRef &&
-          templateMessengerMessagesWrapperRef.current
-        ) {
-          templateMessengerMessagesWrapperRef.current.scrollTo(
-            0,
-            templateMessengerMessagesRef.current.scrollHeight,
-          )
-        }
+        setTimeout(() => {
+          if (
+            templateMessengerMessagesEndRef &&
+            templateMessengerMessagesEndRef.current
+          ) {
+            templateMessengerMessagesEndRef.current.scrollIntoView({
+              behavior: 'smooth',
+            })
+          }
+        }, 10)
       }
     }
 
@@ -72,6 +74,10 @@ const TemplateMessenger = () => {
             <div className="row">
               <div className="col-lg-12">
                 <Messages></Messages>
+                <div
+                  className="template-messenger__messages-end"
+                  ref={templateMessengerMessagesEndRef}
+                ></div>
               </div>
             </div>
           </div>

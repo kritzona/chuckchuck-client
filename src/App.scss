@@ -1,4 +1,5 @@
 @import './assets/styles/variables/sizes.scss';
 
 .app {
+  height: calc(var(--vh, 1vh) * 100) !important;
 }

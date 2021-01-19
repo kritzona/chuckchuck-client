@@ -2,9 +2,18 @@
 @import '../../../assets/styles/variables/sizes.scss';
 
 .sendbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding: $ts-font-size 0;
 
+  & > *:not(:first-child) {
+    margin-left: $step-size * 2;
+  }
+
   &__textarea {
+    width: 100%;
   }
 
   &__submit {
@@ -12,6 +21,5 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    margin-top: $step-size * 2;
   }
 }
