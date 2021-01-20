@@ -50,16 +50,16 @@ const App = (props: IProps) => {
         <ThemeProvider
           theme={theme === 'light' ? themes.lightTheme : themes.darkTheme}
         >
-          <GlobalStyle></GlobalStyle>
+          <GlobalStyle />
           <Switch>
             <Route exact path="/">
-              <Home></Home>
+              <Home />
             </Route>
             <Route path="/ui-kit">
-              <UIKit></UIKit>
+              <UIKit />
             </Route>
             <Route path="/messenger">
-              <Messenger></Messenger>
+              <Messenger />
             </Route>
           </Switch>
         </ThemeProvider>
