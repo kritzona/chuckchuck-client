@@ -1,5 +1,5 @@
 import React from 'react'
-import './InputField.scss'
+import InputFieldStyled from './InputFieldStyled'
 
 interface IProps {
   inFocus?: boolean
@@ -14,18 +14,10 @@ const InputField = (props: IProps) => {
     }
   }
 
-  const inputFieldClassNames = ['input-field']
-  if (props.inFocus) {
-    inputFieldClassNames.push('input-field--focus')
-  }
-
   return (
-    <div
-      className={inputFieldClassNames.join(' ')}
-      onClick={() => handleClick()}
-    >
+    <InputFieldStyled inFocus={props.inFocus} onClick={() => handleClick()}>
       {props.children}
-    </div>
+    </InputFieldStyled>
   )
 }
 

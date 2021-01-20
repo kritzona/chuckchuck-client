@@ -1,6 +1,6 @@
 import React from 'react'
 import Text from '../Text/Text'
-import './InputLabel.scss'
+import InputLabelStyled from './InputLabelStyled'
 
 interface IProps {
   children?: React.ReactNode
@@ -8,9 +8,9 @@ interface IProps {
 
 const InputLabel = (props: IProps) => {
   return (
-    <label className="input-label">
+    <InputLabelStyled>
       <Text type="text-small-bold">{props.children}</Text>
-    </label>
+    </InputLabelStyled>
   )
 }
 

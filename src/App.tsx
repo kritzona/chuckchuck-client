@@ -48,7 +48,7 @@ const App = (props: IProps) => {
     <Router>
       <AppStyled>
         <ThemeProvider
-          theme={theme === 'light' ? themes.lightTheme : themes.darkTheme}
+          theme={theme === 'light' ? themes.LightTheme : themes.DarkTheme}
         >
           <GlobalStyle />
           <Switch>
