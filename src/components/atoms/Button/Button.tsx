@@ -1,13 +1,13 @@
 import React from 'react'
 import Text from '../Text/Text'
 
-import './Button.scss'
+import ButtonStyled from './ButtonStyled'
 
 const Button = () => {
   return (
-    <button className="button">
+    <ButtonStyled>
       <Text type="text-small-bold">Отправить</Text>
-    </button>
+    </ButtonStyled>
   )
 }
 

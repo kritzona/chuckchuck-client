@@ -1,18 +1,12 @@
 import React from 'react'
-
-import './Checkbox.scss'
+import CheckboxStyled from './CheckboxStyled'
 
 interface IProps {
   checked?: boolean
 }
 
 const Checkbox = (props: IProps) => {
-  const checkboxClassNames = ['checkbox']
-  if (props.checked) {
-    checkboxClassNames.push('checkbox--checked')
-  }
-
-  return <div className={checkboxClassNames.join(' ')}></div>
+  return <CheckboxStyled checked={props.checked}></CheckboxStyled>
 }
 
 export default Checkbox

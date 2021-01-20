@@ -1,8 +1,8 @@
 import React from 'react'
-import './Avatar.scss'
+import AvatarStyled from './AvatarStyled'
 
 const Avatar = () => {
-  return <div className="avatar"></div>
+  return <AvatarStyled></AvatarStyled>
 }
 
 export default Avatar

@@ -6,10 +6,9 @@ import Home from './views/Home/Home'
 import UIKit from './views/UIKit/UIKit'
 import Messenger from './views/Messenger/Messenger'
 
-import { lightTheme, darkTheme } from './theme'
-import { GlobalStyle } from './components/GlobalStyle'
-
-import './App.scss'
+import themes from './themes/themes'
+import { GlobalStyle } from './themes/GlobalStyle/GlobalStyle'
+import AppStyled from './AppStyled'
 
 interface IProps {}
 
@@ -47,8 +46,10 @@ const App = (props: IProps) => {
 
   return (
     <Router>
-      <div className="app">
-        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <AppStyled>
+        <ThemeProvider
+          theme={theme === 'light' ? themes.lightTheme : themes.darkTheme}
+        >
           <GlobalStyle></GlobalStyle>
           <Switch>
             <Route exact path="/">
@@ -62,7 +63,7 @@ const App = (props: IProps) => {
             </Route>
           </Switch>
         </ThemeProvider>
-      </div>
+      </AppStyled>
     </Router>
   )
 }

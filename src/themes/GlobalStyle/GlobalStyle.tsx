@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle<IProps>`
     font-style: normal;
     line-height: ${({ theme }) => theme.sizes.tsLineHeight}px;
     color: ${({ theme }) => theme.colors.textColor};
+    background-color: ${({ theme }) => theme.colors.backgroundColor};
   }
 
   input {
