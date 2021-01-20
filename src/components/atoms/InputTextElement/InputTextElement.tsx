@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import './InputTextElement.scss'
+import InputTextElementStyled from './InputTextElementStyled'
 
 interface IProps {
   placeholder?: string
@@ -29,10 +29,8 @@ const InputTextElement = (props: IProps) => {
   }
 
   return (
-    <input
-      type="text"
-      className="input-text-element"
-      placeholder={props.placeholder ? props.placeholder : 'Введите значение'}
+    <InputTextElementStyled
+      placeholder={props.placeholder}
       ref={inputTextElementRef}
       onFocus={() => handleFocus()}
       onBlur={() => handleBlur()}
