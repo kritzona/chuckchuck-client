@@ -13,7 +13,7 @@ import AppStyled from './AppStyled'
 interface IProps {}
 
 const App = (props: IProps) => {
-  const [theme, setTheme] = useState('light')
+  const [theme /* , setTheme */] = useState('light')
 
   useEffect(() => {
     updateVH()
@@ -30,7 +30,7 @@ const App = (props: IProps) => {
       `${window.innerHeight / 100}px`,
     )
   }
-  const toggleTheme = () => {
+  /* const toggleTheme = () => {
     switch (theme) {
       case 'light':
         setTheme('dark')
@@ -42,7 +42,7 @@ const App = (props: IProps) => {
         setTheme('light')
         break
     }
-  }
+  } */
 
   return (
     <Router>

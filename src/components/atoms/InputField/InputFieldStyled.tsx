@@ -7,26 +7,32 @@ interface IProps {
 }
 
 const InputFieldStyled = styled.div<IProps>`
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.whiteColor};
-  border: 2px solid ${({ theme }) => theme.colors.primaryColor};
-  border-radius: ${({ theme }) => theme.sizes.borderRadius}px;
-  box-sizing: border-box;
-  transition: all 0.2s ease-in-out;
+  ${({ theme, inFocus, disabled }) => css`
+    width: 100%;
+    background-color: ${theme.colors.whiteColor};
 
-  ${({ theme, inFocus }) =>
-    inFocus &&
+    border-radius: ${theme.sizes.borderRadius}px;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+
+    ${!inFocus &&
+    !disabled &&
     css`
-      border: 2px solid ${({ theme }) => theme.colors.compColor};
-      box-shadow: ${({ theme }) => theme.effects.boxShadow};
+      border: 2px solid ${theme.colors.primaryColor};
     `}
-  ${({ theme, disabled }) =>
-    disabled &&
+
+    ${inFocus &&
     css`
-      color: ${({ theme }) => theme.colors.greyColor};
-      border: 2px solid ${({ theme }) => theme.colors.greyColor};
+      border: 2px solid ${theme.colors.compColor};
+      box-shadow: ${theme.effects.boxShadow};
+    `}
+    ${disabled &&
+    css`
+      color: ${theme.colors.greyColor};
+      border: 2px solid ${theme.colors.greyColor};
       cursor: not-allowed;
     `}
+  `}
 `
 
 export default InputFieldStyled

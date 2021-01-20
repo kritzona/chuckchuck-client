@@ -1,8 +1,8 @@
 import React from 'react'
-import './InputStatus.scss'
+import InputStatusStyled from './InputStatusStyled'
 
 const InputStatus = () => {
-  return <div className="input-status"></div>
+  return <InputStatusStyled />
 }
 
 export default InputStatus

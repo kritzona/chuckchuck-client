@@ -6,22 +6,21 @@ interface IProps {
 }
 
 const CircleStatusStyled = styled.div<IProps>`
-  width: ${({ theme }) => theme.sizes.stepSize}px;
-  height: ${({ theme }) => theme.sizes.stepSize}px;
-  box-shadow: ${({ theme }) => theme.effects.boxShadow};
-  background-color: ${({ theme }) => theme.colors.successColor};
-  border-radius: 50%;
+  ${({ theme, color }) => css`
+    width: ${theme.sizes.stepSize}px;
+    height: ${theme.sizes.stepSize}px;
+    box-shadow: ${theme.effects.boxShadow};
+    border-radius: 50%;
 
-  ${({ theme, color }) =>
-    color === 'red' &&
-    css`
-      background-color: ${theme.colors.errorColor};
-    `}
-  ${({ theme, color }) =>
-    color === 'green' &&
+    ${(!color || color === 'green') &&
     css`
       background-color: ${theme.colors.successColor};
     `}
+    ${color === 'red' &&
+    css`
+      background-color: ${theme.colors.errorColor};
+    `}
+  `}
 `
 
 export default CircleStatusStyled
