@@ -20,7 +20,7 @@ const InputTextElementStyled = styled.input.attrs<IProps>((props) => ({
     margin: 0;
     padding: ${theme.sizes.tsFontSize}px ${theme.sizes.tsFontSize * 2}px;
     letter-spacing: -0.5px;
-    background-color: ${theme.colors.backgroundColor};
+    background-color: transparent;
 
     &:focus {
       outline: none;

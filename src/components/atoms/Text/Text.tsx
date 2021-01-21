@@ -1,74 +1,76 @@
 import React from 'react'
-import './Text.scss'
+import {
+  TextH1Styled,
+  TextH2Styled,
+  TextH3Styled,
+  TextSpanStyled,
+} from './TextStyled'
 
 interface IProps {
   type: string
 }
 type TPropsWithChilder = React.PropsWithChildren<IProps>
 
-const TextH1Element = (content: React.ReactNode) => (
-  <h1 className="text text--h1">{content}</h1>
-)
-const TextH2Element = (content: React.ReactNode) => (
-  <h2 className="text text--h2">{content}</h2>
-)
-const TextH3Element = (content: React.ReactNode) => (
-  <h3 className="text text--h3">{content}</h3>
-)
-
-const TextNormalRegularElement = (content: React.ReactNode) => (
-  <span className="text text--normal text--regular">{content}</span>
-)
-const TextNormalBoldElement = (content: React.ReactNode) => (
-  <span className="text text--normal text--bold">{content}</span>
-)
-
-const TextSmallRegularElement = (content: React.ReactNode) => (
-  <span className="text text--small text--regular">{content}</span>
-)
-const TextSmallBoldElement = (content: React.ReactNode) => (
-  <span className="text text--small text--bold">{content}</span>
-)
-
-const TextSubRegularElement = (content: React.ReactNode) => (
-  <span className="text text--sub text--regular">{content}</span>
-)
-const TextSubBoldElement = (content: React.ReactNode) => (
-  <span className="text text--sub text--bold">{content}</span>
-)
-
 const Text = (props: TPropsWithChilder) => {
   let textElement = <span></span>
   switch (props.type) {
     case 'h1':
-      textElement = TextH1Element(props.children)
+      textElement = <TextH1Styled>{props.children}</TextH1Styled>
       break
     case 'h2':
-      textElement = TextH2Element(props.children)
+      textElement = <TextH2Styled>{props.children}</TextH2Styled>
       break
     case 'h3':
-      textElement = TextH3Element(props.children)
+      textElement = <TextH3Styled>{props.children}</TextH3Styled>
       break
     case 'text-normal-regular':
-      textElement = TextNormalRegularElement(props.children)
+      textElement = (
+        <TextSpanStyled size="normal" weight="regular">
+          {props.children}
+        </TextSpanStyled>
+      )
       break
     case 'text-normal-bold':
-      textElement = TextNormalBoldElement(props.children)
+      textElement = (
+        <TextSpanStyled size="normal" weight="bold">
+          {props.children}
+        </TextSpanStyled>
+      )
       break
     case 'text-small-regular':
-      textElement = TextSmallRegularElement(props.children)
+      textElement = (
+        <TextSpanStyled size="small" weight="regular">
+          {props.children}
+        </TextSpanStyled>
+      )
       break
     case 'text-small-bold':
-      textElement = TextSmallBoldElement(props.children)
+      textElement = (
+        <TextSpanStyled size="small" weight="bold">
+          {props.children}
+        </TextSpanStyled>
+      )
       break
     case 'text-sub-regular':
-      textElement = TextSubRegularElement(props.children)
+      textElement = (
+        <TextSpanStyled size="sub" weight="regular">
+          {props.children}
+        </TextSpanStyled>
+      )
       break
     case 'text-sub-bold':
-      textElement = TextSubBoldElement(props.children)
+      textElement = (
+        <TextSpanStyled size="sub" weight="bold">
+          {props.children}
+        </TextSpanStyled>
+      )
       break
     default:
-      textElement = TextNormalRegularElement(props.children)
+      textElement = (
+        <TextSpanStyled size="normal" weight="regular">
+          {props.children}
+        </TextSpanStyled>
+      )
       break
   }
 

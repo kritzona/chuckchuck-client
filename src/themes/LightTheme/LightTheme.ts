@@ -7,6 +7,7 @@ export const LightTheme: DefaultTheme = {
     compColor: '#f2d43d',
     textColor: '#161616',
     backgroundColor: '#FFFFFF',
+    backgroundMiddleColor: '#F8F8F8',
 
     hoverPrimaryColor: '#157ebf',
     activePrimaryColor: '#136091',

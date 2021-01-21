@@ -11,7 +11,7 @@ const RadioStyled = styled.div<IProps>`
     height: ${theme.sizes.stepSize * 2.5}px;
     background: ${checked
       ? theme.colors.textColor
-      : theme.colors.backgroundColor};
+      : theme.colors.backgroundMiddleColor};
     border: 2px solid ${theme.colors.textColor};
     box-sizing: border-box;
     border-radius: 50%;
@@ -37,6 +37,7 @@ const RadioStyled = styled.div<IProps>`
 
       &::after {
         display: block;
+        background: ${theme.colors.backgroundColor};
       }
     }
   `}

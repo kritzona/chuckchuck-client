@@ -7,6 +7,7 @@ export const DarkTheme: DefaultTheme = {
     compColor: '#f2d43d',
     textColor: '#FFFFFF',
     backgroundColor: '#161616',
+    backgroundMiddleColor: '#232323',
 
     hoverPrimaryColor: '#157ebf',
     activePrimaryColor: '#136091',

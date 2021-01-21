@@ -12,7 +12,7 @@ const CheckboxStyled = styled.div<IProps>`
     height: ${theme.sizes.stepSize * 2.5}px;
     background: ${checked
       ? theme.colors.textColor
-      : theme.colors.backgroundColor};
+      : theme.colors.backgroundMiddleColor};
     border: 2px solid ${theme.colors.textColor};
     box-sizing: border-box;
     border-radius: ${theme.sizes.borderRadius}px;

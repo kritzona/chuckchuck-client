@@ -25,7 +25,7 @@ const InputTextareaElementStyled = styled.textarea.attrs<IProps>((props) => ({
     padding: ${theme.sizes.tsFontSize}px ${theme.sizes.tsFontSize * 2}px;
     color: ${theme.colors.textColor};
     letter-spacing: -0.5px;
-    background-color: ${theme.colors.backgroundColor};
+    background-color: transparent;
 
     &:focus {
       outline: none;

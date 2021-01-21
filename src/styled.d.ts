@@ -5,6 +5,7 @@ interface IThemeColors {
   compColor: string
   textColor: string
   backgroundColor: string
+  backgroundMiddleColor: string
 
   hoverPrimaryColor: string
   activePrimaryColor: string
