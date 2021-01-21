@@ -26,7 +26,7 @@ export const TemplateMessengerBackgroundStyled = styled.div<IProps>`
 export const TemplateMessengerHeaderStyled = styled.div<IProps>`
   ${({ theme }) => css`
     box-sizing: border-box;
-    background-color: ${theme.colors.backgroundMiddleColor};
+    background-color: ${theme.colors.backgroundColor};
     box-shadow: ${theme.effects.boxShadow};
   `}
 `

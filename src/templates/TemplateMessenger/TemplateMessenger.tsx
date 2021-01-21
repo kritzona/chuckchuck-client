@@ -72,12 +72,10 @@ const TemplateMessenger = (props: IProps) => {
       <TemplateMessengerHeaderStyled ref={templateMessengerHeaderRef}>
         <div className="container">
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col-lg-12 d-flex flex-row justify-content-between">
               <MessengerHeader />
-            </div>
-            <div className="col-lg-6 d-flex flex-row-reverse">
               <InputToggle
-                value={'Темная тема'}
+                value={''}
                 checked={props.theme === 'dark'}
                 onClick={() => handleInputToggleClick()}
               />

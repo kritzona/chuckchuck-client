@@ -18,7 +18,7 @@ const InputToggleStyled = styled.div<IProps>`
       opacity: 0.5;
     }
 
-    & > *:not(:first-child) {
+    & > *:not(:first-child):not(:empty) {
       margin-left: ${theme.sizes.stepSize * 2}px;
     }
   `}
