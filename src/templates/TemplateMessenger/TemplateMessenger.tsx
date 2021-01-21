@@ -10,8 +10,14 @@ import {
   TemplateMessengerSendboxStyled,
   TemplateMessengerStyled,
 } from './TemplateMessengerStyled'
+import InputToggle from '../../components/molecules/InputToggle/InputToggle'
 
-const TemplateMessenger = () => {
+interface IProps {
+  theme: string
+  onToggleTheme?: () => void
+}
+
+const TemplateMessenger = (props: IProps) => {
   const [loaded, setLoaded] = useState(false)
 
   const templateMessengerHeaderRef = useRef<HTMLDivElement>(null)
@@ -19,6 +25,12 @@ const TemplateMessenger = () => {
   const templateMessengerMessagesWrapperRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesEndRef = useRef<HTMLDivElement>(null)
   const templateMessengerSendboxRef = useRef<HTMLDivElement>(null)
+
+  const handleInputToggleClick = () => {
+    if (props.onToggleTheme) {
+      props.onToggleTheme()
+    }
+  }
 
   useEffect(() => {
     let templateMessengerHeaderHeight = 0
@@ -60,8 +72,15 @@ const TemplateMessenger = () => {
       <TemplateMessengerHeaderStyled ref={templateMessengerHeaderRef}>
         <div className="container">
           <div className="row">
-            <div className="col-lg-12">
+            <div className="col-lg-6">
               <MessengerHeader />
+            </div>
+            <div className="col-lg-6 d-flex flex-row-reverse">
+              <InputToggle
+                value={'Темная тема'}
+                checked={props.theme === 'dark'}
+                onClick={() => handleInputToggleClick()}
+              />
             </div>
           </div>
         </div>
