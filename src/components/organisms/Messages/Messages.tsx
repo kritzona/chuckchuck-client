@@ -1,19 +1,19 @@
 import React from 'react'
 import Message from '../../molecules/Message/Message'
-import './Messages.scss'
+import MessagesStyled from './MessagesStyled'
 
 const Messages = () => {
   return (
-    <div className="messages">
-      <Message message="Hello, Kitty" align="left"></Message>
-      <Message message="Hello, Kitty" align="left"></Message>
-      <Message message="Hello, Kitty" align="right"></Message>
-      <Message message="Hello, Kitty" align="left"></Message>
-      <Message message="Hello, Kitty" align="right"></Message>
-      <Message message="Hello, Kitty" align="right"></Message>
-      <Message message="Hello, Kitty" align="left"></Message>
-      <Message message="Hello, Kitty" align="right"></Message>
-    </div>
+    <MessagesStyled>
+      <Message message="Hello, Kitty" align="left" />
+      <Message message="Hello, Kitty" align="left" />
+      <Message message="Hello, Kitty" align="right" />
+      <Message message="Hello, Kitty" align="left" />
+      <Message message="Hello, Kitty" align="right" />
+      <Message message="Hello, Kitty" align="right" />
+      <Message message="Hello, Kitty" align="left" />
+      <Message message="Hello, Kitty" align="right" />
+    </MessagesStyled>
   )
 }
 
