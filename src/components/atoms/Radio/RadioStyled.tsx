@@ -25,7 +25,15 @@ const RadioStyled = styled.div<IProps>`
       height: ${theme.sizes.stepSize - 2}px;
       top: calc(50% - 3px);
       left: calc(50% - 3px);
-      background: ${theme.colors.whiteColor};
+
+      ${theme.name === 'light' &&
+      css`
+        background: ${theme.colors.whiteColor};
+      `}
+      ${theme.name === 'dark' &&
+      css`
+        background: ${theme.colors.blackColor};
+      `}
       border-radius: 50%;
       position: absolute;
       display: ${checked ? 'block' : 'none'};

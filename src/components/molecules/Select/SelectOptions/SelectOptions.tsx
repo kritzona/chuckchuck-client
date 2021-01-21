@@ -1,7 +1,7 @@
 import React from 'react'
 import InputCheckbox from '../../InputCheckbox/InputCheckbox'
 import InputRadio from '../../InputRadio/InputRadio'
-import './SelectOptions.scss'
+import SelectOptionsStyled from './SelectOptionsStyled'
 
 interface IOption {
   id: number | string
@@ -27,26 +27,26 @@ const SelectOptions = (props: IProps) => {
   }
 
   return (
-    <div className="select-options">
+    <SelectOptionsStyled>
       {props.options.map((option) => (
-        <div key={option.id} className="select-options__item">
+        <div key={option.id}>
           {props.type === 'select' && (
             <InputRadio
               value={option.value}
               checked={option.checked}
               onClick={() => handleInputCheckboxClick(option.id)}
-            ></InputRadio>
+            />
           )}
           {props.type === 'multiselect' && (
             <InputCheckbox
               value={option.value}
               checked={option.checked}
               onClick={() => handleInputRadioClick(option.id)}
-            ></InputCheckbox>
+            />
           )}
         </div>
       ))}
-    </div>
+    </SelectOptionsStyled>
   )
 }
 

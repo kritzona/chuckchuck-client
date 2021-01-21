@@ -1,7 +1,7 @@
 import React from 'react'
 import InputField from '../../../atoms/InputField/InputField'
 import Text from '../../../atoms/Text/Text'
-import './SelectField.scss'
+import SelectFieldStyled from './SelectFieldStyled'
 
 interface IProps {
   active: boolean
@@ -16,16 +16,11 @@ const SelectField = (props: IProps) => {
     }
   }
 
-  const selectFieldClassNames = ['select-field']
-  if (props.active) {
-    selectFieldClassNames.push('select-field--active')
-  }
-
   return (
     <InputField inFocus={props.active} onClick={() => handleClick()}>
-      <div className={selectFieldClassNames.join(' ')}>
+      <SelectFieldStyled active={props.active}>
         <Text type="text-small-bold">{props.placeholder}</Text>
-      </div>
+      </SelectFieldStyled>
     </InputField>
   )
 }

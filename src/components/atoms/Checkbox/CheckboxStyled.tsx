@@ -1,5 +1,6 @@
 import styled, { css, DefaultTheme } from 'styled-components'
 import checkLightIconSource from '../../../assets/icons/check-light.svg'
+import checkDarkIconSource from '../../../assets/icons/check-dark.svg'
 
 interface IProps {
   theme: DefaultTheme
@@ -26,7 +27,16 @@ const CheckboxStyled = styled.div<IProps>`
       height: ${theme.sizes.stepSize + 2}px;
       top: calc(50% - 5px);
       left: calc(50% - 5px);
-      background-image: url(${checkLightIconSource});
+
+      ${theme.name === 'light' &&
+      css`
+        background-image: url(${checkLightIconSource});
+      `}
+      ${theme.name === 'dark' &&
+      css`
+        background-image: url(${checkDarkIconSource});
+      `}
+      
       background-repeat: no-repeat;
       background-position: center center;
       background-size: contain;
