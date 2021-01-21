@@ -2,7 +2,14 @@ import React, { useState, useRef, useEffect } from 'react'
 import Messages from '../../components/organisms/Messages/Messages'
 import MessengerHeader from '../../components/organisms/MessengerHeader/MessengerHeader'
 import SendBox from '../../components/organisms/SendBox/SendBox'
-import './TemplateMessenger.scss'
+import {
+  TemplateMessengerBackgroundStyled,
+  TemplateMessengerHeaderStyled,
+  TemplateMessengerMessagesStyled,
+  TemplateMessengerMessagesWrapperStyled,
+  TemplateMessengerSendboxStyled,
+  TemplateMessengerStyled,
+} from './TemplateMessengerStyled'
 
 const TemplateMessenger = () => {
   const [loaded, setLoaded] = useState(false)
@@ -48,54 +55,41 @@ const TemplateMessenger = () => {
   }, [loaded, setLoaded])
 
   return (
-    <div className="template-messenger">
-      <div className="template-messenger__background"></div>
-      <div
-        className="template-messenger__header"
-        ref={templateMessengerHeaderRef}
-      >
+    <TemplateMessengerStyled>
+      <TemplateMessengerBackgroundStyled />
+      <TemplateMessengerHeaderStyled ref={templateMessengerHeaderRef}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <MessengerHeader></MessengerHeader>
+              <MessengerHeader />
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className="template-messenger__messages"
-        ref={templateMessengerMessagesRef}
-      >
-        <div
-          className="template-messenger__messages-wrapper"
+      </TemplateMessengerHeaderStyled>
+      <TemplateMessengerMessagesStyled ref={templateMessengerMessagesRef}>
+        <TemplateMessengerMessagesWrapperStyled
           ref={templateMessengerMessagesWrapperRef}
         >
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
-                <Messages></Messages>
-                <div
-                  className="template-messenger__messages-end"
-                  ref={templateMessengerMessagesEndRef}
-                ></div>
+                <Messages />
+                <div ref={templateMessengerMessagesEndRef} />
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div
-        className="template-messenger__sendbox"
-        ref={templateMessengerSendboxRef}
-      >
+        </TemplateMessengerMessagesWrapperStyled>
+      </TemplateMessengerMessagesStyled>
+      <TemplateMessengerSendboxStyled ref={templateMessengerSendboxRef}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <SendBox></SendBox>
+              <SendBox />
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </TemplateMessengerSendboxStyled>
+    </TemplateMessengerStyled>
   )
 }
 

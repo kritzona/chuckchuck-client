@@ -1,7 +1,7 @@
 import React from 'react'
 import Toggle from '../../atoms/Toggle/Toggle'
 import Text from '../../atoms/Text/Text'
-import './InputToggle.scss'
+import InputToggleStyled from './InputToggleStyled'
 
 interface IProps {
   value: string
@@ -17,10 +17,10 @@ const InputToggle = (props: IProps) => {
   }
 
   return (
-    <div className="input-toggle" onClick={() => handleClick()}>
-      <Toggle checked={props.checked}></Toggle>
+    <InputToggleStyled onClick={() => handleClick()}>
+      <Toggle checked={props.checked} />
       <Text type="text-small-bold">{props.value}</Text>
-    </div>
+    </InputToggleStyled>
   )
 }
 

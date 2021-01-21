@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
-import './Select.scss'
 import SelectField from './SelectField/SelectField'
 import SelectOptions from './SelectOptions/SelectOptions'
+import {
+  SelectFieldWrapperStyled,
+  SelectOptionsWrapperStyled,
+  SelectStyled,
+} from './SelectStyled'
 
 interface IOption {
   id: number | string
@@ -150,25 +154,25 @@ const Select = (props: IProps) => {
   }
 
   return (
-    <div className="select" ref={selectRef}>
-      <div className="select__field">
+    <SelectStyled ref={selectRef}>
+      <SelectFieldWrapperStyled>
         <SelectField
           active={active}
           placeholder={placeholder}
           onClick={() => handleSelectFieldClick()}
-        ></SelectField>
-      </div>
+        />
+      </SelectFieldWrapperStyled>
 
       {active && (
-        <div className="select__options">
+        <SelectOptionsWrapperStyled>
           <SelectOptions
             type={type}
             options={localOptions}
             onChange={(id: number | string) => handleSelectOptionsChange(id)}
-          ></SelectOptions>
-        </div>
+          />
+        </SelectOptionsWrapperStyled>
       )}
-    </div>
+    </SelectStyled>
   )
 }
 

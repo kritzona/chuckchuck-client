@@ -26,13 +26,13 @@ const ShortButtonStyled = styled.button<IProps>`
     border: 0;
     transition: all 0.2s ease-in-out;
     user-select: none;
-    background-image: url(${darkIconSource});
     background-repeat: no-repeat;
     background-position: center center;
     background-size: ${theme.sizes.stepSize * 3}px ${theme.sizes.stepSize * 3}px;
 
     ${!woBackground &&
     css`
+      background-image: url(${darkIconSource});
       background-color: ${theme.colors.compColor};
       justify-content: center;
     `}
@@ -72,10 +72,27 @@ const ShortButtonStyled = styled.button<IProps>`
       background-color: transparent;
       justify-content: flex-start;
 
+      ${theme.name === 'light' &&
+      css`
+        background-image: url(${darkIconSource});
+      `}
+      ${theme.name === 'dark' &&
+      css`
+        background-image: url(${lightIconSource});
+      `}
+
       &:hover,
       &:active,
       &:disabled {
-        background-color: transparent;
+        ${theme.name === 'light' &&
+        css`
+          background-image: url(${darkIconSource});
+        `}
+        ${theme.name === 'dark' &&
+        css`
+          background-image: url(${lightIconSource});
+        `}
+        background-color: ${theme.colors.backgroundMiddleColor};
         justify-content: center;
       }
     `}

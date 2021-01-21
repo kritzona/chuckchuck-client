@@ -1,36 +1,32 @@
 import React from 'react'
 import CircleStatus from '../../atoms/CircleStatus/CircleStatus'
 import Text from '../../atoms/Text/Text'
-import './OnlineStatus.scss'
+import OnlineStatusStyled from './OnlineStatusStyled'
 
 interface IProps {
-  status: string
+  status?: string
 }
 
 const OnlineStatus = (props: IProps) => {
-  let circleStatusColor = 'red'
-  const onlineStatusClassNames = ['online-status']
+  let circleStatusColor = 'green'
 
   switch (props.status) {
     case 'online':
       circleStatusColor = 'green'
-      onlineStatusClassNames.push('online-status--online')
       break
     case 'offline':
       circleStatusColor = 'red'
-      onlineStatusClassNames.push('online-status--offline')
       break
     default:
       circleStatusColor = 'green'
-      onlineStatusClassNames.push('online-status--online')
       break
   }
 
   return (
-    <div className={onlineStatusClassNames.join(' ')}>
-      <CircleStatus color={circleStatusColor}></CircleStatus>
+    <OnlineStatusStyled status={props.status}>
+      <CircleStatus color={circleStatusColor} />
       <Text type="text-small-bold">{props.status}</Text>
-    </div>
+    </OnlineStatusStyled>
   )
 }
 

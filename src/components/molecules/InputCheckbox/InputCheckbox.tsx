@@ -1,7 +1,7 @@
 import React from 'react'
 import Checkbox from '../../atoms/Checkbox/Checkbox'
 import Text from '../../atoms/Text/Text'
-import './InputCheckbox.scss'
+import InputCheckboxStyled from './InputCheckboxStyled'
 
 interface IProps {
   value: string
@@ -17,10 +17,10 @@ const InputCheckbox = (props: IProps) => {
   }
 
   return (
-    <div className="input-checkbox" onClick={() => handleClick()}>
-      <Checkbox checked={props.checked}></Checkbox>
+    <InputCheckboxStyled onClick={() => handleClick()}>
+      <Checkbox checked={props.checked} />
       <Text type="text-small-bold">{props.value}</Text>
-    </div>
+    </InputCheckboxStyled>
   )
 }
 

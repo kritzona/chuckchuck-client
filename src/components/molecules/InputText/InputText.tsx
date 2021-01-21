@@ -3,6 +3,7 @@ import InputField from '../../atoms/InputField/InputField'
 import InputLabel from '../../atoms/InputLabel/InputLabel'
 import InputTextElement from '../../atoms/InputTextElement/InputTextElement'
 import InputTextareaElement from '../../atoms/InputTextareaElement/InputTextareaElement'
+import InputTextStyled from './InputTextStyled'
 
 interface IProps {
   type: 'text' | 'textarea'
@@ -53,7 +54,7 @@ const InputText = (props: IProps) => {
   }
 
   return (
-    <div className="input-text">
+    <InputTextStyled>
       {props.label && <InputLabel>{props.label}</InputLabel>}
 
       <InputField onClick={() => handleInputFieldClick()} inFocus={inFocus}>
@@ -65,7 +66,7 @@ const InputText = (props: IProps) => {
             onFocus={() => handleInputTextFocus()}
             onBlur={() => handleInputTextBlur()}
             onBuildRef={(ref: any) => handleInputTextBuildRef(ref)}
-          ></InputTextElement>
+          />
         )}
         {props.type === 'textarea' && (
           <InputTextareaElement
@@ -75,10 +76,10 @@ const InputText = (props: IProps) => {
             onFocus={() => handleInputTextareaFocus()}
             onBlur={() => handleInputTextareaBlur()}
             onBuildRef={(ref: any) => handleInputTextareaBuildRef(ref)}
-          ></InputTextareaElement>
+          />
         )}
       </InputField>
-    </div>
+    </InputTextStyled>
   )
 }
 
