@@ -9,7 +9,7 @@ interface IProps {
 const InputFieldStyled = styled.div<IProps>`
   ${({ theme, inFocus, disabled }) => css`
     width: 100%;
-    background-color: ${theme.colors.whiteColor};
+    background-color: ${theme.colors.backgroundColor};
 
     border-radius: ${theme.sizes.borderRadius}px;
     box-sizing: border-box;

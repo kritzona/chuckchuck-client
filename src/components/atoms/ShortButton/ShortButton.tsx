@@ -1,6 +1,5 @@
 import React from 'react'
-
-import './ShortButton.scss'
+import ShortButtonStyled from './ShortButtonStyled'
 
 interface IProps {
   lightIconSource: string
@@ -20,18 +19,12 @@ const ShortButton = (props: IProps) => {
   }
 
   return (
-    <button className={shortButtonClassNames.join(' ')}>
-      <img
-        src={props.lightIconSource}
-        alt="light-icon"
-        className="short-button__icon short-button__icon--light"
-      />
-      <img
-        src={props.darkIconSource}
-        alt="dark-icon"
-        className="short-button__icon short-button__icon--dark"
-      />
-    </button>
+    <ShortButtonStyled
+      lightIconSource={props.lightIconSource}
+      darkIconSource={props.darkIconSource}
+      circle={props.circle}
+      woBackground={props.woBackground}
+    />
   )
 }
 

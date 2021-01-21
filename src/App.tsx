@@ -13,9 +13,10 @@ import AppStyled from './AppStyled'
 interface IProps {}
 
 const App = (props: IProps) => {
-  const [theme /* , setTheme */] = useState('light')
+  const [theme /*, setTheme */] = useState('light')
 
   useEffect(() => {
+    //toggleTheme()
     updateVH()
     window.addEventListener('resize', updateVH)
 

@@ -1,18 +1,12 @@
 import React from 'react'
-
-import './Radio.scss'
+import RadioStyled from './RadioStyled'
 
 interface IProps {
   checked?: boolean
 }
 
 const Radio = (props: IProps) => {
-  const radioClassNames = ['radio']
-  if (props.checked) {
-    radioClassNames.push('radio--checked')
-  }
-
-  return <div className={radioClassNames.join(' ')}></div>
+  return <RadioStyled checked={props.checked} />
 }
 
 export default Radio

@@ -1,11 +1,12 @@
 import { DefaultTheme } from 'styled-components'
 
 export const DarkTheme: DefaultTheme = {
+  name: 'dark',
   colors: {
     primaryColor: '#18a2d9',
     compColor: '#f2d43d',
     textColor: '#FFFFFF',
-    backgroundColor: '#011c40',
+    backgroundColor: '#161616',
 
     hoverPrimaryColor: '#157ebf',
     activePrimaryColor: '#136091',
@@ -15,7 +16,7 @@ export const DarkTheme: DefaultTheme = {
     errorColor: '#f25252',
     successColor: '#4af57a',
 
-    blackColor: '#000000',
+    blackColor: '#161616',
     whiteColor: '#ffffff',
     greyColor: '#bababa',
   },

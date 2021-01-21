@@ -1,7 +1,7 @@
 import React from 'react'
 import Text from '../Text/Text'
 import Time from '../Time/Time'
-import './MessageBox.scss'
+import MessageBoxStyled from './MessageBoxStyled'
 
 interface IProps {
   message: string
@@ -9,24 +9,11 @@ interface IProps {
 }
 
 const MessageBox = (props: IProps) => {
-  const messageBoxClassNames = ['message-box']
-  switch (props.align) {
-    case 'left':
-      messageBoxClassNames.push('message-box--left')
-      break
-    case 'right':
-      messageBoxClassNames.push('message-box--right')
-      break
-    default:
-      messageBoxClassNames.push('message-box--left')
-      break
-  }
-
   return (
-    <div className={messageBoxClassNames.join(' ')}>
+    <MessageBoxStyled align={props.align}>
       <Text type="text-small-bold">{props.message}</Text>
-      <Time></Time>
-    </div>
+      <Time />
+    </MessageBoxStyled>
   )
 }
 

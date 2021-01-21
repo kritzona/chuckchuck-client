@@ -1,8 +1,8 @@
 import React from 'react'
-import './Logotype.scss'
+import LogotypeStyled from './LogotypeStyled'
 
 const Logotype = () => {
-  return <div className="logotype"></div>
+  return <LogotypeStyled />
 }
 
 export default Logotype

@@ -49,6 +49,7 @@ interface IThemeEffects {
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    name: 'light' | 'dark'
     colors: IThemeColors
     sizes: IThemeSizes
     effects: IThemeEffects

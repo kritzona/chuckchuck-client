@@ -1,12 +1,11 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import checkLightIconSource from '../../../assets/icons/check-light.svg'
 
 interface IProps {
   theme: DefaultTheme
   checked?: boolean
 }
 
-const CheckboxStyled = styled.div<IProps>`
+const RadioStyled = styled.div<IProps>`
   ${({ theme, checked }) => css`
     width: ${theme.sizes.stepSize * 2.5}px;
     height: ${theme.sizes.stepSize * 2.5}px;
@@ -15,21 +14,18 @@ const CheckboxStyled = styled.div<IProps>`
       : theme.colors.backgroundColor};
     border: 2px solid ${theme.colors.textColor};
     box-sizing: border-box;
-    border-radius: ${theme.sizes.borderRadius}px;
+    border-radius: 50%;
     cursor: pointer;
     position: relative;
     transition: all 0.2s ease-in-out;
 
     &::after {
       content: '';
-      width: ${theme.sizes.stepSize + 2}px;
-      height: ${theme.sizes.stepSize + 2}px;
-      top: calc(50% - 5px);
-      left: calc(50% - 5px);
-      background-image: url(${checkLightIconSource});
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
+      width: ${theme.sizes.stepSize - 2}px;
+      height: ${theme.sizes.stepSize - 2}px;
+      top: calc(50% - 3px);
+      left: calc(50% - 3px);
+      background: ${theme.colors.whiteColor};
       border-radius: 50%;
       position: absolute;
       display: ${checked ? 'block' : 'none'};
@@ -46,4 +42,4 @@ const CheckboxStyled = styled.div<IProps>`
   `}
 `
 
-export default CheckboxStyled
+export default RadioStyled

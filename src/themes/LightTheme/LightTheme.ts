@@ -1,10 +1,11 @@
 import { DefaultTheme } from 'styled-components'
 
 export const LightTheme: DefaultTheme = {
+  name: 'light',
   colors: {
     primaryColor: '#18a2d9',
     compColor: '#f2d43d',
-    textColor: '#011c40',
+    textColor: '#161616',
     backgroundColor: '#FFFFFF',
 
     hoverPrimaryColor: '#157ebf',
@@ -15,7 +16,7 @@ export const LightTheme: DefaultTheme = {
     errorColor: '#f25252',
     successColor: '#4af57a',
 
-    blackColor: '#000000',
+    blackColor: '#161616',
     whiteColor: '#ffffff',
     greyColor: '#bababa',
   },

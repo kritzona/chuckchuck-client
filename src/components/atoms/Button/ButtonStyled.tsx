@@ -7,7 +7,7 @@ interface IProps {
 
 const ButtonStyled = styled.button<IProps>`
   ${({ theme, fullWidth }) => css`
-    color: inherit;
+    color: ${theme.colors.blackColor};
     background: ${theme.colors.compColor};
     margin: 0;
     padding: ${theme.sizes.tsFontSize}px ${theme.sizes.tsFontSize * 3}px;
