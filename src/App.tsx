@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ThemeContext from './contexts/ThemeContext'
 import { ThemeProvider } from 'styled-components'
@@ -11,10 +12,14 @@ import themes from './themes/themes'
 import { GlobalStyle } from './themes/GlobalStyle/GlobalStyle'
 import AppStyled from './AppStyled'
 
+import { IRootState } from './store/root/reducer'
+import { rootToggleThemeAction } from './store/root/actions'
+
 interface IProps {}
 
 const App = (props: IProps) => {
-  const [theme, setTheme] = useState('light')
+  const theme = useSelector((state: IRootState) => state.theme)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     updateVH()
@@ -31,26 +36,13 @@ const App = (props: IProps) => {
       `${window.innerHeight / 100}px`,
     )
   }
-  const toggleTheme = () => {
-    switch (theme) {
-      case 'light':
-        setTheme('dark')
-        break
-      case 'dark':
-        setTheme('light')
-        break
-      default:
-        setTheme('light')
-        break
-    }
-  }
 
   return (
     <Router>
       <ThemeContext.Provider
         value={{
           theme,
-          toggleTheme: () => toggleTheme(),
+          toggleTheme: () => dispatch(rootToggleThemeAction()),
         }}
       >
         <ThemeProvider
