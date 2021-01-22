@@ -7,6 +7,7 @@ import InputTextStyled from './InputTextStyled'
 
 interface IProps {
   type: 'text' | 'textarea'
+  textType?: 'text' | 'password' | 'email'
   label?: string
   placeholder?: string
   onInput?: (value: string) => void
@@ -60,6 +61,7 @@ const InputText = (props: IProps) => {
       <InputField onClick={() => handleInputFieldClick()} inFocus={inFocus}>
         {(!props.type || props.type === 'text') && (
           <InputTextElement
+            type={props.textType}
             placeholder={
               props.placeholder ? props.placeholder : 'Введите значение'
             }

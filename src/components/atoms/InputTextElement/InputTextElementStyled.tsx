@@ -2,11 +2,12 @@ import styled, { css, DefaultTheme } from 'styled-components'
 
 interface IProps {
   theme: DefaultTheme
+  type?: 'text' | 'password' | 'email'
   placeholder?: string
 }
 
 const InputTextElementStyled = styled.input.attrs<IProps>((props) => ({
-  type: 'text',
+  type: props.type ? props.type : 'text',
   placeholder: props.placeholder ? props.placeholder : 'Введите значение',
 }))`
   ${({ theme }) => css`

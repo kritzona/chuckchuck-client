@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import InputTextElementStyled from './InputTextElementStyled'
 
 interface IProps {
+  type?: 'text' | 'password' | 'email'
   placeholder?: string
   onFocus?: () => void
   onBlur?: () => void
@@ -30,6 +31,7 @@ const InputTextElement = (props: IProps) => {
 
   return (
     <InputTextElementStyled
+      type={props.type}
       placeholder={props.placeholder}
       ref={inputTextElementRef}
       onFocus={() => handleFocus()}

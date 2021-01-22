@@ -4,7 +4,7 @@ interface IProps {
   theme: DefaultTheme
 }
 
-const SignInFormStyled = styled.div<IProps>`
+const SignInFormStyled = styled.form<IProps>`
   ${({ theme }) => css`
     & > *:not(:first-child) {
       margin-top: ${theme.sizes.stepSize * 2}px;
