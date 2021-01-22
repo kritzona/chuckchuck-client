@@ -1,28 +1,39 @@
 import React from 'react'
-import TemplateSignInStyled from './TemplateSignInStyled'
-import InputText from '../../components/molecules/InputText/InputText'
-import InputCheckbox from '../../components/molecules/InputCheckbox/InputCheckbox'
-import Button from '../../components/atoms/Button/Button'
+
+import SignInForm from '../../components/organisms/SignInForm/SignInForm'
+import MainHeader from '../../components/organisms/MainHeader/MainHeader'
+import ToggleTheme from '../../components/organisms/ToggleTheme/ToggleTheme'
+
+import {
+  TemplateSignInFormStyled,
+  TemplateSignInHeaderStyled,
+  TemplateSignInStyled,
+} from './TemplateSignInStyled'
 
 const TemplateSignIn = () => {
   return (
     <TemplateSignInStyled>
-      <div className="container">
-        <div className="row">
-          <div className="offset-4" />
-          <div className="col-lg-4">
-            <InputText type="text" label="Логин" placeholder="Введите логин" />
-            <InputText
-              type="text"
-              label="Пароль"
-              placeholder="Введите пароль"
-            />
-            <InputCheckbox value="Запомнить меня" checked={false} />
-            <Button fullWidth={true} />
+      <TemplateSignInHeaderStyled>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 d-flex flex-row justify-content-between">
+              <MainHeader />
+              <ToggleTheme />
+            </div>
           </div>
-          <div className="offset-4" />
         </div>
-      </div>
+      </TemplateSignInHeaderStyled>
+      <TemplateSignInFormStyled>
+        <div className="container">
+          <div className="row">
+            <div className="offset-4" />
+            <div className="col-lg-4">
+              <SignInForm />
+            </div>
+            <div className="offset-4" />
+          </div>
+        </div>
+      </TemplateSignInFormStyled>
     </TemplateSignInStyled>
   )
 }

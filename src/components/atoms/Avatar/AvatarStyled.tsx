@@ -7,12 +7,12 @@ interface IProps {
 
 const AvatarStyled = styled.div<IProps>`
   ${({ theme }) => css`
-    width: ${theme.sizes.tnFontSize +
-    theme.sizes.tnLineHeight +
-    theme.sizes.tnFontSize}px;
-    height: ${theme.sizes.tnFontSize +
-    theme.sizes.tnLineHeight +
-    theme.sizes.tnFontSize}px;
+    width: ${theme.sizes.tsFontSize +
+    theme.sizes.tsLineHeight +
+    theme.sizes.tsFontSize}px;
+    height: ${theme.sizes.tsFontSize +
+    theme.sizes.tsLineHeight +
+    theme.sizes.tsFontSize}px;
     background-color: ${theme.colors.compColor};
     background-image: url(${avatarImageSource});
     background-repeat: no-repeat;

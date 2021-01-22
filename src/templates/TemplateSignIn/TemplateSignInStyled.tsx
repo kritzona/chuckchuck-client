@@ -4,8 +4,20 @@ interface IProps {
   theme: DefaultTheme
 }
 
-const TemplateSignInStyled = styled.div<IProps>`
-  ${() => css``}
+export const TemplateSignInStyled = styled.div<IProps>`
+  ${({ theme }) => css`
+    // padding-top: ${theme.sizes.stepSize * 3 * 8}px;
+  `}
 `
-
-export default TemplateSignInStyled
+export const TemplateSignInHeaderStyled = styled.div<IProps>`
+  ${({ theme }) => css`
+    box-sizing: border-box;
+    background-color: ${theme.colors.backgroundColor};
+    box-shadow: ${theme.effects.boxShadow};
+  `}
+`
+export const TemplateSignInFormStyled = styled.div<IProps>`
+  ${({ theme }) => css`
+    padding-top: ${theme.sizes.stepSize * 3 * 8}px;
+  `}
+`
