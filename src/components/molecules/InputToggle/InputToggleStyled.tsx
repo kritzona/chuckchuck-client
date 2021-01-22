@@ -21,6 +21,12 @@ const InputToggleStyled = styled.div<IProps>`
     & > *:not(:first-child):not(:empty) {
       margin-left: ${theme.sizes.stepSize * 2}px;
     }
+
+    @media screen and (max-width: 991.98px) {
+      &:hover {
+        opacity: 1;
+      }
+    }
   `}
 `
 

@@ -2,14 +2,12 @@ import styled, { css, DefaultTheme } from 'styled-components'
 
 interface IProps {
   theme: DefaultTheme
-  lightIconSource: string
-  darkIconSource: string
   circle?: boolean
   woBackground?: boolean
 }
 
-const ShortButtonStyled = styled.button<IProps>`
-  ${({ theme, lightIconSource, darkIconSource, circle, woBackground }) => css`
+export const ShortButtonStyled = styled.button<IProps>`
+  ${({ theme, circle, woBackground }) => css`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -26,74 +24,129 @@ const ShortButtonStyled = styled.button<IProps>`
     border: 0;
     transition: all 0.2s ease-in-out;
     user-select: none;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: ${theme.sizes.stepSize * 3}px ${theme.sizes.stepSize * 3}px;
+
+    &:focus {
+      outline: none;
+    }
 
     ${!woBackground &&
     css`
-      background-image: url(${darkIconSource});
       background-color: ${theme.colors.compColor};
       justify-content: center;
+
+      & > img[data-icon-theme='light'] {
+        display: none;
+      }
+      & > img[data-icon-theme='dark'] {
+        display: block;
+      }
+
+      &:hover,
+      &:active,
+      &:disabled {
+        & > img[data-icon-theme='light'] {
+          display: block;
+        }
+        & > img[data-icon-theme='dark'] {
+          display: none;
+        }
+      }
+
+      &:hover {
+        background-color: ${theme.colors.hoverCompColor};
+        outline: none;
+        color: ${theme.colors.whiteColor};
+        box-shadow: ${theme.effects.boxShadow};
+      }
+      &:active {
+        background-color: ${theme.colors.activeCompColor};
+        outline: none;
+        color: ${theme.colors.whiteColor};
+        box-shadow: ${theme.effects.boxShadow};
+      }
+      &:disabled {
+        background-color: ${theme.colors.greyColor};
+        outline: none;
+        color: ${theme.colors.whiteColor};
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+
+      @media screen and (max-width: 991.98px) {
+        &:hover {
+          background-color: ${theme.colors.compColor};
+          outline: none;
+          color: ${theme.colors.blackColor};
+          box-shadow: none;
+
+          & > img[data-icon-theme='light'] {
+            display: none;
+          }
+          & > img[data-icon-theme='dark'] {
+            display: block;
+          }
+        }
+        &:active {
+          background-color: ${theme.colors.activeCompColor};
+          outline: none;
+          color: ${theme.colors.whiteColor};
+          box-shadow: ${theme.effects.boxShadow};
+
+          & > img[data-icon-theme='light'] {
+            display: block;
+          }
+          & > img[data-icon-theme='dark'] {
+            display: none;
+          }
+        }
+      }
     `}
     ${!circle &&
     css`
       border-radius: ${theme.sizes.borderRadius}px;
     `}
 
-    &:focus {
-      outline: none;
-    }
-    &:hover {
-      background-color: ${theme.colors.hoverCompColor};
-      background-image: url(${lightIconSource});
-      outline: none;
-      color: ${theme.colors.whiteColor};
-      box-shadow: ${theme.effects.boxShadow};
-    }
-    &:active {
-      background-color: ${theme.colors.activeCompColor};
-      background-image: url(${lightIconSource});
-      outline: none;
-      color: ${theme.colors.whiteColor};
-      box-shadow: ${theme.effects.boxShadow};
-    }
-    &:disabled {
-      background-color: ${theme.colors.greyColor};
-      background-image: url(${lightIconSource});
-      outline: none;
-      color: ${theme.colors.whiteColor};
-      box-shadow: none;
-      cursor: not-allowed;
-    }
-
     ${woBackground &&
     css`
       background-color: transparent;
       justify-content: flex-start;
 
-      ${theme.name === 'light' &&
+      ${(!theme.name || theme.name === 'light') &&
       css`
-        background-image: url(${darkIconSource});
+        & > img[data-icon-theme='light'] {
+          display: none;
+        }
+        & > img[data-icon-theme='dark'] {
+          display: block;
+        }
       `}
       ${theme.name === 'dark' &&
       css`
-        background-image: url(${lightIconSource});
+        & > img[data-icon-theme='light'] {
+          display: block;
+        }
+        & > img[data-icon-theme='dark'] {
+          display: none;
+        }
       `}
 
       &:hover,
       &:active,
       &:disabled {
-        ${theme.name === 'light' &&
-        css`
-          background-image: url(${darkIconSource});
-        `}
-        ${theme.name === 'dark' &&
-        css`
-          background-image: url(${lightIconSource});
-        `}
         background-color: ${theme.colors.backgroundMiddleColor};
         justify-content: center;
+      }
+
+      @media screen and (max-width: 991.98px) {
+        &:hover {
+          background-color: transparent;
+          justify-content: flex-start;
+        }
+        &:active,
+        &:disabled {
+          background-color: ${theme.colors.backgroundMiddleColor};
+          justify-content: center;
+        }
       }
     `}
     ${circle &&
@@ -102,5 +155,9 @@ const ShortButtonStyled = styled.button<IProps>`
     `}
   `}
 `
-
-export default ShortButtonStyled
+export const ShortButtonIconStyled = styled.img`
+  ${({ theme }) => css`
+    width: ${theme.sizes.stepSize * 3}px;
+    height: ${theme.sizes.stepSize * 3}px;
+  `}
+`

@@ -3,10 +3,17 @@ import Text from '../Text/Text'
 
 import ButtonStyled from './ButtonStyled'
 
-const Button = () => {
+interface IProps {
+  value?: string
+  fullWidth?: boolean
+}
+
+const Button = (props: IProps) => {
   return (
-    <ButtonStyled>
-      <Text type="text-small-bold">Отправить</Text>
+    <ButtonStyled fullWidth={props.fullWidth}>
+      <Text type="text-small-bold">
+        {props.value ? props.value : 'Отправить'}
+      </Text>
     </ButtonStyled>
   )
 }

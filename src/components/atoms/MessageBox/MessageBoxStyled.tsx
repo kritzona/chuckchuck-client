@@ -38,12 +38,23 @@ const MessageBoxStyled = styled.div<IProps>`
         background-color: ${theme.colors.activeCompColor};
         color: ${theme.colors.whiteColor};
       }
+
+      @media screen and (max-width: 991.98px) {
+        &:hover {
+          background-color: ${theme.colors.compColor};
+          color: ${theme.colors.blackColor};
+        }
+        &:active {
+          background-color: ${theme.colors.activeCompColor};
+          color: ${theme.colors.whiteColor};
+        }
+      }
     `}
 
     ${align === 'right' &&
     css`
-      color: ${theme.colors.whiteColor};
       background-color: ${theme.colors.primaryColor};
+      color: ${theme.colors.whiteColor};
       align-items: flex-end;
 
       &:hover {
@@ -53,6 +64,17 @@ const MessageBoxStyled = styled.div<IProps>`
       &:active {
         background-color: ${theme.colors.activePrimaryColor};
         color: ${theme.colors.whiteColor};
+      }
+
+      @media screen and (max-width: 991.98px) {
+        &:hover {
+          background-color: ${theme.colors.primaryColor};
+          color: ${theme.colors.whiteColor};
+        }
+        &:active {
+          background-color: ${theme.colors.activePrimaryColor};
+          color: ${theme.colors.whiteColor};
+        }
       }
     `}
   `}

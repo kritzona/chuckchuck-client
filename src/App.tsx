@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import ThemeContext from './contexts/ThemeContext'
 import { ThemeProvider } from 'styled-components'
 
 import Home from './views/Home/Home'
@@ -46,24 +47,31 @@ const App = (props: IProps) => {
 
   return (
     <Router>
-      <AppStyled>
+      <ThemeContext.Provider
+        value={{
+          theme,
+          toggleTheme: () => toggleTheme(),
+        }}
+      >
         <ThemeProvider
           theme={theme === 'light' ? themes.LightTheme : themes.DarkTheme}
         >
-          <GlobalStyle />
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/ui-kit">
-              <UIKit />
-            </Route>
-            <Route path="/messenger">
-              <Messenger theme={theme} onToggleTheme={() => toggleTheme()} />
-            </Route>
-          </Switch>
+          <AppStyled>
+            <GlobalStyle />
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/ui-kit">
+                <UIKit />
+              </Route>
+              <Route path="/messenger">
+                <Messenger />
+              </Route>
+            </Switch>
+          </AppStyled>
         </ThemeProvider>
-      </AppStyled>
+      </ThemeContext.Provider>
     </Router>
   )
 }

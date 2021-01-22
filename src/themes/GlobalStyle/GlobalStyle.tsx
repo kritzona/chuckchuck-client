@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle<IProps>`
       margin: 0 auto;
       padding: 0;
       -webkit-font-smoothing: subpixel-antialiased;
+      -moz-osx-font-smoothing: grayscale;
       font-family: 'Montserrat', sans-serif;
       font-size: ${theme.sizes.tsFontSize}px;
       font-weight: ${theme.sizes.regularFontWeight};

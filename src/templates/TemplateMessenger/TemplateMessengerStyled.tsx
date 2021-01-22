@@ -15,10 +15,10 @@ export const TemplateMessengerBackgroundStyled = styled.div<IProps>`
     height: 100%;
     top: 0;
     left: 0;
-    background-color: ${theme.colors.backgroundColor};
+    background-color: ${theme.colors.backgroundMiddleColor};
     background-image: url(${summerUnderwaterImageSource});
     background-repeat: repeat;
-    filter: opacity(0.2);
+    filter: opacity(0.2) blur(3px);
     position: absolute;
     z-index: -1;
   `}
