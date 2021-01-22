@@ -53,6 +53,11 @@ const InputText = (props: IProps) => {
   const handleInputTextareaBlur = () => {
     setInFocus(false)
   }
+  const handleInput = (value: string) => {
+    if (props.onInput) {
+      props.onInput(value)
+    }
+  }
 
   return (
     <InputTextStyled>
@@ -68,6 +73,7 @@ const InputText = (props: IProps) => {
             onFocus={() => handleInputTextFocus()}
             onBlur={() => handleInputTextBlur()}
             onBuildRef={(ref: any) => handleInputTextBuildRef(ref)}
+            onInput={(value: string) => handleInput(value)}
           />
         )}
         {props.type === 'textarea' && (
@@ -78,6 +84,7 @@ const InputText = (props: IProps) => {
             onFocus={() => handleInputTextareaFocus()}
             onBlur={() => handleInputTextareaBlur()}
             onBuildRef={(ref: any) => handleInputTextareaBuildRef(ref)}
+            onInput={(value: string) => handleInput(value)}
           />
         )}
       </InputField>

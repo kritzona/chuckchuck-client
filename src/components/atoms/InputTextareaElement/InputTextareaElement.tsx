@@ -6,6 +6,7 @@ interface IProps {
   onFocus?: () => void
   onBlur?: () => void
   onBuildRef?: (ref: any) => void
+  onInput?: (value: string) => void
 }
 
 const InputTextareaElement = (props: IProps) => {
@@ -27,6 +28,13 @@ const InputTextareaElement = (props: IProps) => {
       props.onBlur()
     }
   }
+  const handleChange = (event: React.ChangeEvent) => {
+    const eventTarget = event.target as HTMLInputElement
+
+    if (props.onInput) {
+      props.onInput(eventTarget.value ? eventTarget.value : '')
+    }
+  }
 
   return (
     <InputTextareaElementStyled
@@ -34,6 +42,7 @@ const InputTextareaElement = (props: IProps) => {
       ref={inputTextareaElementRef}
       onFocus={() => handleFocus()}
       onBlur={() => handleBlur()}
+      onChange={(event: React.ChangeEvent) => handleChange(event)}
     />
   )
 }

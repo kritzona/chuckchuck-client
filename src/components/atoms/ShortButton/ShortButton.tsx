@@ -10,8 +10,18 @@ interface IProps {
 }
 
 const ShortButton = (props: IProps) => {
+  const handleClick = () => {
+    if (props.onClick) {
+      props.onClick()
+    }
+  }
+
   return (
-    <ShortButtonStyled circle={props.circle} woBackground={props.woBackground}>
+    <ShortButtonStyled
+      circle={props.circle}
+      woBackground={props.woBackground}
+      onClick={() => handleClick()}
+    >
       <ShortButtonIconStyled
         src={props.lightIconSource}
         alt="light-icon"
