@@ -4,17 +4,14 @@ interface IProps {
   theme: DefaultTheme
 }
 
-const MainHeaderStyled = styled.div<IProps>`
+const FooterStyled = styled.div<IProps>`
   ${({ theme }) => css`
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-
-    & > *:not(:first-child) {
-      margin-left: ${theme.sizes.stepSize}px;
-    }
+    padding: ${theme.sizes.tsFontSize}px 0;
   `}
 `
 
-export default MainHeaderStyled
+export default FooterStyled

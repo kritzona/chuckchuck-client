@@ -4,17 +4,14 @@ interface IProps {
   theme: DefaultTheme
 }
 
-const MainHeaderStyled = styled.div<IProps>`
+const HeaderStyled = styled.div<IProps>`
   ${({ theme }) => css`
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-
-    & > *:not(:first-child) {
-      margin-left: ${theme.sizes.stepSize}px;
-    }
+    padding: ${theme.sizes.tsFontSize / 2}px 0;
   `}
 `
 
-export default MainHeaderStyled
+export default HeaderStyled

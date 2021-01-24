@@ -11,6 +11,7 @@ import {
   TemplateMessengerStyled,
 } from './TemplateMessengerStyled'
 import ToggleTheme from '../../components/organisms/ToggleTheme/ToggleTheme'
+import Header from '../../components/organisms/Header/Header'
 
 interface IProps {}
 
@@ -63,9 +64,11 @@ const TemplateMessenger = (props: IProps) => {
       <TemplateMessengerHeaderStyled ref={templateMessengerHeaderRef}>
         <div className="container">
           <div className="row">
-            <div className="col-lg-12 d-flex flex-row justify-content-between">
-              <MessengerHeader />
-              <ToggleTheme />
+            <div className="col-lg-12">
+              <Header
+                leftChildren={<MessengerHeader />}
+                rightChildren={<ToggleTheme />}
+              />
             </div>
           </div>
         </div>
