@@ -1,13 +1,19 @@
 import React from 'react'
-import MainHeaderStyled from './MainHeaderStyled'
+import { MainHeaderSideStyled, MainHeaderStyled } from './MainHeaderStyled'
 import LogotypeWithName from '../../molecules/LogotypeWithName/LogotypeWithName'
+import ToggleTheme from '../ToggleTheme/ToggleTheme'
 
 interface IProps {}
 
 const MainHeader = (props: IProps) => {
   return (
     <MainHeaderStyled>
-      <LogotypeWithName />
+      <MainHeaderSideStyled>
+        <LogotypeWithName />
+      </MainHeaderSideStyled>
+      <MainHeaderSideStyled>
+        <ToggleTheme />
+      </MainHeaderSideStyled>
     </MainHeaderStyled>
   )
 }

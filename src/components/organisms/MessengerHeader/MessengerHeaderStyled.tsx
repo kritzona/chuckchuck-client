@@ -4,7 +4,19 @@ interface IProps {
   theme: DefaultTheme
 }
 
-const MessengerHeaderStyled = styled.div<IProps>`
+export const MessengerHeaderStyled = styled.div<IProps>`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & > *:not(:first-child) {
+      margin-left: ${theme.sizes.stepSize}px;
+    }
+  `}
+`
+export const MessengerHeaderSideStyled = styled.div<IProps>`
   ${({ theme }) => css`
     display: flex;
     flex-direction: row;
@@ -16,5 +28,3 @@ const MessengerHeaderStyled = styled.div<IProps>`
     }
   `}
 `
-
-export default MessengerHeaderStyled

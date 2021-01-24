@@ -10,8 +10,8 @@ import {
   TemplateMessengerSendboxStyled,
   TemplateMessengerStyled,
 } from './TemplateMessengerStyled'
-import ToggleTheme from '../../components/organisms/ToggleTheme/ToggleTheme'
-import Header from '../../components/organisms/Header/Header'
+import PartHeader from '../../parts/PartHeader/PartHeader'
+import PartMessengerFooter from '../../parts/PartMessengerFooter/PartMessengerFooter'
 
 interface IProps {}
 
@@ -62,16 +62,9 @@ const TemplateMessenger = (props: IProps) => {
     <TemplateMessengerStyled>
       <TemplateMessengerBackgroundStyled />
       <TemplateMessengerHeaderStyled ref={templateMessengerHeaderRef}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <Header
-                leftChildren={<MessengerHeader />}
-                rightChildren={<ToggleTheme />}
-              />
-            </div>
-          </div>
-        </div>
+        <PartHeader>
+          <MessengerHeader />
+        </PartHeader>
       </TemplateMessengerHeaderStyled>
       <TemplateMessengerMessagesStyled ref={templateMessengerMessagesRef}>
         <TemplateMessengerMessagesWrapperStyled
@@ -88,13 +81,9 @@ const TemplateMessenger = (props: IProps) => {
         </TemplateMessengerMessagesWrapperStyled>
       </TemplateMessengerMessagesStyled>
       <TemplateMessengerSendboxStyled ref={templateMessengerSendboxRef}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <SendBox />
-            </div>
-          </div>
-        </div>
+        <PartMessengerFooter>
+          <SendBox />
+        </PartMessengerFooter>
       </TemplateMessengerSendboxStyled>
     </TemplateMessengerStyled>
   )

@@ -10,9 +10,6 @@ export const TemplateSignInStyled = styled.div<IProps>`
     position: relative;
   `}
 `
-export const TemplateSignInFormStyled = styled.div<IProps>`
-  ${({ theme }) => css`
-    padding-top: ${theme.sizes.stepSize * 8}px;
-    padding-bottom: ${theme.sizes.stepSize * 8}px;
-  `}
-`
+export const TemplateSignInHeaderStyled = styled.div<IProps>``
+export const TemplateSignInContentStyled = styled.div<IProps>``
+export const TemplateSignInFooterStyled = styled.div<IProps>``

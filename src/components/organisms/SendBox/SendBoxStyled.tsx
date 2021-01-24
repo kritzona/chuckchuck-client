@@ -10,7 +10,6 @@ export const SendBoxStyled = styled.div<IProps>`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: ${theme.sizes.tsFontSize}px 0;
 
     & > *:not(:first-child) {
       margin-left: ${theme.sizes.stepSize * 2}px;

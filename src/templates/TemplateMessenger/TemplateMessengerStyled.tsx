@@ -23,13 +23,7 @@ export const TemplateMessengerBackgroundStyled = styled.div<IProps>`
     z-index: -1;
   `}
 `
-export const TemplateMessengerHeaderStyled = styled.div<IProps>`
-  ${({ theme }) => css`
-    box-sizing: border-box;
-    background-color: ${theme.colors.backgroundColor};
-    box-shadow: ${theme.effects.boxShadow};
-  `}
-`
+export const TemplateMessengerHeaderStyled = styled.div<IProps>``
 export const TemplateMessengerMessagesStyled = styled.div<IProps>`
   box-sizing: border-box;
   position: relative;
@@ -48,8 +42,5 @@ export const TemplateMessengerSendboxStyled = styled.div<IProps>`
     position: absolute;
     left: 0;
     bottom: 0;
-    box-sizing: border-box;
-    background-color: ${theme.colors.backgroundColor};
-    box-shadow: ${theme.effects.boxShadow};
   `}
 `

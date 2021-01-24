@@ -4,7 +4,19 @@ interface IProps {
   theme: DefaultTheme
 }
 
-const MainHeaderStyled = styled.div<IProps>`
+export const MainHeaderStyled = styled.div<IProps>`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & > *:not(:first-child) {
+      margin-left: ${theme.sizes.stepSize}px;
+    }
+  `}
+`
+export const MainHeaderSideStyled = styled.div<IProps>`
   ${({ theme }) => css`
     display: flex;
     flex-direction: row;
@@ -16,5 +28,3 @@ const MainHeaderStyled = styled.div<IProps>`
     }
   `}
 `
-
-export default MainHeaderStyled
