@@ -4,7 +4,7 @@ interface IProps {
   theme: DefaultTheme
 }
 
-const ContactStyled = styled.div`
+const ContactStyled = styled.div<IProps>`
   ${({ theme }) => css`
     background-color: ${theme.colors.backgroundMiddleColor};
     padding: ${theme.sizes.tsFontSize}px;

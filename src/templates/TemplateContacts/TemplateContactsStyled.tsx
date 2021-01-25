@@ -4,11 +4,15 @@ interface IProps {
   theme: DefaultTheme
 }
 
-const TemplateContactsStyled = styled.div<IProps>`
+export const TemplateContactsStyled = styled.div<IProps>`
   ${() => css`
     height: 100%;
     position: relative;
   `}
 `
-
-export default TemplateContactsStyled
+export const TemplateContactsHeaderStyled = styled.div<IProps>``
+export const TemplateContactsContentStyled = styled.div<IProps>`
+  overflow-y: auto;
+  box-sizing: border-box;
+`
+export const TemplateContactsFooterStyled = styled.div<IProps>``

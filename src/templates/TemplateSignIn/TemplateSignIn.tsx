@@ -38,17 +38,17 @@ const TemplateSignIn = () => {
               <div className="offset-4" />
             </div>
           </div>
+          <TemplateSignInFooterStyled>
+            <PartFooter>
+              <Text type="text-sub-bold">
+                2021 &copy; Repository:
+                <br />
+                https://github.com/kritzona/chuckchuck
+              </Text>
+            </PartFooter>
+          </TemplateSignInFooterStyled>
         </PartContent>
       </TemplateSignInContentStyled>
-      <TemplateSignInFooterStyled>
-        <PartFooter>
-          <Text type="text-sub-bold">
-            2021 &copy; Repository:
-            <br />
-            https://github.com/kritzona/chuckchuck
-          </Text>
-        </PartFooter>
-      </TemplateSignInFooterStyled>
     </TemplateSignInStyled>
   )
 }
