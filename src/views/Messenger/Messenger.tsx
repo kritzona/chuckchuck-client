@@ -1,13 +1,13 @@
 import React from 'react'
-import TemplateMessenger from '../../templates/TemplateMessenger/TemplateMessenger'
 import './Messenger.scss'
+import TemplateMessengerContainer from '../../containers/TemplateMessengerContainer'
 
 interface IProps {}
 
 const Messenger = (props: IProps) => {
   return (
     <div className="messenger">
-      <TemplateMessenger />
+      <TemplateMessengerContainer />
     </div>
   )
 }

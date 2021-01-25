@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import TemplateMessenger from '../templates/TemplateMessenger/TemplateMessenger'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
+import TemplateContacts from '../templates/TemplateContacts/TemplateContacts'
 
 interface IProps {}
 
-const TemplateMessengerContainer = (props: IProps) => {
+const TemplateContactsContainer = (props: IProps) => {
   const history = useHistory()
   const user = useSelector((state: RootState) => state.user)
 
@@ -16,7 +16,7 @@ const TemplateMessengerContainer = (props: IProps) => {
     }
   }, [user, history])
 
-  return <React.Fragment>{user.isAuth && <TemplateMessenger />}</React.Fragment>
+  return <React.Fragment>{user.isAuth && <TemplateContacts />}</React.Fragment>
 }
 
-export default TemplateMessengerContainer
+export default TemplateContactsContainer

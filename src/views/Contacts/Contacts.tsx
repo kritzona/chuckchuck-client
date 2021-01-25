@@ -1,10 +1,10 @@
 import React from 'react'
-import TemplateContacts from '../../templates/TemplateContacts/TemplateContacts'
+import TemplateContactsContainer from '../../containers/TemplateContactsContainer'
 
 interface IProps {}
 
 const Contacts = (props: IProps) => {
-  return <TemplateContacts />
+  return <TemplateContactsContainer />
 }
 
 export default Contacts
