@@ -12,7 +12,7 @@ const Contact = (props: IProps) => {
   return (
     <ContactStyled onClick={() => history.push('/messenger')}>
       <User />
-      <Message message="Hello, Kitty" align="left" />
+      <Message message="Hello, Kitty" align="left" fullWidth={true} />
     </ContactStyled>
   )
 }

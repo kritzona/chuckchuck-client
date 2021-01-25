@@ -1,20 +1,24 @@
 import React from 'react'
 import ThemeContext from '../../../contexts/ThemeContext'
 import InputToggle from '../../molecules/InputToggle/InputToggle'
+import { ToggleThemeMoonStyled, ToggleThemeStyled } from './ToggleThemeStyled'
 
 interface IProps {}
 
 const ToggleTheme = (props: IProps) => {
   return (
-    <ThemeContext.Consumer>
-      {({ theme, toggleTheme }) => (
-        <InputToggle
-          value={''}
-          checked={theme === 'dark'}
-          onClick={() => toggleTheme()}
-        />
-      )}
-    </ThemeContext.Consumer>
+    <ToggleThemeStyled>
+      <ToggleThemeMoonStyled />
+      <ThemeContext.Consumer>
+        {({ theme, toggleTheme }) => (
+          <InputToggle
+            value={''}
+            checked={theme === 'dark'}
+            onClick={() => toggleTheme()}
+          />
+        )}
+      </ThemeContext.Consumer>
+    </ToggleThemeStyled>
   )
 }
 

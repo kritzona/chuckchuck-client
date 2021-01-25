@@ -5,6 +5,7 @@ import MessageStyled from './MessageStyled'
 interface IProps {
   message: string
   align?: 'left' | 'right'
+  fullWidth?: boolean
 }
 
 const Message = (props: IProps) => {
@@ -13,6 +14,7 @@ const Message = (props: IProps) => {
       <MessageBox
         message={props.message}
         align={props.align ? props.align : 'left'}
+        fullWidth={props.fullWidth}
       />
     </MessageStyled>
   )

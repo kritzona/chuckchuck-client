@@ -3,12 +3,13 @@ import styled, { css, DefaultTheme } from 'styled-components'
 interface IProps {
   theme: DefaultTheme
   align?: 'left' | 'right'
+  fullWidth?: boolean
 }
 
 const MessageBoxStyled = styled.div<IProps>`
-  ${({ theme, align }) => css`
-    width: max-content;
-    max-width: 80%;
+  ${({ theme, align, fullWidth }) => css`
+    width: ${fullWidth ? '100%' : 'max-content'};
+    max-width: ${fullWidth ? '100%' : '80%'};
     margin: 0;
     padding: ${theme.sizes.stepSize}px ${theme.sizes.stepSize * 2}px;
     border-radius: ${theme.sizes.borderRadius * 3}px;
