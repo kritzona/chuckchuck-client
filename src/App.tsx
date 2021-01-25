@@ -12,13 +12,13 @@ import themes from './themes/themes'
 import { GlobalStyle } from './themes/GlobalStyle/GlobalStyle'
 import AppStyled from './AppStyled'
 
-import { IRootState } from './store/root/reducer'
 import { rootToggleThemeAction } from './store/root/actions'
+import { RootState } from './store/store'
 
 interface IProps {}
 
 const App = (props: IProps) => {
-  const theme = useSelector((state: IRootState) => state.theme)
+  const theme = useSelector((state: RootState) => state.root.theme)
   const dispatch = useDispatch()
 
   useEffect(() => {

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import SignInForm from '../../components/organisms/SignInForm/SignInForm'
 import MainHeader from '../../components/organisms/MainHeader/MainHeader'
 
 import {
@@ -13,6 +12,7 @@ import PartHeader from '../../parts/PartHeader/PartHeader'
 import PartContent from '../../parts/PartContent/PartContent'
 import Text from '../../components/atoms/Text/Text'
 import PartFooter from '../../parts/PartFooter/PartFooter'
+import SignInFormContainer from '../../containers/SignInFormContainer'
 
 const TemplateSignIn = () => {
   return (
@@ -33,7 +33,7 @@ const TemplateSignIn = () => {
             <div className="row">
               <div className="offset-4" />
               <div className="col-lg-4">
-                <SignInForm />
+                <SignInFormContainer />
               </div>
               <div className="offset-4" />
             </div>
