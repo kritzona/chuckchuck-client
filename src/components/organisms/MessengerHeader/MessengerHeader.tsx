@@ -20,7 +20,7 @@ const MessengerHeader = () => {
           lightIconSource={arrowLeftLightIconSource}
           darkIconSource={arrowLeftDarkIconSource}
           woBackground={true}
-          onClick={() => history.push('/')}
+          onClick={() => history.push('/contacts')}
         />
         <User />
       </MessengerHeaderSideStyled>

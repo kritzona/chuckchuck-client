@@ -2,7 +2,7 @@ import React from 'react'
 import { PartFooterBodyStyled, PartFooterStyled } from './PartFooterStyled'
 
 interface IProps {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 const PartFooter = (props: IProps) => {

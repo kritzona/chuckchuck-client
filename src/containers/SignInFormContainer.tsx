@@ -1,5 +1,4 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 import SignInForm from '../components/organisms/SignInForm/SignInForm'
 import { useDispatch } from 'react-redux'
 import { userAuthAction } from '../store/user/actions'

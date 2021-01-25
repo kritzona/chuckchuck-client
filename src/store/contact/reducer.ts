@@ -1,6 +1,13 @@
 import { TContactAction } from './actions'
 
-export interface IContactItem {}
+export interface IContactItem {
+  id: number
+  login: string
+  firstName: string
+  lastName: string
+  avatar: string | null
+  isOnline: boolean
+}
 export interface IContactState {
   items: IContactItem[]
 }

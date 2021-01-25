@@ -14,6 +14,7 @@ import AppStyled from './AppStyled'
 
 import { rootToggleThemeAction } from './store/root/actions'
 import { RootState } from './store/store'
+import Contacts from './views/Contacts/Contacts'
 
 interface IProps {}
 
@@ -56,6 +57,9 @@ const App = (props: IProps) => {
               </Route>
               <Route path="/ui-kit">
                 <UIKit />
+              </Route>
+              <Route path="/contacts">
+                <Contacts />
               </Route>
               <Route path="/messenger">
                 <Messenger />

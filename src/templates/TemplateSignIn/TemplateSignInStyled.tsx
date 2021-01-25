@@ -5,7 +5,7 @@ interface IProps {
 }
 
 export const TemplateSignInStyled = styled.div<IProps>`
-  ${({ theme }) => css`
+  ${() => css`
     height: 100%;
     position: relative;
   `}

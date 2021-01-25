@@ -1,11 +1,11 @@
 import React from 'react'
 import './Home.scss'
-import TemplateSignIn from '../../templates/TemplateSignIn/TemplateSignIn'
+import TemplateSignInContainer from '../../containers/TemplateSignInContainer'
 
 const Home = () => {
   return (
     <div className="home">
-      <TemplateSignIn />
+      <TemplateSignInContainer />
     </div>
   )
 }
