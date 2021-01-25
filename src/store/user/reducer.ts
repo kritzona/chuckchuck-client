@@ -29,12 +29,13 @@ const userReducer = (state: IUserState = initialState, action: TUserAction) => {
         avatar: avatarImageSource,
         isAuth: true,
       }
-      break
+      return state
     case 'LOGOUT':
       state = initialState
-      break
+      return state
+    default:
+      return state
   }
-  return state
 }
 
 export default userReducer

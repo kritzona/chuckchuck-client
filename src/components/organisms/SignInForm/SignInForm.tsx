@@ -1,5 +1,4 @@
 import React, { FormEvent, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 
 import InputText from '../../molecules/InputText/InputText'
 import InputCheckbox from '../../molecules/InputCheckbox/InputCheckbox'
@@ -7,11 +6,11 @@ import Button from '../../atoms/Button/Button'
 
 import SignInFormStyled from './SignInFormStyled'
 
-interface IProps {}
+interface IProps {
+  onSubmit?: (login: string, password: string, remember: boolean) => void
+}
 
 const SignInForm = (props: IProps) => {
-  const history = useHistory()
-
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
@@ -19,8 +18,11 @@ const SignInForm = (props: IProps) => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
 
-    console.log(login, password, remember)
-    history.push('/messenger')
+    // console.log(login, password, remember)
+    // history.push('/messenger')
+    if (props.onSubmit) {
+      props.onSubmit(login, password, remember)
+    }
   }
   const handleLoginInput = (value: string) => {
     setLogin(value)
