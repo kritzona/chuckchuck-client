@@ -1,22 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Messages from '../../components/organisms/Messages/Messages'
-import MessengerHeader from '../../components/organisms/MessengerHeader/MessengerHeader'
 import SendBox from '../../components/organisms/SendBox/SendBox'
 import {
   TemplateMessengerBackgroundStyled,
-  TemplateMessengerHeaderStyled,
   TemplateMessengerMessagesStyled,
   TemplateMessengerMessagesWrapperStyled,
   TemplateMessengerSendboxStyled,
   TemplateMessengerStyled,
 } from './TemplateMessengerStyled'
-import PartHeader from '../../parts/PartHeader/PartHeader'
 import PartMessengerFooter from '../../parts/PartMessengerFooter/PartMessengerFooter'
 
 interface IProps {}
 
 const TemplateMessenger = (props: IProps) => {
-  const [loaded, setLoaded] = useState(false)
+  /* const [loaded, setLoaded] = useState(false)
 
   const templateMessengerHeaderRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesRef = useRef<HTMLDivElement>(null)
@@ -56,31 +53,24 @@ const TemplateMessenger = (props: IProps) => {
     }
 
     if (!loaded) setLoaded(true)
-  }, [loaded, setLoaded])
+  }, [loaded, setLoaded]) */
 
   return (
     <TemplateMessengerStyled>
       <TemplateMessengerBackgroundStyled />
-      <TemplateMessengerHeaderStyled ref={templateMessengerHeaderRef}>
-        <PartHeader>
-          <MessengerHeader />
-        </PartHeader>
-      </TemplateMessengerHeaderStyled>
-      <TemplateMessengerMessagesStyled ref={templateMessengerMessagesRef}>
-        <TemplateMessengerMessagesWrapperStyled
-          ref={templateMessengerMessagesWrapperRef}
-        >
+      <TemplateMessengerMessagesStyled>
+        <TemplateMessengerMessagesWrapperStyled>
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
                 <Messages />
-                <div ref={templateMessengerMessagesEndRef} />
+                <div />
               </div>
             </div>
           </div>
         </TemplateMessengerMessagesWrapperStyled>
       </TemplateMessengerMessagesStyled>
-      <TemplateMessengerSendboxStyled ref={templateMessengerSendboxRef}>
+      <TemplateMessengerSendboxStyled>
         <PartMessengerFooter>
           <SendBox />
         </PartMessengerFooter>
