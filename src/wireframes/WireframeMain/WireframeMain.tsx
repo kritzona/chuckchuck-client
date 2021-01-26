@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Home from '../../views/Home/Home'
@@ -7,7 +7,8 @@ import Contacts from '../../views/Contacts/Contacts'
 import Messenger from '../../views/Messenger/Messenger'
 import PartHeader from '../../parts/PartHeader/PartHeader'
 import MainHeader from '../../components/organisms/MainHeader/MainHeader'
-import PartContent from '../../parts/PartContent/PartContent'
+import MessengerHeader from '../../components/organisms/MessengerHeader/MessengerHeader'
+import PartMain from '../../parts/PartMain/PartMain'
 
 import {
   WireframeMainContentStyled,
@@ -15,15 +16,29 @@ import {
   WireframeMainHeaderStyled,
   WireframeMainStyled,
 } from './WireframeMainStyled'
-import MessengerHeader from '../../components/organisms/MessengerHeader/MessengerHeader'
 
 interface IProps {}
 
 const WireframeMain = (props: IProps) => {
+  const wireframeMainHeaderRef = useRef<HTMLDivElement>(null)
+  const wireframeMainContentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let wireframeMainHeaderHeight = 0
+
+    if (wireframeMainHeaderRef && wireframeMainHeaderRef.current) {
+      wireframeMainHeaderHeight = wireframeMainHeaderRef.current.offsetHeight
+    }
+
+    if (wireframeMainContentRef && wireframeMainContentRef.current) {
+      wireframeMainContentRef.current.style.paddingTop = `${wireframeMainHeaderHeight}px`
+    }
+  })
+
   return (
     <WireframeMainStyled>
       <Router>
-        <WireframeMainHeaderStyled>
+        <WireframeMainHeaderStyled ref={wireframeMainHeaderRef}>
           <PartHeader>
             <Switch>
               <Route exact path="/">
@@ -41,8 +56,8 @@ const WireframeMain = (props: IProps) => {
             </Switch>
           </PartHeader>
         </WireframeMainHeaderStyled>
-        <WireframeMainContentStyled>
-          <PartContent>
+        <WireframeMainContentStyled ref={wireframeMainContentRef}>
+          <PartMain>
             <Switch>
               <Route exact path="/">
                 <Home />
@@ -57,7 +72,7 @@ const WireframeMain = (props: IProps) => {
                 <Messenger />
               </Route>
             </Switch>
-          </PartContent>
+          </PartMain>
         </WireframeMainContentStyled>
         <WireframeMainFooterStyled />
       </Router>

@@ -13,30 +13,24 @@ import PartMessengerFooter from '../../parts/PartMessengerFooter/PartMessengerFo
 interface IProps {}
 
 const TemplateMessenger = (props: IProps) => {
-  /* const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false)
 
-  const templateMessengerHeaderRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesWrapperRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesEndRef = useRef<HTMLDivElement>(null)
   const templateMessengerSendboxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    let templateMessengerHeaderHeight = 0
     let templateMessengerSendboxHeight = 0
 
-    if (templateMessengerHeaderRef && templateMessengerHeaderRef.current) {
-      templateMessengerHeaderHeight =
-        templateMessengerHeaderRef.current.clientHeight
-    }
     if (templateMessengerSendboxRef && templateMessengerSendboxRef.current) {
       templateMessengerSendboxHeight =
         templateMessengerSendboxRef.current.clientHeight
     }
 
     if (templateMessengerMessagesRef && templateMessengerMessagesRef.current) {
-      templateMessengerMessagesRef.current.style.height = `calc(100% - ${templateMessengerHeaderHeight}px - ${templateMessengerSendboxHeight}px)`
-      templateMessengerMessagesRef.current.style.maxHeight = `calc(100% - ${templateMessengerHeaderHeight}px - ${templateMessengerSendboxHeight}px)`
+      templateMessengerMessagesRef.current.style.height = `calc(100% - ${templateMessengerSendboxHeight}px)`
+      templateMessengerMessagesRef.current.style.maxHeight = `calc(100% - ${templateMessengerSendboxHeight}px)`
 
       if (!loaded) {
         setTimeout(() => {
@@ -53,24 +47,26 @@ const TemplateMessenger = (props: IProps) => {
     }
 
     if (!loaded) setLoaded(true)
-  }, [loaded, setLoaded]) */
+  }, [loaded, setLoaded])
 
   return (
     <TemplateMessengerStyled>
       <TemplateMessengerBackgroundStyled />
-      <TemplateMessengerMessagesStyled>
-        <TemplateMessengerMessagesWrapperStyled>
+      <TemplateMessengerMessagesStyled ref={templateMessengerMessagesRef}>
+        <TemplateMessengerMessagesWrapperStyled
+          ref={templateMessengerMessagesWrapperRef}
+        >
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
                 <Messages />
-                <div />
+                <div ref={templateMessengerMessagesEndRef} />
               </div>
             </div>
           </div>
         </TemplateMessengerMessagesWrapperStyled>
       </TemplateMessengerMessagesStyled>
-      <TemplateMessengerSendboxStyled>
+      <TemplateMessengerSendboxStyled ref={templateMessengerSendboxRef}>
         <PartMessengerFooter>
           <SendBox />
         </PartMessengerFooter>
