@@ -4,7 +4,7 @@ interface IProps {
   theme: DefaultTheme
 }
 
-const PartContentStyled = styled.main<IProps>`
+const PartContentStyled = styled.div<IProps>`
   ${({ theme }) => css`
     padding-top: ${theme.sizes.stepSize * 8}px;
     padding-bottom: ${theme.sizes.stepSize * 8}px;

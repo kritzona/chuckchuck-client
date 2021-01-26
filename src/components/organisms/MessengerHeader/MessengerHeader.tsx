@@ -8,7 +8,7 @@ import {
   MessengerHeaderStyled,
 } from './MessengerHeaderStyled'
 import { useHistory } from 'react-router-dom'
-import ToggleTheme from '../ToggleTheme/ToggleTheme'
+import ToggleTheme from '../../molecules/ToggleTheme/ToggleTheme'
 
 const MessengerHeader = () => {
   const history = useHistory()

@@ -4,7 +4,7 @@ interface IProps {
   theme: DefaultTheme
 }
 
-export const PartHeaderStyled = styled.header<IProps>`
+export const PartHeaderStyled = styled.div<IProps>`
   ${({ theme }) => css`
     box-sizing: border-box;
     background-color: ${theme.colors.backgroundColor};

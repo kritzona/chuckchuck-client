@@ -1,8 +1,8 @@
 import React from 'react'
 import { MainHeaderSideStyled, MainHeaderStyled } from './MainHeaderStyled'
 import LogotypeWithName from '../../molecules/LogotypeWithName/LogotypeWithName'
-import ToggleTheme from '../ToggleTheme/ToggleTheme'
-import Logout from '../Logout/Logout'
+import ToggleTheme from '../../molecules/ToggleTheme/ToggleTheme'
+import Logout from '../../molecules/Logout/Logout'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../store/store'
 

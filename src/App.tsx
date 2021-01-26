@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ThemeContext from './contexts/ThemeContext'
 import { ThemeProvider } from 'styled-components'
-
-import Home from './views/Home/Home'
-import UIKit from './views/UIKit/UIKit'
-import Messenger from './views/Messenger/Messenger'
 
 import themes from './themes/themes'
 import { GlobalStyle } from './themes/GlobalStyle/GlobalStyle'
@@ -14,7 +9,7 @@ import AppStyled from './AppStyled'
 
 import { rootToggleThemeAction } from './store/root/actions'
 import { RootState } from './store/store'
-import Contacts from './views/Contacts/Contacts'
+import WireframeMain from './wireframes/WireframeMain/WireframeMain'
 
 interface IProps {}
 
@@ -39,7 +34,7 @@ const App = (props: IProps) => {
   }
 
   return (
-    <Router>
+    <AppStyled>
       <ThemeContext.Provider
         value={{
           theme,
@@ -49,26 +44,11 @@ const App = (props: IProps) => {
         <ThemeProvider
           theme={theme === 'light' ? themes.LightTheme : themes.DarkTheme}
         >
-          <AppStyled>
-            <GlobalStyle />
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/ui-kit">
-                <UIKit />
-              </Route>
-              <Route path="/contacts">
-                <Contacts />
-              </Route>
-              <Route path="/messenger">
-                <Messenger />
-              </Route>
-            </Switch>
-          </AppStyled>
+          <GlobalStyle />
+          <WireframeMain />
         </ThemeProvider>
       </ThemeContext.Provider>
-    </Router>
+    </AppStyled>
   )
 }
 

@@ -4,7 +4,7 @@ interface IProps {
   theme: DefaultTheme
 }
 
-export const PartFooterStyled = styled.footer<IProps>`
+export const PartFooterStyled = styled.div<IProps>`
   ${({ theme }) => css`
     box-sizing: border-box;
     background-color: ${theme.colors.backgroundColor};
