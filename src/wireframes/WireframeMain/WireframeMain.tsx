@@ -16,6 +16,8 @@ import {
   WireframeMainHeaderStyled,
   WireframeMainStyled,
 } from './WireframeMainStyled'
+import PartFooter from '../../parts/PartFooter/PartFooter'
+import Footer from '../../components/organisms/Footer/Footer'
 
 interface IProps {}
 
@@ -74,7 +76,6 @@ const WireframeMain = (props: IProps) => {
             </Switch>
           </PartMain>
         </WireframeMainContentStyled>
-        <WireframeMainFooterStyled />
       </Router>
     </WireframeMainStyled>
   )

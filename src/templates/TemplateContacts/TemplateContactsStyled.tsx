@@ -6,13 +6,18 @@ interface IProps {
 
 export const TemplateContactsStyled = styled.div<IProps>`
   ${() => css`
-    height: 100%;
     position: relative;
+    min-height: 100%;
+    padding-bottom: 47px;
   `}
 `
 export const TemplateContactsHeaderStyled = styled.div<IProps>``
-export const TemplateContactsContentStyled = styled.div<IProps>`
-  overflow-y: auto;
-  box-sizing: border-box;
+export const TemplateContactsContentStyled = styled.div<IProps>``
+export const TemplateContactsFooterStyled = styled.div<IProps>`
+  ${() => css`
+    width: 100%;
+    position: absolute;
+    top: calc(100% - 47px);
+    left: 0;
+  `}
 `
-export const TemplateContactsFooterStyled = styled.div<IProps>``

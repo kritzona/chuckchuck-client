@@ -21,4 +21,9 @@ export const WireframeMainContentStyled = styled.main<IProps>`
   box-sizing: border-box;
   overflow-y: auto;
 `
-export const WireframeMainFooterStyled = styled.footer<IProps>``
+export const WireframeMainFooterStyled = styled.footer<IProps>`
+  width: 100%;
+  position: absolute;
+  top: calc(100% - 47px);
+  left: 0;
+`
