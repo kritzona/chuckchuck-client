@@ -12,6 +12,7 @@ export const WireframeMainHeaderStyled = styled.header<IProps>`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1000;
 `
 export const WireframeMainContentStyled = styled.main<IProps>`
   height: 100%;
