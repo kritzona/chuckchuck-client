@@ -1,18 +1,18 @@
 import React from 'react'
 import Message from '../../molecules/Message/Message'
 import MessagesStyled from './MessagesStyled'
+import { IMessageItem } from '../../../store/messenger/reducer'
 
-const Messages = () => {
+interface IProps {
+  items: IMessageItem[]
+}
+
+const Messages = (props: IProps) => {
   return (
     <MessagesStyled>
-      <Message message="Hello, Kitty" align="left" />
-      <Message message="Hello, Kitty" align="left" />
-      <Message message="Hello, Kitty" align="right" />
-      <Message message="Hello, Kitty" align="left" />
-      <Message message="Hello, Kitty" align="right" />
-      <Message message="Hello, Kitty" align="right" />
-      <Message message="Hello, Kitty" align="left" />
-      <Message message="Hello, Kitty" align="right" />
+      {props.items.map((item) => (
+        <Message message={item.content} align="left" />
+      ))}
     </MessagesStyled>
   )
 }

@@ -29,6 +29,18 @@ const messengerReducer = (
   action: TMessengerAction,
 ) => {
   switch (action.type) {
+    case 'DIALOG_ADD_ITEM':
+      state.dialog.items.push(action.payload)
+      return state
+    case 'MESSAGE_ADD_ITEM':
+      state.dialog.items.map((item: IDialogItem) => {
+        if (item.id === action.payload.dialogId) {
+          item.message.items.push(action.payload.item)
+        }
+
+        return null
+      })
+      return state
     default:
       return state
   }

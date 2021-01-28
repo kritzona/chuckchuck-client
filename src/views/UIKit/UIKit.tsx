@@ -43,46 +43,46 @@ const UIKit = () => {
             <ShortButton
               lightIconSource={telegramLightIconSource}
               darkIconSource={telegramDarkIconSource}
-            ></ShortButton>
+            />
           </div>
           <div className="col-lg-3">
-            <Radio></Radio>
+            <Radio />
           </div>
           <div className="col-lg-3">
-            <Checkbox></Checkbox>
+            <Checkbox />
           </div>
           <div className="col-lg-3">
-            <Avatar></Avatar>
+            <Avatar />
           </div>
           <div className="col-lg-3">
-            <InputField></InputField>
+            <InputField />
           </div>
           <div className="col-lg-3">
-            <InputTextElement></InputTextElement>
+            <InputTextElement />
           </div>
           <div className="col-lg-3">
-            <InputText type="text" label="Поле"></InputText>
+            <InputText type="text" label="Поле" />
           </div>
           <div className="col-lg-3">
             <InputLabel>Лейбл</InputLabel>
           </div>
           <div className="col-lg-3">
-            <Toggle></Toggle>
+            <Toggle />
           </div>
           <div className="col-lg-3">
-            <CircleStatus color="green"></CircleStatus>
+            <CircleStatus color="green" />
           </div>
           <div className="col-lg-3">
-            <InputStatus></InputStatus>
+            <InputStatus />
           </div>
           <div className="col-lg-3">
-            <MessageBox message="Hello, Kitty!"></MessageBox>
+            <MessageBox message="Hello, Kitty!" />
           </div>
           <div className="col-lg-3">
-            <Logotype></Logotype>
+            <Logotype />
           </div>
           <div className="col-lg-3">
-            <InputText type="textarea" label="Поле"></InputText>
+            <InputText type="textarea" label="Поле" />
           </div>
         </div>
         <div className="row">
@@ -95,26 +95,26 @@ const UIKit = () => {
                 { id: 2, value: 'Третий', checked: false },
               ]}
               placeholder="Выберите элементы"
-            ></Select>
+            />
           </div>
           <div className="col-lg-3">
-            <OnlineStatus status="offline"></OnlineStatus>
+            <OnlineStatus status="offline" />
           </div>
           <div className="col-lg-3">
-            <LogotypeWithName></LogotypeWithName>
+            <LogotypeWithName />
           </div>
           <div className="col-lg-3">
-            <User></User>
+            <User />
           </div>
           <div className="col-lg-4">
-            <Message message="Hello, Kitty!!!" align="right"></Message>
+            <Message message="Hello, Kitty!!!" align="right" />
           </div>
           <div className="col-lg-4">
-            <MessengerHeader></MessengerHeader>
-            <SendBox></SendBox>
+            <MessengerHeader />
+            <SendBox />
           </div>
           <div className="col-lg-4">
-            <Messages></Messages>
+            <Messages items={[]} />
           </div>
         </div>
       </div>

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import TemplateMessenger from '../templates/TemplateMessenger/TemplateMessenger'
 import { useHistory, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { IContactItem } from '../store/contact/reducer'
+import { dialogAddItemAction } from '../store/messenger/actions'
+import { contactSetDialogIdAction } from '../store/contact/actions'
 
 interface IProps {}
 interface IParams {
@@ -22,15 +24,29 @@ const TemplateMessengerContainer = (props: IProps) => {
       (item: IContactItem) => item.id === parseInt(contactId),
     )
   })
+  const dispatch = useDispatch()
+
+  const createAndBindDialog = (contactId: number, dateNow: number) => {
+    dispatch(
+      dialogAddItemAction({
+        id: dateNow,
+        message: {
+          items: [],
+        },
+      }),
+    )
+    dispatch(contactSetDialogIdAction(contactId, dateNow))
+  }
+
+  if (contactItem && !contactItem.dialogId) {
+    createAndBindDialog(contactItem.id, Date.now())
+  }
 
   useEffect(() => {
     if (!user.isAuth || !contactItem) {
       history.push('/')
-    } else {
-      if (!contactItem.dialogId) {
-      }
     }
-  })
+  }, [user, contactItem, history])
 
   return (
     <React.Fragment>

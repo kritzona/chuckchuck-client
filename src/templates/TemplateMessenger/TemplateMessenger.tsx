@@ -73,7 +73,10 @@ const TemplateMessenger = (props: IProps) => {
       </TemplateMessengerMessagesStyled>
       <TemplateMessengerSendboxStyled ref={templateMessengerSendboxRef}>
         <PartMessengerFooter>
-          <SendBoxContainer dialogId={props.dialogId} />
+          <SendBoxContainer
+            contactId={props.contactId}
+            dialogId={props.dialogId}
+          />
         </PartMessengerFooter>
       </TemplateMessengerSendboxStyled>
     </TemplateMessengerStyled>

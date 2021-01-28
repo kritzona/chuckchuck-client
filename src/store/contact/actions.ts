@@ -4,6 +4,13 @@ interface IContactAddItemAction {
   type: 'ADD_ITEM'
   payload: IContactItem
 }
+interface IContactSetDialogIdAction {
+  type: 'SET_DIALOG_ID'
+  payload: {
+    contactId: number
+    dialogId: number
+  }
+}
 
 export const contactAddItemAction = (
   contactItem: IContactItem,
@@ -13,5 +20,17 @@ export const contactAddItemAction = (
     payload: contactItem,
   }
 }
+export const contactSetDialogIdAction = (
+  contactId: number,
+  dialogId: number,
+): IContactSetDialogIdAction => {
+  return {
+    type: 'SET_DIALOG_ID',
+    payload: {
+      contactId,
+      dialogId,
+    },
+  }
+}
 
-export type TContactAction = IContactAddItemAction
+export type TContactAction = IContactAddItemAction | IContactSetDialogIdAction

@@ -70,6 +70,16 @@ const contactReducer = (
     case 'ADD_ITEM':
       state.items = [...state.items, action.payload]
       return state
+    case 'SET_DIALOG_ID':
+      state.items.map((item: IContactItem) => {
+        if (item.id === action.payload.contactId) {
+          item.dialogId = action.payload.dialogId
+        }
+
+        return null
+      })
+
+      return state
     default:
       return state
   }
