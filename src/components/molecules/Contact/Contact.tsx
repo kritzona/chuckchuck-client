@@ -10,7 +10,7 @@ const Contact = (props: IProps) => {
   const history = useHistory()
 
   return (
-    <ContactStyled onClick={() => history.push('/messenger')}>
+    <ContactStyled onClick={() => history.push('/messenger/0')}>
       <User />
       <Message message="Hello, Kitty" align="left" fullWidth={true} />
     </ContactStyled>

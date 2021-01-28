@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  FooterColumnStyled,
+  // FooterColumnStyled,
   FooterCopyStyled,
   FooterStyled,
 } from './FooterStyled'

@@ -3,6 +3,7 @@ import InputTextareaElementStyled from './InputTextareaElementStyled'
 
 interface IProps {
   placeholder?: string
+  value?: string
   onFocus?: () => void
   onBlur?: () => void
   onBuildRef?: (ref: any) => void
@@ -39,6 +40,7 @@ const InputTextareaElement = (props: IProps) => {
   return (
     <InputTextareaElementStyled
       placeholder={props.placeholder}
+      value={props.value || ''}
       ref={inputTextareaElementRef}
       onFocus={() => handleFocus()}
       onBlur={() => handleBlur()}

@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
-import Messages from '../../components/organisms/Messages/Messages'
-import SendBox from '../../components/organisms/SendBox/SendBox'
+
+import PartMessengerFooter from '../../parts/PartMessengerFooter/PartMessengerFooter'
+import SendBoxContainer from '../../containers/SendBoxContainer'
+import MessagesContainer from '../../containers/MessagesContainer'
+
 import {
   TemplateMessengerBackgroundStyled,
   TemplateMessengerMessagesStyled,
@@ -8,9 +11,11 @@ import {
   TemplateMessengerSendboxStyled,
   TemplateMessengerStyled,
 } from './TemplateMessengerStyled'
-import PartMessengerFooter from '../../parts/PartMessengerFooter/PartMessengerFooter'
 
-interface IProps {}
+interface IProps {
+  contactId: number
+  dialogId: number
+}
 
 const TemplateMessenger = (props: IProps) => {
   const [loaded, setLoaded] = useState(false)
@@ -59,7 +64,7 @@ const TemplateMessenger = (props: IProps) => {
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
-                <Messages />
+                <MessagesContainer dialogId={props.dialogId} />
                 <div ref={templateMessengerMessagesEndRef} />
               </div>
             </div>
@@ -68,7 +73,7 @@ const TemplateMessenger = (props: IProps) => {
       </TemplateMessengerMessagesStyled>
       <TemplateMessengerSendboxStyled ref={templateMessengerSendboxRef}>
         <PartMessengerFooter>
-          <SendBox />
+          <SendBoxContainer dialogId={props.dialogId} />
         </PartMessengerFooter>
       </TemplateMessengerSendboxStyled>
     </TemplateMessengerStyled>

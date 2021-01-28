@@ -4,6 +4,7 @@ import InputTextElementStyled from './InputTextElementStyled'
 interface IProps {
   type?: 'text' | 'password' | 'email'
   placeholder?: string
+  value?: string
   onFocus?: () => void
   onBlur?: () => void
   onBuildRef?: (ref: any) => void
@@ -41,6 +42,7 @@ const InputTextElement = (props: IProps) => {
     <InputTextElementStyled
       type={props.type}
       placeholder={props.placeholder}
+      value={props.value || ''}
       ref={inputTextElementRef}
       onFocus={() => handleFocus()}
       onBlur={() => handleBlur()}

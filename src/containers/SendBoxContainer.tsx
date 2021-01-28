@@ -6,7 +6,11 @@ interface IProps {
 }
 
 const SendBoxContainer = (props: IProps) => {
-  return <SendBox />
+  const handleSend = (message: string) => {
+    console.log(message)
+  }
+
+  return <SendBox onSend={(message: string) => handleSend(message)} />
 }
 
 export default SendBoxContainer

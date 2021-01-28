@@ -1,5 +1,10 @@
 import React, { useEffect, useRef } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  // Redirect,
+} from 'react-router-dom'
 
 import Home from '../../views/Home/Home'
 import UIKit from '../../views/UIKit/UIKit'
@@ -12,12 +17,10 @@ import PartMain from '../../parts/PartMain/PartMain'
 
 import {
   WireframeMainContentStyled,
-  WireframeMainFooterStyled,
+  // WireframeMainFooterStyled,
   WireframeMainHeaderStyled,
   WireframeMainStyled,
 } from './WireframeMainStyled'
-import PartFooter from '../../parts/PartFooter/PartFooter'
-import Footer from '../../components/organisms/Footer/Footer'
 
 interface IProps {}
 
@@ -52,7 +55,7 @@ const WireframeMain = (props: IProps) => {
               <Route path="/contacts">
                 <MainHeader />
               </Route>
-              <Route path="/messenger">
+              <Route path="/messenger/:contactId">
                 <MessengerHeader />
               </Route>
             </Switch>
@@ -70,7 +73,7 @@ const WireframeMain = (props: IProps) => {
               <Route path="/contacts">
                 <Contacts />
               </Route>
-              <Route path="/messenger">
+              <Route path="/messenger/:contactId">
                 <Messenger />
               </Route>
             </Switch>

@@ -4,7 +4,7 @@ interface IProps {
   theme: DefaultTheme
 }
 
-export const SendBoxStyled = styled.div<IProps>`
+export const SendBoxStyled = styled.form<IProps>`
   ${({ theme }) => css`
     display: flex;
     flex-direction: row;

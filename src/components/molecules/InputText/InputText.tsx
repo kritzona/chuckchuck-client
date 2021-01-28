@@ -10,6 +10,7 @@ interface IProps {
   textType?: 'text' | 'password' | 'email'
   label?: string
   placeholder?: string
+  value?: string
   onInput?: (value: string) => void
 }
 
@@ -70,6 +71,7 @@ const InputText = (props: IProps) => {
             placeholder={
               props.placeholder ? props.placeholder : 'Введите значение'
             }
+            value={props.value}
             onFocus={() => handleInputTextFocus()}
             onBlur={() => handleInputTextBlur()}
             onBuildRef={(ref: any) => handleInputTextBuildRef(ref)}
@@ -81,6 +83,7 @@ const InputText = (props: IProps) => {
             placeholder={
               props.placeholder ? props.placeholder : 'Введите значение'
             }
+            value={props.value}
             onFocus={() => handleInputTextareaFocus()}
             onBlur={() => handleInputTextareaBlur()}
             onBuildRef={(ref: any) => handleInputTextareaBuildRef(ref)}
