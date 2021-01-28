@@ -28,7 +28,6 @@ const TemplateMessengerContainer = (props: IProps) => {
       history.push('/')
     } else {
       if (!contactItem.dialogId) {
-
       }
     }
   })
