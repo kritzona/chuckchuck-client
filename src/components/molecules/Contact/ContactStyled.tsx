@@ -4,7 +4,7 @@ interface IProps {
   theme: DefaultTheme
 }
 
-const ContactStyled = styled.div<IProps>`
+export const ContactStyled = styled.div<IProps>`
   ${({ theme }) => css`
     background-color: ${theme.colors.backgroundMiddleColor};
     padding: ${theme.sizes.tsFontSize}px;
@@ -13,11 +13,20 @@ const ContactStyled = styled.div<IProps>`
     box-shadow: ${theme.effects.boxShadow};
     cursor: pointer;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     & > *:not(:first-child) {
       margin-top: ${theme.sizes.stepSize}px;
     }
   `}
 `
-
-export default ContactStyled
+export const ContactAlertStyled = styled.div<IProps>`
+  ${({ theme }) => css`
+    padding: ${theme.sizes.tsFontSize}px ${theme.sizes.tsFontSize * 2}px;
+    text-align: center;
+    box-sizing: border-box;
+    opacity: 0.5;
+  `}
+`

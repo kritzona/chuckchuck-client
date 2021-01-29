@@ -1,9 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import ContactStyled from './ContactStyled'
+import { ContactAlertStyled, ContactStyled } from './ContactStyled'
 import Message from '../Message/Message'
 import User from '../User/User'
 import { IMessageItem } from '../../../store/messenger/reducer'
+import Text from '../../atoms/Text/Text'
 
 interface IProps {
   id: number
@@ -31,6 +32,11 @@ const Contact = (props: IProps) => {
           align="left"
           fullWidth={true}
         />
+      )}
+      {props.lastMessage === null && (
+        <ContactAlertStyled>
+          <Text type="text-small-bold">Пока нет сообщений</Text>
+        </ContactAlertStyled>
       )}
     </ContactStyled>
   )

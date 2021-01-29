@@ -12,7 +12,7 @@ export const TextH1Styled = styled.h1<IProps>`
     font-weight: ${theme.sizes.boldFontWeight};
     font-size: ${theme.sizes.h1FontSize}px;
     line-height: ${theme.sizes.h1LineHeight}px;
-    transform: translateX(-4px);
+    transform: translateX(-2px);
     margin: 0;
     margin-top: ${theme.sizes.stepSize * 2}px;
     margin-bottom: ${theme.sizes.stepSize * 2}px;
@@ -24,7 +24,7 @@ export const TextH2Styled = styled.h2<IProps>`
     font-weight: ${theme.sizes.boldFontWeight};
     font-size: ${theme.sizes.h2FontSize}px;
     line-height: ${theme.sizes.h2LineHeight}px;
-    transform: translateX(-4px);
+    transform: translateX(-2px);
     margin: 0;
     margin-top: ${theme.sizes.stepSize * 2}px;
     margin-bottom: ${theme.sizes.stepSize * 2}px;
@@ -36,7 +36,7 @@ export const TextH3Styled = styled.h3<IProps>`
     font-weight: ${theme.sizes.boldFontWeight};
     font-size: ${theme.sizes.h3FontSize}px;
     line-height: ${theme.sizes.h3LineHeight}px;
-    transform: translateX(-4px);
+    transform: translateX(-2px);
     margin: 0;
     margin-top: ${theme.sizes.stepSize * 2}px;
     margin-bottom: ${theme.sizes.stepSize * 2}px;
