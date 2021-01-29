@@ -42,7 +42,7 @@ const InputTextElement = (props: IProps) => {
     <InputTextElementStyled
       type={props.type}
       placeholder={props.placeholder}
-      value={props.value || ''}
+      value={props.value}
       ref={inputTextElementRef}
       onFocus={() => handleFocus()}
       onBlur={() => handleBlur()}

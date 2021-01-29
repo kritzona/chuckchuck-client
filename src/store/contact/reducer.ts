@@ -1,4 +1,6 @@
 import { TContactAction } from './actions'
+import avatarImageSource from '../../assets/images/avatar.png'
+import { IMessageItem } from '../messenger/reducer'
 
 export interface IContactItem {
   id: number
@@ -8,6 +10,9 @@ export interface IContactItem {
   avatar: string | null
   isOnline: boolean
   dialogId: number | null
+}
+export interface IContactItemWithLastMessage extends IContactItem {
+  lastMessage: IMessageItem | null
 }
 export interface IContactState {
   items: IContactItem[]
@@ -20,7 +25,7 @@ const initialState: IContactState = {
       login: 'contact1',
       firstName: 'Первый',
       lastName: 'Контакт',
-      avatar: null,
+      avatar: avatarImageSource,
       isOnline: true,
       dialogId: null,
     },
@@ -29,7 +34,7 @@ const initialState: IContactState = {
       login: 'contact2',
       firstName: 'Второй',
       lastName: 'Контакт',
-      avatar: null,
+      avatar: avatarImageSource,
       isOnline: true,
       dialogId: null,
     },
@@ -38,7 +43,7 @@ const initialState: IContactState = {
       login: 'contact3',
       firstName: 'Третий',
       lastName: 'Контакт',
-      avatar: null,
+      avatar: avatarImageSource,
       isOnline: false,
       dialogId: null,
     },
@@ -47,7 +52,7 @@ const initialState: IContactState = {
       login: 'contact4',
       firstName: 'Четвертый',
       lastName: 'Контакт',
-      avatar: null,
+      avatar: avatarImageSource,
       isOnline: true,
       dialogId: null,
     },
@@ -56,7 +61,7 @@ const initialState: IContactState = {
       login: 'contact5',
       firstName: 'Пятый',
       lastName: 'Контакт',
-      avatar: null,
+      avatar: avatarImageSource,
       isOnline: true,
       dialogId: null,
     },

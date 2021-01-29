@@ -40,7 +40,7 @@ const InputTextareaElement = (props: IProps) => {
   return (
     <InputTextareaElementStyled
       placeholder={props.placeholder}
-      value={props.value || ''}
+      value={props.value}
       ref={inputTextareaElementRef}
       onFocus={() => handleFocus()}
       onBlur={() => handleBlur()}

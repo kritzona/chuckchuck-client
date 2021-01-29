@@ -12,7 +12,6 @@ import Contacts from '../../views/Contacts/Contacts'
 import Messenger from '../../views/Messenger/Messenger'
 import PartHeader from '../../parts/PartHeader/PartHeader'
 import MainHeader from '../../components/organisms/MainHeader/MainHeader'
-import MessengerHeader from '../../components/organisms/MessengerHeader/MessengerHeader'
 import PartMain from '../../parts/PartMain/PartMain'
 
 import {
@@ -21,6 +20,7 @@ import {
   WireframeMainHeaderStyled,
   WireframeMainStyled,
 } from './WireframeMainStyled'
+import MessengerHeaderContainer from '../../containers/MessengerHeaderContainer'
 
 interface IProps {}
 
@@ -56,7 +56,7 @@ const WireframeMain = (props: IProps) => {
                 <MainHeader />
               </Route>
               <Route path="/messenger/:contactId">
-                <MessengerHeader />
+                <MessengerHeaderContainer />
               </Route>
             </Switch>
           </PartHeader>

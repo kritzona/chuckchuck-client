@@ -12,6 +12,7 @@ const ContactStyled = styled.div<IProps>`
     border-radius: ${theme.sizes.borderRadius}px;
     box-shadow: ${theme.effects.boxShadow};
     cursor: pointer;
+    height: 100%;
 
     & > *:not(:first-child) {
       margin-top: ${theme.sizes.stepSize}px;

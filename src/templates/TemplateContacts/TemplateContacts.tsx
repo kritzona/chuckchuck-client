@@ -6,9 +6,9 @@ import {
 } from './TemplateContactsStyled'
 import PartContent from '../../parts/PartContent/PartContent'
 import Text from '../../components/atoms/Text/Text'
-import Contact from '../../components/molecules/Contact/Contact'
 import Footer from '../../components/organisms/Footer/Footer'
 import PartFooter from '../../parts/PartFooter/PartFooter'
+import ContactsContainer from '../../containers/ContactsContainer'
 
 interface IProps {}
 
@@ -25,23 +25,7 @@ const TemplateContacts = (props: IProps) => {
             </div>
           </div>
           <div className="container">
-            <div className="row">
-              <div className="col-lg-3 mb-4">
-                <Contact />
-              </div>
-              <div className="col-lg-3 mb-4">
-                <Contact />
-              </div>
-              <div className="col-lg-3 mb-4">
-                <Contact />
-              </div>
-              <div className="col-lg-3 mb-4">
-                <Contact />
-              </div>
-              <div className="col-lg-3 mb-4">
-                <Contact />
-              </div>
-            </div>
+            <ContactsContainer />
           </div>
         </PartContent>
       </TemplateContactsContentStyled>

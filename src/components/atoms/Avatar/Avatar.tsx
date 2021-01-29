@@ -1,8 +1,12 @@
 import React from 'react'
 import AvatarStyled from './AvatarStyled'
 
-const Avatar = () => {
-  return <AvatarStyled></AvatarStyled>
+interface IProps {
+  imageSource: string | null
+}
+
+const Avatar = (props: IProps) => {
+  return <AvatarStyled imageSource={props.imageSource} />
 }
 
 export default Avatar

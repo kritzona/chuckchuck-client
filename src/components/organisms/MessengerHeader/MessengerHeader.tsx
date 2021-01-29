@@ -10,7 +10,16 @@ import {
 import { useHistory } from 'react-router-dom'
 import ToggleTheme from '../../molecules/ToggleTheme/ToggleTheme'
 
-const MessengerHeader = () => {
+interface IProps {
+  contactItem: {
+    firstName: string
+    lastName: string
+    avatar: string | null
+    isOnline: boolean
+  }
+}
+
+const MessengerHeader = (props: IProps) => {
   const history = useHistory()
 
   return (
@@ -22,7 +31,12 @@ const MessengerHeader = () => {
           woBackground={true}
           onClick={() => history.push('/contacts')}
         />
-        <User />
+        <User
+          firstName={props.contactItem.firstName}
+          lastName={props.contactItem.lastName}
+          avatar={props.contactItem.avatar}
+          isOnline={props.contactItem.isOnline}
+        />
       </MessengerHeaderSideStyled>
       <MessengerHeaderSideStyled>
         <ToggleTheme />

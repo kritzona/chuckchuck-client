@@ -1,12 +1,12 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import avatarImageSource from '../../../assets/images/avatar.png'
 
 interface IProps {
   theme: DefaultTheme
+  imageSource: string | null
 }
 
 const AvatarStyled = styled.div<IProps>`
-  ${({ theme }) => css`
+  ${({ theme, imageSource }) => css`
     width: ${theme.sizes.tsFontSize +
     theme.sizes.tsLineHeight +
     theme.sizes.tsFontSize}px;
@@ -14,7 +14,11 @@ const AvatarStyled = styled.div<IProps>`
     theme.sizes.tsLineHeight +
     theme.sizes.tsFontSize}px;
     background-color: ${theme.colors.compColor};
-    background-image: url(${avatarImageSource});
+    ${imageSource &&
+    css`
+      background-image: url(${imageSource});
+    `}
+
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

@@ -21,10 +21,10 @@ import User from '../../components/molecules/User/User'
 import Message from '../../components/molecules/Message/Message'
 import telegramLightIconSource from '../../assets/icons/telegram-light.svg'
 import telegramDarkIconSource from '../../assets/icons/telegram-dark.svg'
-import MessengerHeader from '../../components/organisms/MessengerHeader/MessengerHeader'
 import Messages from '../../components/organisms/Messages/Messages'
 import SendBox from '../../components/organisms/SendBox/SendBox'
 import './UIKit.scss'
+import MessengerHeaderContainer from '../../containers/MessengerHeaderContainer'
 
 const UIKit = () => {
   return (
@@ -37,7 +37,7 @@ const UIKit = () => {
         </div>
         <div className="row">
           <div className="col-lg-3">
-            <Button></Button>
+            <Button />
           </div>
           <div className="col-lg-3">
             <ShortButton
@@ -52,7 +52,7 @@ const UIKit = () => {
             <Checkbox />
           </div>
           <div className="col-lg-3">
-            <Avatar />
+            <Avatar imageSource={''} />
           </div>
           <div className="col-lg-3">
             <InputField />
@@ -104,13 +104,18 @@ const UIKit = () => {
             <LogotypeWithName />
           </div>
           <div className="col-lg-3">
-            <User />
+            <User
+              firstName={'Гость'}
+              lastName={'Гость'}
+              avatar={''}
+              isOnline={true}
+            />
           </div>
           <div className="col-lg-4">
             <Message message="Hello, Kitty!!!" align="right" />
           </div>
           <div className="col-lg-4">
-            <MessengerHeader />
+            <MessengerHeaderContainer />
             <SendBox />
           </div>
           <div className="col-lg-4">
