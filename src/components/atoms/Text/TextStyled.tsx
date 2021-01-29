@@ -16,7 +16,7 @@ export const TextH1Styled = styled.h1<IProps>`
     margin: 0;
     margin-top: ${theme.sizes.stepSize * 2}px;
     margin-bottom: ${theme.sizes.stepSize * 2}px;
-    letter-spacing: 0;
+    letter-spacing: -0.5px;
   `}
 `
 export const TextH2Styled = styled.h2<IProps>`
@@ -29,7 +29,7 @@ export const TextH2Styled = styled.h2<IProps>`
     margin: 0;
     margin-top: ${theme.sizes.stepSize * 2}px;
     margin-bottom: ${theme.sizes.stepSize * 2}px;
-    letter-spacing: 0;
+    letter-spacing: -0.5px;
   `}
 `
 export const TextH3Styled = styled.h3<IProps>`
@@ -42,13 +42,13 @@ export const TextH3Styled = styled.h3<IProps>`
     margin: 0;
     margin-top: ${theme.sizes.stepSize * 2}px;
     margin-bottom: ${theme.sizes.stepSize * 2}px;
-    letter-spacing: 0;
+    letter-spacing: -0.5px;
   `}
 `
 export const TextSpanStyled = styled.span<IProps>`
   ${({ theme, size, weight }) => css`
     font-style: normal;
-    letter-spacing: 0;
+    letter-spacing: -0.5px;
 
     ${(!size || size === 'normal') &&
     css`
