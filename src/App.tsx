@@ -10,6 +10,8 @@ import AppStyled from './AppStyled'
 import { rootToggleThemeAction } from './store/root/actions'
 import { RootState } from './store/store'
 import WireframeMain from './wireframes/WireframeMain/WireframeMain'
+import userAPI from './api/UserAPI'
+import { userAuthAction } from './store/user/actions'
 
 interface IProps {}
 
@@ -24,6 +26,13 @@ const App = (props: IProps) => {
     return () => {
       window.removeEventListener('resize', updateVH)
     }
+  }, [])
+  useEffect(() => {
+    userAPI.fetchSelfItem().then((item) => {
+      if (item) {
+        dispatch(userAuthAction())
+      }
+    })
   }, [])
 
   const updateVH = () => {
