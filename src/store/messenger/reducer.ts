@@ -2,8 +2,8 @@ import { TMessengerAction } from './actions'
 
 export interface IMessageItem {
   id: number
-  senderId: number
-  recipientId: number
+  senderId: string | number
+  recipientId: string | number
   content: string
   departureDate: Date
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ThemeContext from './contexts/ThemeContext'
 import { ThemeProvider } from 'styled-components'
@@ -12,10 +12,12 @@ import { RootState } from './store/store'
 import WireframeMain from './wireframes/WireframeMain/WireframeMain'
 import userAPI from './api/UserAPI'
 import { userAuthAction } from './store/user/actions'
+import avatarImageSource from './assets/images/avatar.png'
 
 interface IProps {}
 
 const App = (props: IProps) => {
+  const [init, setInit] = useState(false)
   const theme = useSelector((state: RootState) => state.root.theme)
   const dispatch = useDispatch()
 
@@ -28,12 +30,24 @@ const App = (props: IProps) => {
     }
   }, [])
   useEffect(() => {
-    userAPI.fetchSelfItem().then((item) => {
-      if (item) {
-        dispatch(userAuthAction())
-      }
-    })
-  }, [])
+    if (!init) {
+      userAPI.fetchSelfItem().then((item) => {
+        if (item) {
+          dispatch(
+            userAuthAction({
+              id: item.id,
+              login: item.login,
+              firstName: item.firstName,
+              lastName: item.lastName,
+              avatar: avatarImageSource,
+            }),
+          )
+        }
+
+        setInit(true)
+      })
+    }
+  }, [init])
 
   const updateVH = () => {
     document.documentElement.style.setProperty(
@@ -54,7 +68,7 @@ const App = (props: IProps) => {
           theme={theme === 'light' ? themes.LightTheme : themes.DarkTheme}
         >
           <GlobalStyle />
-          <WireframeMain />
+          {init && <WireframeMain />}
         </ThemeProvider>
       </ThemeContext.Provider>
     </AppStyled>

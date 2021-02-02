@@ -1,14 +1,13 @@
 import { TUserAction } from './actions'
 import avatarImageSource from '../../assets/images/avatar.png'
 
-interface IUserState {
+export interface IUserState {
   id: string | number
   login: string
   firstName: string
   lastName: string
   avatar: string | null
-  accessToken: string
-  isAuth: boolean
+  isAuth?: boolean
 }
 
 const initialState: IUserState = {
@@ -17,25 +16,25 @@ const initialState: IUserState = {
   firstName: 'Гость',
   lastName: 'Гость',
   avatar: null,
-  accessToken: '',
   isAuth: false,
 }
 const userReducer = (state: IUserState = initialState, action: TUserAction) => {
   switch (action.type) {
     case 'AUTH':
+      const user = action.payload
+
       state = {
-        id: 1,
-        login: 'kritzona',
-        firstName: 'Влад',
-        lastName: 'Усманов',
+        id: user.id,
+        login: user.login,
+        firstName: user.firstName,
+        lastName: user.lastName,
         avatar: avatarImageSource,
-        accessToken: '',
         isAuth: true,
       }
       return state
     case 'LOGOUT':
       localStorage.removeItem('chuckchuck:user:id')
-      localStorage.removeItem('chuckchuck:user:accesstoken')
+      localStorage.removeItem('chuckchuck:user:access-token')
       state = initialState
       return state
     default:

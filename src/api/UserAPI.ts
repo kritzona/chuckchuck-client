@@ -64,7 +64,7 @@ class UserAPI extends RestAPI {
           String(response.data.data.item.id),
         )
         localStorage.setItem(
-          'chuckchuck:user:accesstoken',
+          'chuckchuck:user:access-token',
           String(response.data.data.item.accessToken),
         )
         return true
@@ -75,7 +75,7 @@ class UserAPI extends RestAPI {
   }
   public async fetchSelfItem(): Promise<IUserAPIItem | null> {
     let _selfItem = null
-    const userAccessToken = localStorage.getItem('chuckchuck:user:accesstoken')
+    const userAccessToken = localStorage.getItem('chuckchuck:user:access-token')
 
     if (userAccessToken) {
       const responseData: TRestAPIResponse = await axios

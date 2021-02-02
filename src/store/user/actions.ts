@@ -1,13 +1,17 @@
+import { IUserState } from './reducer'
+
 interface IUserAuthAction {
   type: 'AUTH'
+  payload: IUserState
 }
 interface IUserLogoutAction {
   type: 'LOGOUT'
 }
 
-export const userAuthAction = (): IUserAuthAction => {
+export const userAuthAction = (user: IUserState): IUserAuthAction => {
   return {
     type: 'AUTH',
+    payload: user,
   }
 }
 export const userLogoutAction = (): IUserLogoutAction => {

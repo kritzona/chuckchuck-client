@@ -11,7 +11,7 @@ const Contacts = (props: IProps) => {
   return (
     <ContactsStyled>
       {props.items.map((item: IContactItemWithLastMessage) => (
-        <ContactsItemStyled>
+        <ContactsItemStyled key={item.id}>
           <Contact
             id={item.id}
             firstName={item.firstName}
