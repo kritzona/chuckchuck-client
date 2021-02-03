@@ -50,19 +50,17 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
 
     if (item) {
       yield put(userAuthAction(item))
-
+    } else {
       const dateNow = Date.now()
       yield put(
         notificationAddItemAction({
           id: dateNow,
-          status: 'info',
-          message: `Добро пожаловать, ${item.firstName}`,
+          status: 'error',
+          message: 'Недействительный токен',
         }),
       )
       yield delay(2500)
       yield put(notificationRemoveItemAction(dateNow))
-    } else {
-      alert('Недействительный токен')
     }
   } catch (error) {
     yield put(userLogoutAction())

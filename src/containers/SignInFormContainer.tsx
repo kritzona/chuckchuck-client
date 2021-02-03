@@ -1,8 +1,7 @@
 import React from 'react'
 import SignInForm from '../components/organisms/SignInForm/SignInForm'
 import { useDispatch } from 'react-redux'
-import { userFetchAccountAction, userLoginAction } from '../store/user/actions'
-import userAPI from '../api/UserAPI'
+import { userLoginAction } from '../store/user/actions'
 
 interface IProps {}
 
