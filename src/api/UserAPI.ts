@@ -13,17 +13,21 @@ interface IUserAPIItem {
   createdAt: string
   accessToken?: string
 }
+interface IUserAPIAuthData {
+  id: string
+  accessToken: string
+}
 
 class UserAPI extends RestAPI {
   public constructor(object: string) {
     super(object)
 
-    this.getItem = this.getItem.bind(this)
+    this.fetchItem = this.fetchItem.bind(this)
     this.login = this.login.bind(this)
-    this.fetchSelfItem = this.fetchSelfItem.bind(this)
+    this.fetchAccount = this.fetchAccount.bind(this)
   }
 
-  public async getItem(
+  public async fetchItem(
     id: string,
     accessToken: string,
   ): Promise<IUserAPIItem | null> {
@@ -56,33 +60,35 @@ class UserAPI extends RestAPI {
     login: string,
     password: string,
     remember: boolean,
-  ): Promise<boolean> {
+  ): Promise<IUserAPIAuthData | null> {
     return await axios
       .post(`${this.servicesUrl}/login`, {
         login,
         password,
       })
       .then((response) => {
-        localStorage.setItem(
-          'chuckchuck:user:id',
-          String(response.data.data.item.id),
-        )
+        const authData = {
+          id: String(response.data.data.item.id),
+          accessToken: String(response.data.data.item.accessToken),
+        }
+        localStorage.setItem('chuckchuck:user:id', authData.id)
         localStorage.setItem(
           'chuckchuck:user:access-token',
-          String(response.data.data.item.accessToken),
+          authData.accessToken,
         )
-        return true
+
+        return authData
       })
       .catch(() => {
-        return false
+        return null
       })
   }
-  public async fetchSelfItem(
-    userId: string,
-    userAccessToken: string,
+  public async fetchAccount(
+    id: string,
+    accessToken: string,
   ): Promise<IUserAPIItem | null> {
-    if (userId && userAccessToken) {
-      return await this.getItem(userId, userAccessToken)
+    if (id && accessToken) {
+      return await this.fetchItem(id, accessToken)
     }
 
     return null

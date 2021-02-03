@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import userAPI from '../api/UserAPI'
-import { userAuthAction, userFetchSelf } from '../store/user/actions'
-import avatarImageSource from '../assets/images/avatar.png'
+import { userFetchAccountAction } from '../store/user/actions'
 import { useDispatch } from 'react-redux'
-import authSaga from '../sagas/authSaga'
 
 interface IProps {
   children?: React.ReactNode
@@ -21,7 +18,7 @@ const AuthContainer = (props: IProps) => {
       )
 
       if (userId && userAccessToken) {
-        dispatch(userFetchSelf(userId, userAccessToken))
+        dispatch(userFetchAccountAction(userId, userAccessToken))
       }
 
       setInit(true)

@@ -1,7 +1,7 @@
 import React from 'react'
 import SignInForm from '../components/organisms/SignInForm/SignInForm'
 import { useDispatch } from 'react-redux'
-import { userFetchSelf } from '../store/user/actions'
+import { userFetchAccountAction, userLoginAction } from '../store/user/actions'
 import userAPI from '../api/UserAPI'
 
 interface IProps {}
@@ -14,20 +14,7 @@ const SignInFormContainer = (props: IProps) => {
     password: string,
     remember: boolean,
   ) => {
-    const auth = await userAPI.login(login, password, remember)
-
-    if (auth) {
-      const userId = localStorage.getItem('chuckchuck:user:id')
-      const userAccessToken = localStorage.getItem(
-        'chuckchuck:user:access-token',
-      )
-
-      if (userId && userAccessToken) {
-        dispatch(userFetchSelf(userId, userAccessToken))
-      }
-    } else {
-      alert('Неверный логин / пароль')
-    }
+    dispatch(userLoginAction(login, password, remember))
   }
 
   return (

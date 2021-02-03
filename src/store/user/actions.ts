@@ -7,12 +7,13 @@ interface IUserAuthAction {
 interface IUserLogoutAction {
   type: 'LOGOUT'
 }
-export interface IUserFetchSelfAction {
-  type: 'FETCH_SELF'
-  payload: {
-    userId: string
-    userAccessToken: string
-  }
+export interface IUserLoginAction {
+  type: 'LOGIN'
+  payload: { login: string; password: string; remember: boolean }
+}
+export interface IUserFetchAccountAction {
+  type: 'FETCH_ACCOUNT'
+  payload: { id: string; accessToken: string }
 }
 
 export const userAuthAction = (user: IUserState): IUserAuthAction => {
@@ -26,20 +27,28 @@ export const userLogoutAction = (): IUserLogoutAction => {
     type: 'LOGOUT',
   }
 }
-export const userFetchSelf = (
-  userId: string,
-  userAccessToken: string,
-): IUserFetchSelfAction => {
+export const userLoginAction = (
+  login: string,
+  password: string,
+  remember: boolean,
+): IUserLoginAction => {
   return {
-    type: 'FETCH_SELF',
-    payload: {
-      userId,
-      userAccessToken,
-    },
+    type: 'LOGIN',
+    payload: { login, password, remember },
+  }
+}
+export const userFetchAccountAction = (
+  id: string,
+  accessToken: string,
+): IUserFetchAccountAction => {
+  return {
+    type: 'FETCH_ACCOUNT',
+    payload: { id, accessToken },
   }
 }
 
 export type TUserAction =
   | IUserAuthAction
   | IUserLogoutAction
-  | IUserFetchSelfAction
+  | IUserLoginAction
+  | IUserFetchAccountAction
