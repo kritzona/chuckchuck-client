@@ -35,7 +35,7 @@ abstract class RestAPI {
     this.index = this.index.bind(this)
   }
 
-  protected async index(): Promise<TRestAPIResponse> {
+  protected async index(accessToken: string): Promise<TRestAPIResponse> {
     return await axios
       .get(`${this.apiObjectUrl}`)
       .then((response) => {
@@ -55,9 +55,16 @@ abstract class RestAPI {
         return _response
       })
   }
-  protected async show(id: string): Promise<TRestAPIResponse> {
+  protected async show(
+    id: string,
+    accessToken: string,
+  ): Promise<TRestAPIResponse> {
     return await axios
-      .get(`${this.apiObjectUrl}/${id}`)
+      .get(`${this.apiObjectUrl}/${id}`, {
+        params: {
+          accessToken,
+        },
+      })
       .then((response) => {
         const _response: IRestAPISuccessResponse = {
           status: 'success',
@@ -98,6 +105,7 @@ abstract class RestAPI {
   protected async edit(
     id: string,
     editedProperties: {},
+    accessToken: string,
   ): Promise<TRestAPIResponse> {
     return await axios
       .put(`${this.apiObjectUrl}/${id}`, editedProperties)
@@ -118,7 +126,10 @@ abstract class RestAPI {
         return _response
       })
   }
-  protected async destroy(id: string): Promise<TRestAPIResponse> {
+  protected async destroy(
+    id: string,
+    accessToken: string,
+  ): Promise<TRestAPIResponse> {
     return await axios
       .delete(`${this.apiObjectUrl}/${id}`)
       .then((response) => {

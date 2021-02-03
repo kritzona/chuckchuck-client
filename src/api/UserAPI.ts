@@ -1,8 +1,4 @@
-import RestAPI, {
-  IRestAPIErrorResponse,
-  IRestAPISuccessResponse,
-  TRestAPIResponse,
-} from './RestAPI'
+import RestAPI, { TRestAPIResponse } from './RestAPI'
 import axios from 'axios'
 
 interface IUserAPIItem {
@@ -23,10 +19,13 @@ class UserAPI extends RestAPI {
     super(object)
   }
 
-  public async getItem(id: string): Promise<IUserAPIItem | null> {
+  public async getItem(
+    id: string,
+    accessToken: string,
+  ): Promise<IUserAPIItem | null> {
     let _item = null
 
-    const responseData: TRestAPIResponse = await this.show(id)
+    const responseData: TRestAPIResponse = await this.show(id, accessToken)
     switch (responseData.status) {
       case 'success':
         _item = {
@@ -39,6 +38,7 @@ class UserAPI extends RestAPI {
           about: String(responseData.data.item.about),
           avatar: String(responseData.data.item.avatar),
           createdAt: String(responseData.data.item.createdAt),
+          accessToken: String(responseData.data.item.accessToken),
         }
         break
       case 'error':
@@ -74,55 +74,14 @@ class UserAPI extends RestAPI {
       })
   }
   public async fetchSelfItem(): Promise<IUserAPIItem | null> {
-    let _selfItem = null
+    const userId = localStorage.getItem('chuckchuck:user:id')
     const userAccessToken = localStorage.getItem('chuckchuck:user:access-token')
 
-    if (userAccessToken) {
-      const responseData: TRestAPIResponse = await axios
-        .get(`${this.servicesUrl}/fetch-self`, {
-          params: {
-            accessToken: userAccessToken,
-          },
-        })
-        .then(
-          (response): IRestAPISuccessResponse => {
-            return {
-              status: 'success',
-              data: response.data.data,
-            }
-          },
-        )
-        .catch(
-          (error): IRestAPIErrorResponse => {
-            return {
-              status: 'error',
-              message: error.response.data.message,
-            }
-          },
-        )
-
-      switch (responseData.status) {
-        case 'success':
-          _selfItem = {
-            id: String(responseData.data.item._id),
-            login: String(responseData.data.item.login),
-            firstName: String(responseData.data.item.firstName),
-            lastName: String(responseData.data.item.lastName),
-            age: Number(responseData.data.item.age),
-            city: String(responseData.data.item.city),
-            about: String(responseData.data.item.about),
-            avatar: String(responseData.data.item.avatar),
-            createdAt: String(responseData.data.item.createdAt),
-            accessToken: String(responseData.data.item.accessToken),
-          }
-          break
-        case 'error':
-          _selfItem = null
-          break
-      }
+    if (userId && userAccessToken) {
+      return await this.getItem(userId, userAccessToken)
     }
 
-    return _selfItem
+    return null
   }
 }
 
