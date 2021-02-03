@@ -11,6 +11,7 @@ import { rootToggleThemeAction } from './store/root/actions'
 import { RootState } from './store/store'
 import WireframeMain from './wireframes/WireframeMain/WireframeMain'
 import AuthContainer from './containers/AuthContainer'
+import NotificationsContainer from './containers/NotificationsContainer'
 
 interface IProps {}
 
@@ -49,6 +50,7 @@ const App = (props: IProps) => {
           <AuthContainer>
             <WireframeMain />
           </AuthContainer>
+          <NotificationsContainer />
         </ThemeProvider>
       </ThemeContext.Provider>
     </AppStyled>

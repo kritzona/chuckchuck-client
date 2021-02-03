@@ -71,11 +71,20 @@ class UserAPI extends RestAPI {
           id: String(response.data.data.item.id),
           accessToken: String(response.data.data.item.accessToken),
         }
-        localStorage.setItem('chuckchuck:user:id', authData.id)
-        localStorage.setItem(
-          'chuckchuck:user:access-token',
-          authData.accessToken,
-        )
+
+        if (remember) {
+          localStorage.setItem('chuckchuck:user:id', authData.id)
+          localStorage.setItem(
+            'chuckchuck:user:access-token',
+            authData.accessToken,
+          )
+        } else {
+          sessionStorage.setItem('chuckchuck:user:id', authData.id)
+          sessionStorage.setItem(
+            'chuckchuck:user:access-token',
+            authData.accessToken,
+          )
+        }
 
         return authData
       })

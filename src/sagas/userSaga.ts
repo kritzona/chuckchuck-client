@@ -1,4 +1,4 @@
-import { call, takeEvery, put } from 'redux-saga/effects'
+import { call, takeEvery, put, delay } from 'redux-saga/effects'
 import {
   IUserFetchAccountAction,
   IUserLoginAction,
@@ -7,6 +7,10 @@ import {
   userLogoutAction,
 } from '../store/user/actions'
 import userAPI from '../api/UserAPI'
+import {
+  notificationAddItemAction,
+  notificationRemoveItemAction,
+} from '../store/root/actions'
 
 function* loginAsync(action: IUserLoginAction) {
   try {
@@ -20,9 +24,19 @@ function* loginAsync(action: IUserLoginAction) {
     if (authData) {
       yield put(userFetchAccountAction(authData.id, authData.accessToken))
     } else {
-      alert('Неверный логин / пароль')
+      const dateNow = Date.now()
+      yield put(
+        notificationAddItemAction({
+          id: dateNow,
+          status: 'error',
+          message: 'Неверный логин / пароль',
+        }),
+      )
+      yield delay(2500)
+      yield put(notificationRemoveItemAction(dateNow))
     }
   } catch (error) {
+    console.log(error)
     yield put(userLogoutAction())
   }
 }
@@ -36,6 +50,17 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
 
     if (item) {
       yield put(userAuthAction(item))
+
+      const dateNow = Date.now()
+      yield put(
+        notificationAddItemAction({
+          id: dateNow,
+          status: 'info',
+          message: `Добро пожаловать, ${item.firstName}`,
+        }),
+      )
+      yield delay(2500)
+      yield put(notificationRemoveItemAction(dateNow))
     } else {
       alert('Недействительный токен')
     }

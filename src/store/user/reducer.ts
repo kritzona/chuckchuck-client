@@ -35,6 +35,8 @@ const userReducer = (state: IUserState = initialState, action: TUserAction) => {
     case 'LOGOUT':
       localStorage.removeItem('chuckchuck:user:id')
       localStorage.removeItem('chuckchuck:user:access-token')
+      sessionStorage.removeItem('chuckchuck:user:id')
+      sessionStorage.removeItem('chuckchuck:user:access-token')
       state = initialState
       return state
     default:
