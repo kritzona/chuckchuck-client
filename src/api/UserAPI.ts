@@ -17,6 +17,10 @@ interface IUserAPIItem {
 class UserAPI extends RestAPI {
   public constructor(object: string) {
     super(object)
+
+    this.getItem = this.getItem.bind(this)
+    this.login = this.login.bind(this)
+    this.fetchSelfItem = this.fetchSelfItem.bind(this)
   }
 
   public async getItem(
@@ -25,7 +29,7 @@ class UserAPI extends RestAPI {
   ): Promise<IUserAPIItem | null> {
     let _item = null
 
-    const responseData: TRestAPIResponse = await this.show(id, accessToken)
+    const responseData: TRestAPIResponse = await super.show(id, accessToken)
     switch (responseData.status) {
       case 'success':
         _item = {
@@ -73,10 +77,10 @@ class UserAPI extends RestAPI {
         return false
       })
   }
-  public async fetchSelfItem(): Promise<IUserAPIItem | null> {
-    const userId = localStorage.getItem('chuckchuck:user:id')
-    const userAccessToken = localStorage.getItem('chuckchuck:user:access-token')
-
+  public async fetchSelfItem(
+    userId: string,
+    userAccessToken: string,
+  ): Promise<IUserAPIItem | null> {
     if (userId && userAccessToken) {
       return await this.getItem(userId, userAccessToken)
     }

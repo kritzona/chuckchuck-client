@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import userAPI from '../api/UserAPI'
-import { userAuthAction } from '../store/user/actions'
+import { userAuthAction, userFetchSelf } from '../store/user/actions'
 import avatarImageSource from '../assets/images/avatar.png'
 import { useDispatch } from 'react-redux'
+import authSaga from '../sagas/authSaga'
 
 interface IProps {
   children?: React.ReactNode
@@ -14,21 +15,16 @@ const AuthContainer = (props: IProps) => {
 
   useEffect(() => {
     if (!init) {
-      userAPI.fetchSelfItem().then((item) => {
-        if (item) {
-          dispatch(
-            userAuthAction({
-              id: item.id,
-              login: item.login,
-              firstName: item.firstName,
-              lastName: item.lastName,
-              avatar: avatarImageSource,
-            }),
-          )
-        }
+      const userId = localStorage.getItem('chuckchuck:user:id')
+      const userAccessToken = localStorage.getItem(
+        'chuckchuck:user:access-token',
+      )
 
-        setInit(true)
-      })
+      if (userId && userAccessToken) {
+        dispatch(userFetchSelf(userId, userAccessToken))
+      }
+
+      setInit(true)
     }
   }, [init, dispatch])
 
