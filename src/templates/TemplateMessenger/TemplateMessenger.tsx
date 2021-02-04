@@ -13,8 +13,8 @@ import {
 } from './TemplateMessengerStyled'
 
 interface IProps {
-  contactId: number
-  dialogId: number
+  contactId: string | number
+  dialogId: string | number
 }
 
 const TemplateMessenger = (props: IProps) => {

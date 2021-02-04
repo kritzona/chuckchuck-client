@@ -5,9 +5,16 @@ import Contact from '../../molecules/Contact/Contact'
 
 interface IProps {
   items: IContactItemWithLastMessage[]
+  onClick?: (id: string | number) => void
 }
 
 const Contacts = (props: IProps) => {
+  const handleClick = (id: string | number) => {
+    if (props.onClick) {
+      props.onClick(id)
+    }
+  }
+
   return (
     <ContactsStyled>
       {props.items.map((item: IContactItemWithLastMessage) => (
@@ -19,6 +26,7 @@ const Contacts = (props: IProps) => {
             avatar={item.avatar}
             isOnline={item.isOnline}
             lastMessage={item.lastMessage}
+            onClick={() => handleClick(item.id)}
           />
         </ContactsItemStyled>
       ))}

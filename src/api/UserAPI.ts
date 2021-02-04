@@ -17,6 +17,14 @@ interface IUserAPIAuthData {
   id: string
   accessToken: string
 }
+interface IUserAPIContactItem {
+  id: string
+  login: string
+  firstName: string
+  lastName: string
+  avatar: string | null
+  dialogId: string
+}
 
 class UserAPI extends RestAPI {
   public constructor(object: string) {
@@ -25,6 +33,7 @@ class UserAPI extends RestAPI {
     this.fetchItem = this.fetchItem.bind(this)
     this.login = this.login.bind(this)
     this.fetchAccount = this.fetchAccount.bind(this)
+    this.fetchContacts = this.fetchContacts.bind(this)
   }
 
   public async fetchItem(
@@ -96,11 +105,32 @@ class UserAPI extends RestAPI {
     id: string,
     accessToken: string,
   ): Promise<IUserAPIItem | null> {
-    if (id && accessToken) {
-      return await this.fetchItem(id, accessToken)
+    return await this.fetchItem(id, accessToken)
+  }
+  public async fetchContacts(id: string, accessToken: string) {
+    const _items: IUserAPIContactItem[] = []
+
+    const responseData: TRestAPIResponse = await super.show(
+      id,
+      accessToken,
+      'contacts',
+    )
+    switch (responseData.status) {
+      case 'success':
+        responseData.data.items.forEach((item: IUserAPIContactItem) =>
+          _items.push({
+            id: String(item.id),
+            login: String(item.login),
+            firstName: String(item.firstName),
+            lastName: String(item.lastName),
+            avatar: String(item.avatar),
+            dialogId: String(item.dialogId),
+          }),
+        )
+        break
     }
 
-    return null
+    return _items
   }
 }
 

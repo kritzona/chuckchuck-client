@@ -5,7 +5,7 @@ import { RootState } from '../store/store'
 import { IDialogItem, IMessageItem } from '../store/messenger/reducer'
 
 interface IProps {
-  dialogId: number
+  dialogId: string | number
 }
 
 const MessagesContainer = (props: IProps) => {

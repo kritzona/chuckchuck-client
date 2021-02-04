@@ -5,8 +5,8 @@ import { messageAddItemAction } from '../store/messenger/actions'
 import { RootState } from '../store/store'
 
 interface IProps {
-  contactId: number
-  dialogId: number
+  contactId: string | number
+  dialogId: string | number
 }
 
 const SendBoxContainer = (props: IProps) => {

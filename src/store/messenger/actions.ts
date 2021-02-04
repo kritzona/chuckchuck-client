@@ -6,7 +6,7 @@ interface IDialogAddItemAction {
 }
 interface IDialogRemoveItemAction {
   type: 'DIALOG_REMOVE_ITEM'
-  payload: number
+  payload: string | number
 }
 type TDialogAction = IDialogAddItemAction | IDialogRemoveItemAction
 
@@ -18,7 +18,9 @@ export const dialogAddItemAction = (
     payload: item,
   }
 }
-export const dialogRemoveItemAction = (id: number): IDialogRemoveItemAction => {
+export const dialogRemoveItemAction = (
+  id: string | number,
+): IDialogRemoveItemAction => {
   return {
     type: 'DIALOG_REMOVE_ITEM',
     payload: id,
@@ -28,21 +30,21 @@ export const dialogRemoveItemAction = (id: number): IDialogRemoveItemAction => {
 interface IMessageAddItem {
   type: 'MESSAGE_ADD_ITEM'
   payload: {
-    dialogId: number
+    dialogId: string | number
     item: IMessageItem
   }
 }
 interface IMessageRemoveItem {
   type: 'MESSAGE_REMOVE_ITEM'
   payload: {
-    dialogId: number
-    itemId: number
+    dialogId: string | number
+    itemId: string | number
   }
 }
 type TMessageAction = IMessageAddItem | IMessageRemoveItem
 
 export const messageAddItemAction = (
-  dialogId: number,
+  dialogId: string | number,
   item: IMessageItem,
 ): IMessageAddItem => {
   return {
@@ -54,8 +56,8 @@ export const messageAddItemAction = (
   }
 }
 export const messageRemoveItemAction = (
-  dialogId: number,
-  itemId: number,
+  dialogId: string | number,
+  itemId: string | number,
 ): IMessageRemoveItem => {
   return {
     type: 'MESSAGE_REMOVE_ITEM',

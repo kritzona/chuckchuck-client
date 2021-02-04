@@ -3,13 +3,13 @@ import avatarImageSource from '../../assets/images/avatar.png'
 import { IMessageItem } from '../messenger/reducer'
 
 export interface IContactItem {
-  id: number
+  id: string | number
   login: string
   firstName: string
   lastName: string
   avatar: string | null
   isOnline: boolean
-  dialogId: number | null
+  dialogId: string | number | null
 }
 export interface IContactItemWithLastMessage extends IContactItem {
   lastMessage: IMessageItem | null

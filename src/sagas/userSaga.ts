@@ -47,6 +47,13 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
       action.payload.id,
       action.payload.accessToken,
     )
+    const contacts = yield call(
+      userAPI.fetchContacts,
+      action.payload.id,
+      action.payload.accessToken,
+    )
+
+    console.log(contacts)
 
     if (item) {
       yield put(userAuthAction(item))

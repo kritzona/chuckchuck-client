@@ -7,8 +7,8 @@ interface IContactAddItemAction {
 interface IContactSetDialogIdAction {
   type: 'SET_DIALOG_ID'
   payload: {
-    contactId: number
-    dialogId: number
+    contactId: string | number
+    dialogId: string | number
   }
 }
 
@@ -21,8 +21,8 @@ export const contactAddItemAction = (
   }
 }
 export const contactSetDialogIdAction = (
-  contactId: number,
-  dialogId: number,
+  contactId: string | number,
+  dialogId: string | number,
 ): IContactSetDialogIdAction => {
   return {
     type: 'SET_DIALOG_ID',

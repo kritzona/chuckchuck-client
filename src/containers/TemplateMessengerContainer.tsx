@@ -26,7 +26,7 @@ const TemplateMessengerContainer = (props: IProps) => {
   })
   const dispatch = useDispatch()
 
-  const createAndBindDialog = (contactId: number, dateNow: number) => {
+  const createAndBindDialog = (contactId: string | number, dateNow: number) => {
     dispatch(
       dialogAddItemAction({
         id: dateNow,

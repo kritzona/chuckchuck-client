@@ -58,13 +58,24 @@ abstract class RestAPI {
   protected async show(
     id: string,
     accessToken: string,
+    childrenObject?: string,
+    childrenObjectId?: string,
   ): Promise<TRestAPIResponse> {
     return await axios
-      .get(`${this.apiObjectUrl}/${id}`, {
-        params: {
-          accessToken,
+      .get(
+        `${this.apiObjectUrl}/${id}${
+          childrenObject && !childrenObjectId ? `/${childrenObject}` : ''
+        }${
+          childrenObject && childrenObjectId
+            ? `/${childrenObject}/${childrenObjectId}`
+            : ''
+        }`,
+        {
+          params: {
+            accessToken,
+          },
         },
-      })
+      )
       .then((response) => {
         const _response: IRestAPISuccessResponse = {
           status: 'success',

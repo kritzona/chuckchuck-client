@@ -1,5 +1,4 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 import { ContactAlertStyled, ContactStyled } from './ContactStyled'
 import Message from '../Message/Message'
 import User from '../User/User'
@@ -7,19 +6,24 @@ import { IMessageItem } from '../../../store/messenger/reducer'
 import Text from '../../atoms/Text/Text'
 
 interface IProps {
-  id: number
+  id: string | number
   firstName: string
   lastName: string
   avatar: string | null
   isOnline: boolean
   lastMessage: IMessageItem | null
+  onClick?: () => void
 }
 
 const Contact = (props: IProps) => {
-  const history = useHistory()
+  const handleClick = () => {
+    if (props.onClick) {
+      props.onClick()
+    }
+  }
 
   return (
-    <ContactStyled onClick={() => history.push(`/messenger/${props.id}`)}>
+    <ContactStyled onClick={() => handleClick()}>
       <User
         firstName={props.firstName}
         lastName={props.lastName}

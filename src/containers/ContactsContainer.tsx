@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Contacts from '../components/organisms/Contacts/Contacts'
+import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import {
@@ -11,6 +12,7 @@ import { IDialogItem } from '../store/messenger/reducer'
 interface IProps {}
 
 const ContactsContainer = (props: IProps) => {
+  const history = useHistory()
   const contactItems = useSelector(
     (state: RootState): IContactItemWithLastMessage[] => {
       const _contactItems: IContactItemWithLastMessage[] = []
@@ -45,7 +47,18 @@ const ContactsContainer = (props: IProps) => {
     },
   )
 
-  return <Contacts items={contactItems} />
+  useEffect(() => {})
+
+  const handleClick = (id: string | number) => {
+    history.push(`/messenger/${id}`)
+  }
+
+  return (
+    <Contacts
+      items={contactItems}
+      onClick={(id: string | number) => handleClick(id)}
+    />
+  )
 }
 
 export default ContactsContainer
