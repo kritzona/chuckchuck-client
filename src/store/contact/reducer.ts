@@ -31,16 +31,6 @@ const contactReducer = (
     case 'CONTACT_RESET_ITEMS':
       state.items = []
       return state
-    case 'SET_DIALOG_ID':
-      state.items.map((item: IContactItem) => {
-        if (item.id === action.payload.contactId) {
-          item.dialogId = action.payload.dialogId
-        }
-
-        return null
-      })
-
-      return state
     default:
       return state
   }
