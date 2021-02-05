@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { contactFetchItemsAction } from '../store/contact/actions'
 import { IContactItem } from '../store/contact/reducer'
-import { userFetchAccountAction } from '../store/user/actions'
 
 interface IProps {}
 

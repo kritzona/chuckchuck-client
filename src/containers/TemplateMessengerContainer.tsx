@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import TemplateMessenger from '../templates/TemplateMessenger/TemplateMessenger'
-import { useHistory, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { IContactItem } from '../store/contact/reducer'
-import { dialogAddItemAction } from '../store/messenger/actions'
-import { contactSetDialogIdAction } from '../store/contact/actions'
 
 interface IProps {}
 interface IParams {

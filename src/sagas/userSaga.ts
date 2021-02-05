@@ -1,4 +1,4 @@
-import { call, takeEvery, takeLatest, put, delay } from 'redux-saga/effects'
+import { call, takeLatest, put, delay } from 'redux-saga/effects'
 import {
   IUserFetchAccountAction,
   IUserLoginAction,
