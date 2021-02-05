@@ -1,4 +1,4 @@
-import { call, takeEvery, put, delay } from 'redux-saga/effects'
+import { call, takeEvery, takeLatest, put, delay } from 'redux-saga/effects'
 import {
   IUserFetchAccountAction,
   IUserLoginAction,
@@ -68,8 +68,8 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
 }
 
 function* userSaga() {
-  yield takeEvery('LOGIN', loginAsync)
-  yield takeEvery('FETCH_ACCOUNT', fetchAccountAsync)
+  yield takeLatest('LOGIN', loginAsync)
+  yield takeLatest('FETCH_ACCOUNT', fetchAccountAsync)
 }
 
 export default userSaga
