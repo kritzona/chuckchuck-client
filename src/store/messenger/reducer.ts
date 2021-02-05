@@ -24,10 +24,7 @@ const initialState: IMessengerState = {
     items: [],
   },
 }
-const messengerReducer = (
-  state: IMessengerState = initialState,
-  action: TMessengerAction,
-) => {
+const messengerReducer = (state = initialState, action: TMessengerAction) => {
   switch (action.type) {
     case 'DIALOG_ADD_ITEM':
       state.dialog.items.push(action.payload)

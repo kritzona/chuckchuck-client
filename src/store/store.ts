@@ -5,12 +5,14 @@ import contactReducer from './contact/reducer'
 import messengerReducer from './messenger/reducer'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from '../sagas/rootSaga'
+import notificationReducer from './notification/reducer'
 
 const reducers = combineReducers({
   root: rootReducer,
   user: userReducer,
   contact: contactReducer,
   messenger: messengerReducer,
+  notification: notificationReducer,
 })
 const sagaMiddleware = createSagaMiddleware()
 export const store = createStore(reducers, applyMiddleware(sagaMiddleware))

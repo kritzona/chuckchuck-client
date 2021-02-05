@@ -7,7 +7,7 @@ interface IProps {}
 
 const NotificationsContainer = (props: IProps) => {
   const notificationItems = useSelector(
-    (state: RootState) => state.root.notification.items,
+    (state: RootState) => state.notification.items,
   )
 
   return <Notifications items={notificationItems} />

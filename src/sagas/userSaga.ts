@@ -8,8 +8,12 @@ import userAPI from '../api/UserAPI'
 import {
   notificationAddItemAction,
   notificationRemoveItemAction,
-} from '../store/root/actions'
-import { IUserFetchAccountAction, IUserLoginAction } from '../store/user/types'
+} from '../store/notification/actions'
+import {
+  EUserActionTypes,
+  IUserFetchAccountAction,
+  IUserLoginAction,
+} from '../store/user/types'
 
 function* loginAsync(action: IUserLoginAction) {
   try {
@@ -67,8 +71,8 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
 }
 
 function* userSaga() {
-  yield takeLatest('LOGIN', loginAsync)
-  yield takeLatest('FETCH_ACCOUNT', fetchAccountAsync)
+  yield takeLatest(EUserActionTypes.LOGIN, loginAsync)
+  yield takeLatest(EUserActionTypes.FETCH_ACCOUNT, fetchAccountAsync)
 }
 
 export default userSaga

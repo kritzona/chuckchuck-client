@@ -9,7 +9,7 @@ const initialState: IUserState = {
   avatar: null,
   isAuth: false,
 }
-const userReducer = (state: IUserState = initialState, action: TUserAction) => {
+const userReducer = (state = initialState, action: TUserAction) => {
   switch (action.type) {
     case EUserActionTypes.AUTH:
       const user = action.payload

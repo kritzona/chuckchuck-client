@@ -1,5 +1,5 @@
 import React from 'react'
-import { INotificationItem } from '../../../store/root/types'
+import { INotificationItem } from '../../../store/notification/types'
 import NotificationsStyled from './NotificationsStyled'
 import Notification from '../../molecules/Notification/Notification'
 

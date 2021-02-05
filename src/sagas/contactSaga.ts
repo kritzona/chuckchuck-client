@@ -5,7 +5,10 @@ import {
   contactResetItemsAction,
 } from '../store/contact/actions'
 import avatarImageSource from '../assets/images/avatar.png'
-import { IContactFetchItemsAction } from '../store/contact/types'
+import {
+  EContactActionTypes,
+  IContactFetchItemsAction,
+} from '../store/contact/types'
 
 function* fetchItemsAsync(action: IContactFetchItemsAction) {
   const contacts: IUserAPIContactItem[] = yield call(
@@ -33,7 +36,7 @@ function* fetchItemsAsync(action: IContactFetchItemsAction) {
 }
 
 function* contactSaga() {
-  yield takeEvery('CONTACT_FETCH_ITEMS', fetchItemsAsync)
+  yield takeEvery(EContactActionTypes.FETCH_ITEMS, fetchItemsAsync)
 }
 
 export default contactSaga
