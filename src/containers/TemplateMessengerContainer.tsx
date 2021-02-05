@@ -10,50 +10,28 @@ import { contactSetDialogIdAction } from '../store/contact/actions'
 interface IProps {}
 interface IParams {
   contactId: string
+  dialogId: string
 }
 
 const TemplateMessengerContainer = (props: IProps) => {
-  const history = useHistory()
-  const { contactId } = useParams<IParams>()
+  const { contactId, dialogId } = useParams<IParams>()
 
-  const user = useSelector((state: RootState) => state.user)
   const contactItem = useSelector((state: RootState):
     | IContactItem
     | undefined => {
     return state.contact.items.find(
-      (item: IContactItem) => item.id === parseInt(contactId),
+      (item: IContactItem) => item.id === contactId,
     )
   })
-  const dispatch = useDispatch()
 
-  const createAndBindDialog = (contactId: string | number, dateNow: number) => {
-    dispatch(
-      dialogAddItemAction({
-        id: dateNow,
-        message: {
-          items: [],
-        },
-      }),
-    )
-    dispatch(contactSetDialogIdAction(contactId, dateNow))
-  }
-
-  if (contactItem && !contactItem.dialogId) {
-    createAndBindDialog(contactItem.id, Date.now())
-  }
-
-  useEffect(() => {
-    if (!user.isAuth || !contactItem) {
-      history.push('/')
-    }
-  }, [user, contactItem, history])
+  console.log(contactItem)
 
   return (
     <React.Fragment>
-      {user.isAuth && contactItem && contactItem.dialogId && (
+      {contactItem && contactItem.dialogId && (
         <TemplateMessenger
-          contactId={contactItem.id}
-          dialogId={contactItem.dialogId}
+          contactItem={contactItem}
+          dialogItem={{ id: dialogId, message: { items: [] } }}
         />
       )}
     </React.Fragment>

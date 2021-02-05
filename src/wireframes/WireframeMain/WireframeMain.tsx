@@ -1,10 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  // Redirect,
-} from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 
 import Home from '../../views/Home/Home'
 import UIKit from '../../views/UIKit/UIKit'
@@ -16,7 +11,6 @@ import PartMain from '../../parts/PartMain/PartMain'
 
 import {
   WireframeMainContentStyled,
-  // WireframeMainFooterStyled,
   WireframeMainHeaderStyled,
   WireframeMainStyled,
 } from './WireframeMainStyled'
@@ -42,46 +36,44 @@ const WireframeMain = (props: IProps) => {
 
   return (
     <WireframeMainStyled>
-      <Router>
-        <WireframeMainHeaderStyled ref={wireframeMainHeaderRef}>
-          <PartHeader>
-            <Switch>
-              <Route exact path="/">
-                <MainHeader />
-              </Route>
-              <Route path="/ui-kit">
-                <MainHeader />
-              </Route>
-              <Route path="/contacts">
-                <MainHeader />
-              </Route>
-              <Route path="/messenger/:contactId">
-                <MessengerHeaderContainer />
-              </Route>
-            </Switch>
-          </PartHeader>
-        </WireframeMainHeaderStyled>
-        <WireframeMainContentStyled ref={wireframeMainContentRef}>
-          <PartMain>
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/ui-kit">
-                <UIKit />
-              </Route>
-              <Route path="/contacts">
-                <Contacts />
-              </Route>
-              <Route path="/messenger/:contactId">
-                <Messenger />
-              </Route>
-            </Switch>
-          </PartMain>
-        </WireframeMainContentStyled>
-      </Router>
+      <WireframeMainHeaderStyled ref={wireframeMainHeaderRef}>
+        <PartHeader>
+          <Switch>
+            <Route exact path="/">
+              <MainHeader />
+            </Route>
+            <Route path="/ui-kit">
+              <MainHeader />
+            </Route>
+            <Route path="/contacts">
+              <MainHeader />
+            </Route>
+            <Route path="/messenger/:contactId/:dialogId">
+              <MessengerHeaderContainer />
+            </Route>
+          </Switch>
+        </PartHeader>
+      </WireframeMainHeaderStyled>
+      <WireframeMainContentStyled ref={wireframeMainContentRef}>
+        <PartMain>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/ui-kit">
+              <UIKit />
+            </Route>
+            <Route path="/contacts">
+              <Contacts />
+            </Route>
+            <Route path="/messenger/:contactId">
+              <Messenger />
+            </Route>
+          </Switch>
+        </PartMain>
+      </WireframeMainContentStyled>
     </WireframeMainStyled>
   )
 }
 
-export default WireframeMain
+export default withRouter(WireframeMain)

@@ -5,13 +5,13 @@ import Contact from '../../molecules/Contact/Contact'
 
 interface IProps {
   items: IContactItem[]
-  onClick?: (id: string | number) => void
+  onClick?: (item: IContactItem) => void
 }
 
 const Contacts = (props: IProps) => {
-  const handleClick = (id: string | number) => {
+  const handleClick = (item: IContactItem) => {
     if (props.onClick) {
-      props.onClick(id)
+      props.onClick(item)
     }
   }
 
@@ -26,7 +26,7 @@ const Contacts = (props: IProps) => {
             avatar={item.avatar}
             isOnline={item.isOnline}
             lastMessage={null}
-            onClick={() => handleClick(item.id)}
+            onClick={() => handleClick(item)}
           />
         </ContactsItemStyled>
       ))}

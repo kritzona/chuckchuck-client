@@ -16,7 +16,7 @@ const MessengerHeaderContainer = (props: IProps) => {
     | IContactItem
     | undefined => {
     return state.contact.items.find(
-      (item: IContactItem) => item.id === parseInt(contactId),
+      (item: IContactItem) => item.id === contactId,
     )
   })
 

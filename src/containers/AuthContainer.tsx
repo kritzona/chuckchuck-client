@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { userFetchAccountAction } from '../store/user/actions'
 import { useDispatch } from 'react-redux'
+import { contactFetchItemsAction } from '../store/contact/actions'
 
 interface IProps {
   children?: React.ReactNode
@@ -21,6 +22,7 @@ const AuthContainer = (props: IProps) => {
 
       if (userId && userAccessToken) {
         dispatch(userFetchAccountAction(userId, userAccessToken))
+        dispatch(contactFetchItemsAction(userId, userAccessToken))
       }
 
       setInit(true)

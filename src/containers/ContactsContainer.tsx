@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { contactFetchItemsAction } from '../store/contact/actions'
+import { IContactItem } from '../store/contact/reducer'
+import { userFetchAccountAction } from '../store/user/actions'
 
 interface IProps {}
 
@@ -30,8 +32,8 @@ const ContactsContainer = (props: IProps) => {
     }
   }, [init, dispatch])
 
-  const handleClick = (id: string | number) => {
-    history.push(`/messenger/${id}`)
+  const handleClick = (item: IContactItem) => {
+    history.push(`/messenger/${item.id}/${item.dialogId}`)
   }
 
   return (
@@ -39,7 +41,7 @@ const ContactsContainer = (props: IProps) => {
       {init && (
         <Contacts
           items={contactItems}
-          onClick={(id: string | number) => handleClick(id)}
+          onClick={(item: IContactItem) => handleClick(item)}
         />
       )}
     </React.Fragment>

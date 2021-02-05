@@ -1,5 +1,4 @@
 import { TContactAction } from './actions'
-import avatarImageSource from '../../assets/images/avatar.png'
 import { IMessageItem } from '../messenger/reducer'
 
 export interface IContactItem {
@@ -9,7 +8,7 @@ export interface IContactItem {
   lastName: string
   avatar: string | null
   isOnline: boolean
-  dialogId: string | number | null
+  dialogId: string | number
 }
 export interface IContactItemWithLastMessage extends IContactItem {
   lastMessage: IMessageItem | null

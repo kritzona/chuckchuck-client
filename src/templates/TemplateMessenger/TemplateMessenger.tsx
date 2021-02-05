@@ -11,10 +11,12 @@ import {
   TemplateMessengerSendboxStyled,
   TemplateMessengerStyled,
 } from './TemplateMessengerStyled'
+import { IContactItem } from '../../store/contact/reducer'
+import { IDialogItem } from '../../store/messenger/reducer'
 
 interface IProps {
-  contactId: string | number
-  dialogId: string | number
+  contactItem: IContactItem
+  dialogItem: IDialogItem
 }
 
 const TemplateMessenger = (props: IProps) => {
@@ -64,7 +66,9 @@ const TemplateMessenger = (props: IProps) => {
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
-                <MessagesContainer dialogId={props.dialogId} />
+                <MessagesContainer
+                  messageItems={props.dialogItem.message.items}
+                />
                 <div ref={templateMessengerMessagesEndRef} />
               </div>
             </div>
@@ -74,8 +78,8 @@ const TemplateMessenger = (props: IProps) => {
       <TemplateMessengerSendboxStyled ref={templateMessengerSendboxRef}>
         <PartMessengerFooter>
           <SendBoxContainer
-            contactId={props.contactId}
-            dialogId={props.dialogId}
+            contactId={props.contactItem.id}
+            dialogId={props.dialogItem.id}
           />
         </PartMessengerFooter>
       </TemplateMessengerSendboxStyled>
