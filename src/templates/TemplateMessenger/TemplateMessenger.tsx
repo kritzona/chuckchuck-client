@@ -11,7 +11,7 @@ import {
   TemplateMessengerSendboxStyled,
   TemplateMessengerStyled,
 } from './TemplateMessengerStyled'
-import { IContactItem } from '../../store/contact/reducer'
+import { IContactItem } from '../../store/contact/types'
 import { IDialogItem } from '../../store/messenger/reducer'
 
 interface IProps {

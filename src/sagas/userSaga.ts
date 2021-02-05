@@ -1,7 +1,5 @@
 import { call, takeLatest, put, delay } from 'redux-saga/effects'
 import {
-  IUserFetchAccountAction,
-  IUserLoginAction,
   userAuthAction,
   userFetchAccountAction,
   userLogoutAction,
@@ -11,6 +9,7 @@ import {
   notificationAddItemAction,
   notificationRemoveItemAction,
 } from '../store/root/actions'
+import { IUserFetchAccountAction, IUserLoginAction } from '../store/user/types'
 
 function* loginAsync(action: IUserLoginAction) {
   try {

@@ -3,7 +3,7 @@ import TemplateMessenger from '../templates/TemplateMessenger/TemplateMessenger'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
-import { IContactItem } from '../store/contact/reducer'
+import { IContactItem } from '../store/contact/types'
 
 interface IProps {}
 interface IParams {

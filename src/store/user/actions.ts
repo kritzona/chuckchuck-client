@@ -1,30 +1,21 @@
-import { IUserState } from './reducer'
-
-interface IUserAuthAction {
-  type: 'AUTH'
-  payload: IUserState
-}
-interface IUserLogoutAction {
-  type: 'LOGOUT'
-}
-export interface IUserLoginAction {
-  type: 'LOGIN'
-  payload: { login: string; password: string; remember: boolean }
-}
-export interface IUserFetchAccountAction {
-  type: 'FETCH_ACCOUNT'
-  payload: { id: string; accessToken: string }
-}
+import {
+  EUserActionTypes,
+  IUserAuthAction,
+  IUserFetchAccountAction,
+  IUserLoginAction,
+  IUserLogoutAction,
+  IUserState,
+} from './types'
 
 export const userAuthAction = (user: IUserState): IUserAuthAction => {
   return {
-    type: 'AUTH',
+    type: EUserActionTypes.AUTH,
     payload: user,
   }
 }
 export const userLogoutAction = (): IUserLogoutAction => {
   return {
-    type: 'LOGOUT',
+    type: EUserActionTypes.LOGOUT,
   }
 }
 export const userLoginAction = (
@@ -33,7 +24,7 @@ export const userLoginAction = (
   remember: boolean,
 ): IUserLoginAction => {
   return {
-    type: 'LOGIN',
+    type: EUserActionTypes.LOGIN,
     payload: { login, password, remember },
   }
 }
@@ -42,13 +33,7 @@ export const userFetchAccountAction = (
   accessToken: string,
 ): IUserFetchAccountAction => {
   return {
-    type: 'FETCH_ACCOUNT',
+    type: EUserActionTypes.FETCH_ACCOUNT,
     payload: { id, accessToken },
   }
 }
-
-export type TUserAction =
-  | IUserAuthAction
-  | IUserLogoutAction
-  | IUserLoginAction
-  | IUserFetchAccountAction

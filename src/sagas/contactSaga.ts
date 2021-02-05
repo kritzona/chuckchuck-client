@@ -3,9 +3,9 @@ import userAPI, { IUserAPIContactItem } from '../api/UserAPI'
 import {
   contactAddItemAction,
   contactResetItemsAction,
-  IContactFetchItemsAction,
 } from '../store/contact/actions'
 import avatarImageSource from '../assets/images/avatar.png'
+import { IContactFetchItemsAction } from '../store/contact/types'
 
 function* fetchItemsAsync(action: IContactFetchItemsAction) {
   const contacts: IUserAPIContactItem[] = yield call(

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { contactFetchItemsAction } from '../store/contact/actions'
-import { IContactItem } from '../store/contact/reducer'
+import { IContactItem } from '../store/contact/types'
 
 interface IProps {}
 

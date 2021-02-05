@@ -1,14 +1,5 @@
-import { TUserAction } from './actions'
 import avatarImageSource from '../../assets/images/avatar.png'
-
-export interface IUserState {
-  id: string | number
-  login: string
-  firstName: string
-  lastName: string
-  avatar: string | null
-  isAuth?: boolean
-}
+import { EUserActionTypes, IUserState, TUserAction } from './types'
 
 const initialState: IUserState = {
   id: -1,
@@ -20,7 +11,7 @@ const initialState: IUserState = {
 }
 const userReducer = (state: IUserState = initialState, action: TUserAction) => {
   switch (action.type) {
-    case 'AUTH':
+    case EUserActionTypes.AUTH:
       const user = action.payload
 
       state = {
@@ -32,7 +23,7 @@ const userReducer = (state: IUserState = initialState, action: TUserAction) => {
         isAuth: true,
       }
       return state
-    case 'LOGOUT':
+    case EUserActionTypes.LOGOUT:
       localStorage.removeItem('chuckchuck:user:id')
       localStorage.removeItem('chuckchuck:user:access-token')
       sessionStorage.removeItem('chuckchuck:user:id')

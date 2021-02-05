@@ -1,5 +1,5 @@
 import React from 'react'
-import { IContactItem } from '../../../store/contact/reducer'
+import { IContactItem } from '../../../store/contact/types'
 import { ContactsItemStyled, ContactsStyled } from './ContactsStyled'
 import Contact from '../../molecules/Contact/Contact'
 
