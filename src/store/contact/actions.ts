@@ -1,7 +1,7 @@
 import { IContactItem } from './reducer'
 
 interface IContactAddItemAction {
-  type: 'ADD_ITEM'
+  type: 'CONTACT_ADD_ITEM'
   payload: IContactItem
 }
 interface IContactSetDialogIdAction {
@@ -11,12 +11,19 @@ interface IContactSetDialogIdAction {
     dialogId: string | number
   }
 }
+interface IContactResetItemsAction {
+  type: 'CONTACT_RESET_ITEMS'
+}
+export interface IContactFetchItemsAction {
+  type: 'CONTACT_FETCH_ITEMS'
+  payload: { userId: string; userAccessToken: string }
+}
 
 export const contactAddItemAction = (
   contactItem: IContactItem,
 ): IContactAddItemAction => {
   return {
-    type: 'ADD_ITEM',
+    type: 'CONTACT_ADD_ITEM',
     payload: contactItem,
   }
 }
@@ -26,11 +33,26 @@ export const contactSetDialogIdAction = (
 ): IContactSetDialogIdAction => {
   return {
     type: 'SET_DIALOG_ID',
-    payload: {
-      contactId,
-      dialogId,
-    },
+    payload: { contactId, dialogId },
+  }
+}
+export const contactResetItemsAction = (): IContactResetItemsAction => {
+  return {
+    type: 'CONTACT_RESET_ITEMS',
+  }
+}
+export const contactFetchItemsAction = (
+  userId: string,
+  userAccessToken: string,
+): IContactFetchItemsAction => {
+  return {
+    type: 'CONTACT_FETCH_ITEMS',
+    payload: { userId, userAccessToken },
   }
 }
 
-export type TContactAction = IContactAddItemAction | IContactSetDialogIdAction
+export type TContactAction =
+  | IContactAddItemAction
+  | IContactSetDialogIdAction
+  | IContactFetchItemsAction
+  | IContactResetItemsAction

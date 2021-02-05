@@ -1,63 +1,48 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Contacts from '../components/organisms/Contacts/Contacts'
 import { useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
-import {
-  IContactItem,
-  IContactItemWithLastMessage,
-} from '../store/contact/reducer'
-import { IDialogItem } from '../store/messenger/reducer'
+import { contactFetchItemsAction } from '../store/contact/actions'
 
 interface IProps {}
 
 const ContactsContainer = (props: IProps) => {
   const history = useHistory()
-  const contactItems = useSelector(
-    (state: RootState): IContactItemWithLastMessage[] => {
-      const _contactItems: IContactItemWithLastMessage[] = []
+  const contactItems = useSelector((state: RootState) => state.contact.items)
+  const dispatch = useDispatch()
+  const [init, setInit] = useState(false)
 
-      state.contact.items.map((contactItem: IContactItem) => {
-        let _contactItem: IContactItemWithLastMessage = {
-          ...contactItem,
-          lastMessage: null,
-        }
+  useEffect(() => {
+    if (!init) {
+      const userId =
+        localStorage.getItem('chuckchuck:user:id') ||
+        sessionStorage.getItem('chuckchuck:user:id')
+      const userAccessToken =
+        localStorage.getItem('chuckchuck:user:access-token') ||
+        sessionStorage.getItem('chuckchuck:user:access-token')
 
-        if (contactItem.dialogId) {
-          state.messenger.dialog.items.map((dialogItem: IDialogItem) => {
-            if (
-              dialogItem.id === contactItem.dialogId &&
-              dialogItem.message.items.length
-            ) {
-              let lastMessage =
-                dialogItem.message.items[dialogItem.message.items.length - 1]
-              _contactItem.lastMessage = lastMessage
-            }
+      if (userId && userAccessToken) {
+        dispatch(contactFetchItemsAction(userId, userAccessToken))
+      }
 
-            return null
-          })
-        }
-
-        _contactItems.push(_contactItem)
-
-        return null
-      })
-
-      return _contactItems
-    },
-  )
-
-  useEffect(() => {})
+      setInit(true)
+    }
+  }, [init, dispatch])
 
   const handleClick = (id: string | number) => {
     history.push(`/messenger/${id}`)
   }
 
   return (
-    <Contacts
-      items={contactItems}
-      onClick={(id: string | number) => handleClick(id)}
-    />
+    <React.Fragment>
+      {init && (
+        <Contacts
+          items={contactItems}
+          onClick={(id: string | number) => handleClick(id)}
+        />
+      )}
+    </React.Fragment>
   )
 }
 

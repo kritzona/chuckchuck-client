@@ -1,10 +1,10 @@
 import React from 'react'
-import { IContactItemWithLastMessage } from '../../../store/contact/reducer'
+import { IContactItem } from '../../../store/contact/reducer'
 import { ContactsItemStyled, ContactsStyled } from './ContactsStyled'
 import Contact from '../../molecules/Contact/Contact'
 
 interface IProps {
-  items: IContactItemWithLastMessage[]
+  items: IContactItem[]
   onClick?: (id: string | number) => void
 }
 
@@ -17,7 +17,7 @@ const Contacts = (props: IProps) => {
 
   return (
     <ContactsStyled>
-      {props.items.map((item: IContactItemWithLastMessage) => (
+      {props.items.map((item: IContactItem) => (
         <ContactsItemStyled key={item.id}>
           <Contact
             id={item.id}
@@ -25,7 +25,7 @@ const Contacts = (props: IProps) => {
             lastName={item.lastName}
             avatar={item.avatar}
             isOnline={item.isOnline}
-            lastMessage={item.lastMessage}
+            lastMessage={null}
             onClick={() => handleClick(item.id)}
           />
         </ContactsItemStyled>

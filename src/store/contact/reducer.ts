@@ -19,61 +19,18 @@ export interface IContactState {
 }
 
 const initialState: IContactState = {
-  items: [
-    {
-      id: 1,
-      login: 'contact1',
-      firstName: 'Первый',
-      lastName: 'Контакт',
-      avatar: avatarImageSource,
-      isOnline: true,
-      dialogId: null,
-    },
-    {
-      id: 2,
-      login: 'contact2',
-      firstName: 'Второй',
-      lastName: 'Контакт',
-      avatar: avatarImageSource,
-      isOnline: true,
-      dialogId: null,
-    },
-    {
-      id: 3,
-      login: 'contact3',
-      firstName: 'Третий',
-      lastName: 'Контакт',
-      avatar: avatarImageSource,
-      isOnline: false,
-      dialogId: null,
-    },
-    {
-      id: 4,
-      login: 'contact4',
-      firstName: 'Четвертый',
-      lastName: 'Контакт',
-      avatar: avatarImageSource,
-      isOnline: true,
-      dialogId: null,
-    },
-    {
-      id: 5,
-      login: 'contact5',
-      firstName: 'Пятый',
-      lastName: 'Контакт',
-      avatar: avatarImageSource,
-      isOnline: true,
-      dialogId: null,
-    },
-  ],
+  items: [],
 }
 const contactReducer = (
   state: IContactState = initialState,
   action: TContactAction,
 ) => {
   switch (action.type) {
-    case 'ADD_ITEM':
+    case 'CONTACT_ADD_ITEM':
       state.items = [...state.items, action.payload]
+      return state
+    case 'CONTACT_RESET_ITEMS':
+      state.items = []
       return state
     case 'SET_DIALOG_ID':
       state.items.map((item: IContactItem) => {

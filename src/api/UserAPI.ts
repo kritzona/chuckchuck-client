@@ -1,7 +1,7 @@
 import RestAPI, { TRestAPIResponse } from './RestAPI'
 import axios from 'axios'
 
-interface IUserAPIItem {
+export interface IUserAPIItem {
   id: string
   login: string
   firstName: string
@@ -13,11 +13,11 @@ interface IUserAPIItem {
   createdAt: string
   accessToken?: string
 }
-interface IUserAPIAuthData {
+export interface IUserAPIAuthData {
   id: string
   accessToken: string
 }
-interface IUserAPIContactItem {
+export interface IUserAPIContactItem {
   id: string
   login: string
   firstName: string
@@ -107,7 +107,10 @@ class UserAPI extends RestAPI {
   ): Promise<IUserAPIItem | null> {
     return await this.fetchItem(id, accessToken)
   }
-  public async fetchContacts(id: string, accessToken: string) {
+  public async fetchContacts(
+    id: string,
+    accessToken: string,
+  ): Promise<IUserAPIContactItem[]> {
     const _items: IUserAPIContactItem[] = []
 
     const responseData: TRestAPIResponse = await super.show(

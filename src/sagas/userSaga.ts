@@ -47,13 +47,6 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
       action.payload.id,
       action.payload.accessToken,
     )
-    const contacts = yield call(
-      userAPI.fetchContacts,
-      action.payload.id,
-      action.payload.accessToken,
-    )
-
-    console.log(contacts)
 
     if (item) {
       yield put(userAuthAction(item))
@@ -74,7 +67,9 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
   }
 }
 
-export default function* userSaga() {
+function* userSaga() {
   yield takeEvery('LOGIN', loginAsync)
   yield takeEvery('FETCH_ACCOUNT', fetchAccountAsync)
 }
+
+export default userSaga
