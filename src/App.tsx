@@ -13,6 +13,9 @@ import WireframeMain from './wireframes/WireframeMain/WireframeMain'
 import AuthContainer from './containers/AuthContainer'
 import NotificationsContainer from './containers/NotificationsContainer'
 
+import config from './config'
+import initWebsocket from './utils/init-websocket'
+
 interface IProps {}
 
 const App = (props: IProps) => {

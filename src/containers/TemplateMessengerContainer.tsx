@@ -8,6 +8,7 @@ import {
   messengerFetchMessagesAction,
   messengerInitAction,
 } from '../store/messenger/actions'
+import initWebsocket from '../utils/init-websocket'
 
 interface IProps {}
 interface IParams {
@@ -16,6 +17,8 @@ interface IParams {
 }
 
 const TemplateMessengerContainer = (props: IProps) => {
+  const socket = initWebsocket()
+
   const [init, setInit] = useState(false)
   const { contactId, dialogId } = useParams<IParams>()
   const dispatch = useDispatch()
@@ -45,6 +48,12 @@ const TemplateMessengerContainer = (props: IProps) => {
         dispatch(
           messengerFetchMessagesAction(dialogId, userId, userAccessToken),
         )
+
+        socket.on('sended-message', () => {
+          dispatch(
+            messengerFetchMessagesAction(dialogId, userId, userAccessToken),
+          )
+        })
 
         setInit(true)
       }

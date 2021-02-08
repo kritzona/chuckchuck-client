@@ -22,6 +22,7 @@ interface IProps {
 
 const TemplateMessenger = (props: IProps) => {
   const [init, setInit] = useState(false)
+  const [firstMessagesLoaded, setFirstMessagesLoaded] = useState(false)
 
   const templateMessengerMessagesRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesWrapperRef = useRef<HTMLDivElement>(null)
@@ -56,6 +57,22 @@ const TemplateMessenger = (props: IProps) => {
 
     if (!init) setInit(true)
   }, [init, setInit])
+  useEffect(() => {
+    setTimeout(() => {
+      if (
+        templateMessengerMessagesEndRef &&
+        templateMessengerMessagesEndRef.current
+      ) {
+        templateMessengerMessagesEndRef.current.scrollIntoView({})
+      }
+
+      setFirstMessagesLoaded(true)
+    }, 10)
+
+    /* return () => {
+      setFirstMessagesLoaded(false)
+    } */
+  }, [props.messageItems])
 
   return (
     <TemplateMessengerStyled>
