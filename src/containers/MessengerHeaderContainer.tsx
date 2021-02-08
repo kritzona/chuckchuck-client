@@ -12,7 +12,7 @@ interface IParams {
 }
 
 const MessengerHeaderContainer = (props: IProps) => {
-  const { contactId, dialogId } = useParams<IParams>()
+  const { contactId } = useParams<IParams>()
   const contactItem = useSelector((state: RootState):
     | IContactItem
     | undefined => {

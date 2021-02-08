@@ -22,7 +22,6 @@ interface IProps {
 
 const TemplateMessenger = (props: IProps) => {
   const [init, setInit] = useState(false)
-  const [firstMessagesLoaded, setFirstMessagesLoaded] = useState(false)
 
   const templateMessengerMessagesRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesWrapperRef = useRef<HTMLDivElement>(null)
@@ -65,13 +64,7 @@ const TemplateMessenger = (props: IProps) => {
       ) {
         templateMessengerMessagesEndRef.current.scrollIntoView({})
       }
-
-      setFirstMessagesLoaded(true)
     }, 10)
-
-    /* return () => {
-      setFirstMessagesLoaded(false)
-    } */
   }, [props.messageItems])
 
   return (

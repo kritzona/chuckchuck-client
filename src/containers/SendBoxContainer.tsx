@@ -1,11 +1,7 @@
 import React from 'react'
 import SendBox from '../components/organisms/SendBox/SendBox'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  messageAddItemAction,
-  messengerSendMessageAction,
-} from '../store/messenger/actions'
-import { RootState } from '../store/store'
+import { useDispatch } from 'react-redux'
+import { messengerSendMessageAction } from '../store/messenger/actions'
 
 interface IProps {
   contactId: string | number
@@ -13,7 +9,6 @@ interface IProps {
 }
 
 const SendBoxContainer = (props: IProps) => {
-  const user = useSelector((state: RootState) => state.user)
   const dispatch = useDispatch()
 
   const handleSend = (message: string) => {

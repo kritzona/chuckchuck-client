@@ -64,7 +64,7 @@ const TemplateMessengerContainer = (props: IProps) => {
         setInit(true)
       }
     }
-  }, [init, dialogId, contactId, dispatch])
+  }, [init, dialogId, contactId, dispatch, socket])
 
   return (
     <React.Fragment>
