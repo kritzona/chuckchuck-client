@@ -112,6 +112,19 @@ class UserAPI extends RestAPI {
   ): Promise<IUserAPIItem | null> {
     return await this.fetchItem(id, accessToken)
   }
+  public async updateLastVisitedAt(
+    id: string,
+    accessToken: string,
+  ): Promise<boolean> {
+    return await axios
+      .patch(`${this.apiObjectUrl}/${id}/?accessToken=${accessToken}`)
+      .then(() => {
+        return true
+      })
+      .catch(() => {
+        return false
+      })
+  }
   public async fetchContacts(
     id: string,
     accessToken: string,

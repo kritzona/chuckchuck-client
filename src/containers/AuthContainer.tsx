@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { contactFetchItemsAction } from '../store/contact/actions'
 import { RootState } from '../store/store'
 import initWebsocket from '../utils/init-websocket'
+import userAPI from '../api/UserAPI'
 
 interface IProps {
   children?: React.ReactNode
