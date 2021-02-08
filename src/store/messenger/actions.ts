@@ -1,8 +1,10 @@
 import {
   EMessengerActionTypes,
   IMessageAddItemAction,
+  IMessageAddItemsAction,
   IMessageItem,
   IMessageRemoveItemAction,
+  IMessageResetItemsAction,
   IMessengerFetchMessagesAction,
   IMessengerInitAction,
   IMessengerSendMessageAction,
@@ -38,6 +40,21 @@ export const messageRemoveItemAction = (
     payload: {
       itemId,
     },
+  }
+}
+export const messageAddItemsAction = (
+  items: IMessageItem[],
+): IMessageAddItemsAction => {
+  return {
+    type: EMessengerActionTypes.MESSAGE_ADD_ITEMS,
+    payload: {
+      items,
+    },
+  }
+}
+export const messageResetItemsAction = (): IMessageResetItemsAction => {
+  return {
+    type: EMessengerActionTypes.MESSAGE_RESET_ITEMS,
   }
 }
 export const messengerFetchMessagesAction = (

@@ -22,6 +22,12 @@ const messengerReducer = (state = initialState, action: TMessengerAction) => {
     case EMessengerActionTypes.MESSAGE_ADD_ITEM:
       state.message.items = [...state.message.items, action.payload.item]
       return state
+    case EMessengerActionTypes.MESSAGE_ADD_ITEMS:
+      state.message.items = [...action.payload.items]
+      return state
+    case EMessengerActionTypes.MESSAGE_RESET_ITEMS:
+      state.message.items = []
+      return state
     default:
       return state
   }

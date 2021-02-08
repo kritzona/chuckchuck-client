@@ -50,6 +50,7 @@ const TemplateMessengerContainer = (props: IProps) => {
         )
 
         socket.on('sended-message', () => {
+          console.log('sended-message')
           dispatch(
             messengerFetchMessagesAction(dialogId, userId, userAccessToken),
           )

@@ -5,7 +5,10 @@ import {
   IMessengerFetchMessagesAction,
   IMessengerSendMessageAction,
 } from '../store/messenger/types'
-import { messageAddItemAction } from '../store/messenger/actions'
+import {
+  messageAddItemAction,
+  messageAddItemsAction,
+} from '../store/messenger/actions'
 
 function* fetchMessagesAsync(action: IMessengerFetchMessagesAction) {
   try {
@@ -17,9 +20,7 @@ function* fetchMessagesAsync(action: IMessengerFetchMessagesAction) {
     )
 
     if (messages) {
-      for (let message of messages) {
-        yield put(messageAddItemAction(message))
-      }
+      yield put(messageAddItemsAction(messages))
     }
   } catch (error) {
     console.log(error)
