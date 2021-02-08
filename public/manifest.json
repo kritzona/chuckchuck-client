@@ -1,6 +1,7 @@
 {
-  "short_name": "Chuckchuck",
-  "name": "Chuckchuck",
+  "name": "ChuckChuck",
+  "short_name": "ChuckChuck",
+  "description": "Мессенджер",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,5 +22,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#18a2d9",
-  "background_color": "#f2d43d"
+  "background_color": "#ffffff"
 }

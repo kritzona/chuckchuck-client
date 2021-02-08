@@ -40,7 +40,9 @@ const App = (props: IProps) => {
       <ThemeContext.Provider
         value={{
           theme,
-          toggleTheme: () => dispatch(rootToggleThemeAction()),
+          toggleTheme: () => {
+            dispatch(rootToggleThemeAction())
+          },
         }}
       >
         <ThemeProvider
