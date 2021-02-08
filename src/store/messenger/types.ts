@@ -2,6 +2,8 @@ export enum EMessengerActionTypes {
   INIT = 'messenger/INIT',
   MESSAGE_ADD_ITEM = 'messenger/MESSAGE_ADD_ITEM',
   MESSAGE_REMOVE_ITEM = 'messenger/MESSAGE_REMOVE_ITEM',
+  FETCH_MESSAGES = 'messenger/FETCH_MESSAGES',
+  SEND_MESSAGE = 'messenger/SEND_MESSAGE',
 }
 
 export interface IMessageItem {
@@ -29,15 +31,30 @@ export interface IMessengerInitAction {
 export interface IMessageAddItemAction {
   type: EMessengerActionTypes.MESSAGE_ADD_ITEM
   payload: {
-    dialogId: string | number
     item: IMessageItem
   }
 }
 export interface IMessageRemoveItemAction {
   type: EMessengerActionTypes.MESSAGE_REMOVE_ITEM
   payload: {
-    dialogId: string | number
     itemId: string | number
+  }
+}
+export interface IMessengerFetchMessagesAction {
+  type: EMessengerActionTypes.FETCH_MESSAGES
+  payload: {
+    dialogId: string | number
+    contactId: string | number
+    accessToken: string
+  }
+}
+export interface IMessengerSendMessageAction {
+  type: EMessengerActionTypes.SEND_MESSAGE
+  payload: {
+    dialogId: string | number
+    content: string
+    userId: string | number
+    accessToken: string
   }
 }
 
@@ -45,3 +62,5 @@ export type TMessengerAction =
   | IMessageAddItemAction
   | IMessageRemoveItemAction
   | IMessengerInitAction
+  | IMessengerFetchMessagesAction
+  | IMessengerSendMessageAction

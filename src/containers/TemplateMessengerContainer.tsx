@@ -4,7 +4,10 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { IContactItem } from '../store/contact/types'
-import { messengerInitAction } from '../store/messenger/actions'
+import {
+  messengerFetchMessagesAction,
+  messengerInitAction,
+} from '../store/messenger/actions'
 
 interface IProps {}
 interface IParams {
@@ -17,7 +20,9 @@ const TemplateMessengerContainer = (props: IProps) => {
   const { contactId, dialogId } = useParams<IParams>()
   const dispatch = useDispatch()
 
-  const messenger = useSelector((state: RootState) => state.messenger)
+  const messageItems = useSelector(
+    (state: RootState) => state.messenger.message.items,
+  )
   const contactItem = useSelector((state: RootState):
     | IContactItem
     | undefined => {
@@ -28,9 +33,21 @@ const TemplateMessengerContainer = (props: IProps) => {
 
   useEffect(() => {
     if (!init) {
-      dispatch(messengerInitAction(dialogId, contactId))
+      const userId =
+        localStorage.getItem('chuckchuck:user:id') ||
+        sessionStorage.getItem('chuckchuck:user:id')
+      const userAccessToken =
+        localStorage.getItem('chuckchuck:user:access-token') ||
+        sessionStorage.getItem('chuckchuck:user:access-token')
 
-      setInit(true)
+      if (userId && userAccessToken) {
+        dispatch(messengerInitAction(dialogId, contactId))
+        dispatch(
+          messengerFetchMessagesAction(dialogId, userId, userAccessToken),
+        )
+
+        setInit(true)
+      }
     }
   }, [init, dialogId, contactId, dispatch])
 
@@ -38,9 +55,9 @@ const TemplateMessengerContainer = (props: IProps) => {
     <React.Fragment>
       {contactItem && contactItem.dialogId && init && (
         <TemplateMessenger
-          dialogId={messenger.dialogId}
+          dialogId={dialogId}
           contactItem={contactItem}
-          messageItems={messenger.message.items}
+          messageItems={messageItems}
         />
       )}
     </React.Fragment>

@@ -56,7 +56,8 @@ abstract class RestAPI {
       })
   }
   protected async show(
-    id: string,
+    id: string | number,
+    userId: string | number | null,
     accessToken: string,
     childrenObject?: string,
     childrenObjectId?: string,
@@ -72,6 +73,7 @@ abstract class RestAPI {
         }`,
         {
           params: {
+            userId: userId ? userId : null,
             accessToken,
           },
         },

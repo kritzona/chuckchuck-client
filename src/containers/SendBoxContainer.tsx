@@ -1,7 +1,10 @@
 import React from 'react'
 import SendBox from '../components/organisms/SendBox/SendBox'
 import { useDispatch, useSelector } from 'react-redux'
-import { messageAddItemAction } from '../store/messenger/actions'
+import {
+  messageAddItemAction,
+  messengerSendMessageAction,
+} from '../store/messenger/actions'
 import { RootState } from '../store/store'
 
 interface IProps {
@@ -14,15 +17,23 @@ const SendBoxContainer = (props: IProps) => {
   const dispatch = useDispatch()
 
   const handleSend = (message: string) => {
-    dispatch(
-      messageAddItemAction(props.dialogId, {
-        id: Date.now(),
-        senderId: user.id,
-        recipientId: props.contactId,
-        content: message,
-        departureDate: new Date(),
-      }),
-    )
+    const userId =
+      localStorage.getItem('chuckchuck:user:id') ||
+      sessionStorage.getItem('chuckchuck:user:id')
+    const userAccessToken =
+      localStorage.getItem('chuckchuck:user:access-token') ||
+      sessionStorage.getItem('chuckchuck:user:access-token')
+
+    if (userId && userAccessToken) {
+      dispatch(
+        messengerSendMessageAction(
+          props.dialogId,
+          message,
+          userId,
+          userAccessToken,
+        ),
+      )
+    }
   }
 
   return <SendBox onSend={(message: string) => handleSend(message)} />

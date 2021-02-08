@@ -66,7 +66,7 @@ const WireframeMain = (props: IProps) => {
             <Route path="/contacts">
               <Contacts />
             </Route>
-            <Route path="/messenger/:contactId">
+            <Route path="/messenger/:contactId/:dialogId">
               <Messenger />
             </Route>
           </Switch>

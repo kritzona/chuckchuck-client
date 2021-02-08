@@ -20,6 +20,7 @@ const messengerReducer = (state = initialState, action: TMessengerAction) => {
 
       return state
     case EMessengerActionTypes.MESSAGE_ADD_ITEM:
+      state.message.items = [...state.message.items, action.payload.item]
       return state
     default:
       return state

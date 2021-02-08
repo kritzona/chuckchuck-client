@@ -42,7 +42,11 @@ class UserAPI extends RestAPI {
   ): Promise<IUserAPIItem | null> {
     let _item = null
 
-    const responseData: TRestAPIResponse = await super.show(id, accessToken)
+    const responseData: TRestAPIResponse = await super.show(
+      id,
+      null,
+      accessToken,
+    )
     switch (responseData.status) {
       case 'success':
         _item = {
@@ -115,6 +119,7 @@ class UserAPI extends RestAPI {
 
     const responseData: TRestAPIResponse = await super.show(
       id,
+      null,
       accessToken,
       'contacts',
     )

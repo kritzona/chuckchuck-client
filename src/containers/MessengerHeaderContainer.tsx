@@ -8,10 +8,11 @@ import { IContactItem } from '../store/contact/types'
 interface IProps {}
 interface IParams {
   contactId: string
+  dialogId: string
 }
 
 const MessengerHeaderContainer = (props: IProps) => {
-  const { contactId } = useParams<IParams>()
+  const { contactId, dialogId } = useParams<IParams>()
   const contactItem = useSelector((state: RootState):
     | IContactItem
     | undefined => {
