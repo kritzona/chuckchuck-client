@@ -42,6 +42,7 @@ const AuthContainer = (props: IProps) => {
 
     if (userId && userAccessToken) {
       contactItems.forEach((item) => {
+        socket.off(`updated-user:user-${item.id}`)
         socket.on(`updated-user:user-${item.id}`, () => {
           dispatch(contactFetchItemsAction(userId, userAccessToken))
         })
