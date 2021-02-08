@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MessengerHeader from '../components/organisms/MessengerHeader/MessengerHeader'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -12,6 +12,8 @@ interface IParams {
 }
 
 const MessengerHeaderContainer = (props: IProps) => {
+  const [dateNow, setDateNow] = useState(Date.now())
+
   const { contactId } = useParams<IParams>()
   const contactItem = useSelector((state: RootState):
     | IContactItem
@@ -19,6 +21,16 @@ const MessengerHeaderContainer = (props: IProps) => {
     return state.contact.items.find(
       (item: IContactItem) => item.id === contactId,
     )
+  })
+
+  useEffect(() => {
+    const updateDateNow = setInterval(() => {
+      setDateNow(Date.now())
+    }, 1000)
+
+    return () => {
+      clearInterval(updateDateNow)
+    }
   })
 
   return (
@@ -29,7 +41,8 @@ const MessengerHeaderContainer = (props: IProps) => {
             firstName: contactItem.firstName || 'Гость',
             lastName: contactItem.lastName || 'Гость',
             avatar: contactItem.avatar || null,
-            isOnline: contactItem.isOnline || false,
+            isOnline:
+              dateNow - contactItem.lastVisitedAt.getTime() <= 30000 || false,
           }}
         />
       )}

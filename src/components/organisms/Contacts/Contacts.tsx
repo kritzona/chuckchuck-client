@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IContactItem } from '../../../store/contact/types'
 import { ContactsItemStyled, ContactsStyled } from './ContactsStyled'
 import Contact from '../../molecules/Contact/Contact'
@@ -9,11 +9,23 @@ interface IProps {
 }
 
 const Contacts = (props: IProps) => {
+  const [dateNow, setDateNow] = useState(Date.now())
+
   const handleClick = (item: IContactItem) => {
     if (props.onClick) {
       props.onClick(item)
     }
   }
+
+  useEffect(() => {
+    const updateDateNow = setInterval(() => {
+      setDateNow(Date.now())
+    }, 1000)
+
+    return () => {
+      clearInterval(updateDateNow)
+    }
+  })
 
   return (
     <ContactsStyled>
@@ -24,7 +36,7 @@ const Contacts = (props: IProps) => {
             firstName={item.firstName}
             lastName={item.lastName}
             avatar={item.avatar}
-            isOnline={item.isOnline}
+            isOnline={dateNow - item.lastVisitedAt.getTime() <= 30000}
             lastMessage={null}
             onClick={() => handleClick(item)}
           />

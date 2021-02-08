@@ -24,6 +24,7 @@ export interface IUserAPIContactItem {
   lastName: string
   avatar: string | null
   dialogId: string
+  lastVisitedAt: Date
 }
 
 class UserAPI extends RestAPI {
@@ -133,6 +134,7 @@ class UserAPI extends RestAPI {
             lastName: String(item.lastName),
             avatar: String(item.avatar),
             dialogId: String(item.dialogId),
+            lastVisitedAt: new Date(item.lastVisitedAt),
           }),
         )
         break

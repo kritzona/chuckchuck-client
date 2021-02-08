@@ -13,6 +13,7 @@ export interface IContactItem {
   lastName: string
   avatar: string | null
   isOnline: boolean
+  lastVisitedAt: Date
   dialogId: string | number
 }
 export interface IContactItemWithLastMessage extends IContactItem {

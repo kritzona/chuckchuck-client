@@ -9,6 +9,9 @@ import {
   EContactActionTypes,
   IContactFetchItemsAction,
 } from '../store/contact/types'
+import initWebsocket from '../utils/init-websocket'
+
+const socket = initWebsocket()
 
 function* fetchItemsAsync(action: IContactFetchItemsAction) {
   const contacts: IUserAPIContactItem[] = yield call(
@@ -27,6 +30,7 @@ function* fetchItemsAsync(action: IContactFetchItemsAction) {
           firstName: contact.firstName,
           lastName: contact.lastName,
           avatar: avatarImageSource,
+          lastVisitedAt: contact.lastVisitedAt,
           isOnline: true,
           dialogId: contact.dialogId,
         }),
