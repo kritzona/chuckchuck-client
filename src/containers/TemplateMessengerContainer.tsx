@@ -49,12 +49,17 @@ const TemplateMessengerContainer = (props: IProps) => {
           messengerFetchMessagesAction(dialogId, userId, userAccessToken),
         )
 
-        socket.on('sended-message', () => {
-          console.log('sended-message')
-          dispatch(
-            messengerFetchMessagesAction(dialogId, userId, userAccessToken),
-          )
-        })
+        socket.on(
+          `sended-message:dialog-${dialogId}`,
+          (payload: { senderId: string }) => {
+            if (payload.senderId !== userId) {
+              console.log('update')
+              dispatch(
+                messengerFetchMessagesAction(dialogId, userId, userAccessToken),
+              )
+            }
+          },
+        )
 
         setInit(true)
       }
