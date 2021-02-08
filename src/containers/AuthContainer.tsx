@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { userFetchAccountAction } from '../store/user/actions'
 import { useDispatch, useSelector } from 'react-redux'
-import { contactFetchItemsAction } from '../store/contact/actions'
+import {
+  contactFetchItemsAction,
+  contactUpdateLastVisitedAtAction,
+} from '../store/contact/actions'
 import { RootState } from '../store/store'
 import initWebsocket from '../utils/init-websocket'
 import userAPI from '../api/UserAPI'
@@ -44,9 +47,17 @@ const AuthContainer = (props: IProps) => {
     if (userId && userAccessToken) {
       contactItems.forEach((item) => {
         socket.off(`updated-user:user-${item.id}`)
-        socket.on(`updated-user:user-${item.id}`, () => {
-          dispatch(contactFetchItemsAction(userId, userAccessToken))
-        })
+        socket.on(
+          `updated-user:user-${item.id}`,
+          (payload: { lastVisitedAt: number }) => {
+            dispatch(
+              contactUpdateLastVisitedAtAction(
+                item.id,
+                new Date(payload.lastVisitedAt),
+              ),
+            )
+          },
+        )
       })
     }
   }, [contactItems])

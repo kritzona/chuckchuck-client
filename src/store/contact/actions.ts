@@ -4,6 +4,7 @@ import {
   IContactFetchItemsAction,
   IContactItem,
   IContactResetItemsAction,
+  IContactUpdateLastVisitedAtAction,
 } from './types'
 
 export const contactAddItemAction = (
@@ -26,5 +27,17 @@ export const contactFetchItemsAction = (
   return {
     type: EContactActionTypes.FETCH_ITEMS,
     payload: { userId, userAccessToken },
+  }
+}
+export const contactUpdateLastVisitedAtAction = (
+  id: string | number,
+  lastVisitedAt: Date,
+): IContactUpdateLastVisitedAtAction => {
+  return {
+    type: EContactActionTypes.UPDATE_LAST_VISITED_AT,
+    payload: {
+      id,
+      lastVisitedAt,
+    },
   }
 }
