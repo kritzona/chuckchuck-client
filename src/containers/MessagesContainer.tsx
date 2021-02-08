@@ -1,6 +1,6 @@
 import React from 'react'
 import Messages from '../components/organisms/Messages/Messages'
-import { IMessageItem } from '../store/messenger/reducer'
+import { IMessageItem } from '../store/messenger/types'
 
 interface IProps {
   messageItems: IMessageItem[]

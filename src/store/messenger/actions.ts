@@ -1,54 +1,29 @@
-import { IDialogItem, IMessageItem } from './reducer'
+import {
+  EMessengerActionTypes,
+  IMessageAddItemAction,
+  IMessageItem,
+  IMessageRemoveItemAction,
+  IMessengerInitAction,
+} from './types'
 
-interface IDialogAddItemAction {
-  type: 'DIALOG_ADD_ITEM'
-  payload: IDialogItem
-}
-interface IDialogRemoveItemAction {
-  type: 'DIALOG_REMOVE_ITEM'
-  payload: string | number
-}
-type TDialogAction = IDialogAddItemAction | IDialogRemoveItemAction
-
-export const dialogAddItemAction = (
-  item: IDialogItem,
-): IDialogAddItemAction => {
+export const messengerInitAction = (
+  dialogId: string | number,
+  contactId: string | number,
+): IMessengerInitAction => {
   return {
-    type: 'DIALOG_ADD_ITEM',
-    payload: item,
+    type: EMessengerActionTypes.INIT,
+    payload: {
+      dialogId,
+      contactId,
+    },
   }
 }
-export const dialogRemoveItemAction = (
-  id: string | number,
-): IDialogRemoveItemAction => {
-  return {
-    type: 'DIALOG_REMOVE_ITEM',
-    payload: id,
-  }
-}
-
-interface IMessageAddItem {
-  type: 'MESSAGE_ADD_ITEM'
-  payload: {
-    dialogId: string | number
-    item: IMessageItem
-  }
-}
-interface IMessageRemoveItem {
-  type: 'MESSAGE_REMOVE_ITEM'
-  payload: {
-    dialogId: string | number
-    itemId: string | number
-  }
-}
-type TMessageAction = IMessageAddItem | IMessageRemoveItem
-
 export const messageAddItemAction = (
   dialogId: string | number,
   item: IMessageItem,
-): IMessageAddItem => {
+): IMessageAddItemAction => {
   return {
-    type: 'MESSAGE_ADD_ITEM',
+    type: EMessengerActionTypes.MESSAGE_ADD_ITEM,
     payload: {
       dialogId,
       item,
@@ -58,14 +33,12 @@ export const messageAddItemAction = (
 export const messageRemoveItemAction = (
   dialogId: string | number,
   itemId: string | number,
-): IMessageRemoveItem => {
+): IMessageRemoveItemAction => {
   return {
-    type: 'MESSAGE_REMOVE_ITEM',
+    type: EMessengerActionTypes.MESSAGE_REMOVE_ITEM,
     payload: {
       dialogId,
       itemId,
     },
   }
 }
-
-export type TMessengerAction = TDialogAction | TMessageAction

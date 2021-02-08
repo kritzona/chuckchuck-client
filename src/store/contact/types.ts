@@ -1,4 +1,4 @@
-import { IMessageItem } from '../messenger/reducer'
+import { IMessageItem } from '../messenger/types'
 
 export enum EContactActionTypes {
   ADD_ITEM = 'contact/ADD_ITEM',

@@ -1,7 +1,7 @@
 import React from 'react'
 import Message from '../../molecules/Message/Message'
 import MessagesStyled from './MessagesStyled'
-import { IMessageItem } from '../../../store/messenger/reducer'
+import { IMessageItem } from '../../../store/messenger/types'
 
 interface IProps {
   items: IMessageItem[]

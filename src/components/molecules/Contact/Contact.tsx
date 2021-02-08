@@ -2,7 +2,7 @@ import React from 'react'
 import { ContactAlertStyled, ContactStyled } from './ContactStyled'
 import Message from '../Message/Message'
 import User from '../User/User'
-import { IMessageItem } from '../../../store/messenger/reducer'
+import { IMessageItem } from '../../../store/messenger/types'
 import Text from '../../atoms/Text/Text'
 
 interface IProps {

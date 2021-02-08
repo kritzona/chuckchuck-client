@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TemplateMessenger from '../templates/TemplateMessenger/TemplateMessenger'
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { IContactItem } from '../store/contact/types'
+import { messengerInitAction } from '../store/messenger/actions'
 
 interface IProps {}
 interface IParams {
@@ -12,8 +13,11 @@ interface IParams {
 }
 
 const TemplateMessengerContainer = (props: IProps) => {
+  const [init, setInit] = useState(false)
   const { contactId, dialogId } = useParams<IParams>()
+  const dispatch = useDispatch()
 
+  const messenger = useSelector((state: RootState) => state.messenger)
   const contactItem = useSelector((state: RootState):
     | IContactItem
     | undefined => {
@@ -22,14 +26,21 @@ const TemplateMessengerContainer = (props: IProps) => {
     )
   })
 
-  console.log(contactItem)
+  useEffect(() => {
+    if (!init) {
+      dispatch(messengerInitAction(dialogId, contactId))
+
+      setInit(true)
+    }
+  }, [init, dialogId, contactId, dispatch])
 
   return (
     <React.Fragment>
-      {contactItem && contactItem.dialogId && (
+      {contactItem && contactItem.dialogId && init && (
         <TemplateMessenger
+          dialogId={messenger.dialogId}
           contactItem={contactItem}
-          dialogItem={{ id: dialogId, message: { items: [] } }}
+          messageItems={messenger.message.items}
         />
       )}
     </React.Fragment>

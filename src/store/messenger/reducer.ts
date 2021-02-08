@@ -1,42 +1,25 @@
-import { TMessengerAction } from './actions'
-
-export interface IMessageItem {
-  id: string | number
-  senderId: string | number
-  recipientId: string | number
-  content: string
-  departureDate: Date
-}
-export interface IDialogItem {
-  id: string | number
-  message: {
-    items: IMessageItem[]
-  }
-}
-export interface IMessengerState {
-  dialog: {
-    items: IDialogItem[]
-  }
-}
+import {
+  EMessengerActionTypes,
+  IMessengerState,
+  TMessengerAction,
+} from './types'
 
 const initialState: IMessengerState = {
-  dialog: {
+  dialogId: -1,
+  contactId: -1,
+  message: {
     items: [],
   },
 }
 const messengerReducer = (state = initialState, action: TMessengerAction) => {
   switch (action.type) {
-    case 'DIALOG_ADD_ITEM':
-      state.dialog.items.push(action.payload)
-      return state
-    case 'MESSAGE_ADD_ITEM':
-      state.dialog.items.map((item: IDialogItem) => {
-        if (item.id === action.payload.dialogId) {
-          item.message.items.push(action.payload.item)
-        }
+    case EMessengerActionTypes.INIT:
+      state.dialogId = action.payload.dialogId
+      state.contactId = action.payload.contactId
+      state.message.items = []
 
-        return null
-      })
+      return state
+    case EMessengerActionTypes.MESSAGE_ADD_ITEM:
       return state
     default:
       return state

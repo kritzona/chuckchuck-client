@@ -12,15 +12,16 @@ import {
   TemplateMessengerStyled,
 } from './TemplateMessengerStyled'
 import { IContactItem } from '../../store/contact/types'
-import { IDialogItem } from '../../store/messenger/reducer'
+import { IMessageItem } from '../../store/messenger/types'
 
 interface IProps {
+  dialogId: string | number
   contactItem: IContactItem
-  dialogItem: IDialogItem
+  messageItems: IMessageItem[]
 }
 
 const TemplateMessenger = (props: IProps) => {
-  const [loaded, setLoaded] = useState(false)
+  const [init, setInit] = useState(false)
 
   const templateMessengerMessagesRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesWrapperRef = useRef<HTMLDivElement>(null)
@@ -39,7 +40,7 @@ const TemplateMessenger = (props: IProps) => {
       templateMessengerMessagesRef.current.style.height = `calc(100% - ${templateMessengerSendboxHeight}px)`
       templateMessengerMessagesRef.current.style.maxHeight = `calc(100% - ${templateMessengerSendboxHeight}px)`
 
-      if (!loaded) {
+      if (!init) {
         setTimeout(() => {
           if (
             templateMessengerMessagesEndRef &&
@@ -53,8 +54,8 @@ const TemplateMessenger = (props: IProps) => {
       }
     }
 
-    if (!loaded) setLoaded(true)
-  }, [loaded, setLoaded])
+    if (!init) setInit(true)
+  }, [init, setInit])
 
   return (
     <TemplateMessengerStyled>
@@ -66,9 +67,7 @@ const TemplateMessenger = (props: IProps) => {
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
-                <MessagesContainer
-                  messageItems={props.dialogItem.message.items}
-                />
+                <MessagesContainer messageItems={props.messageItems} />
                 <div ref={templateMessengerMessagesEndRef} />
               </div>
             </div>
@@ -79,7 +78,7 @@ const TemplateMessenger = (props: IProps) => {
         <PartMessengerFooter>
           <SendBoxContainer
             contactId={props.contactItem.id}
-            dialogId={props.dialogItem.id}
+            dialogId={props.dialogId}
           />
         </PartMessengerFooter>
       </TemplateMessengerSendboxStyled>
