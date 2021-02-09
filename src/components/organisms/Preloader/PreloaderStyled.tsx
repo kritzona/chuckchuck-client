@@ -13,6 +13,10 @@ const PreloaderStyled = styled.div<IProps>`
     top: 0;
     left: 0;
     background-color: ${theme.colors.backgroundColor};
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   `}
 `
 
