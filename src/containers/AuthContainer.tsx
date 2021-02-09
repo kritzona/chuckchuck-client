@@ -61,8 +61,12 @@ const AuthContainer = (props: IProps) => {
 
   useEffect(() => {
     updateUserData()
-    subscribeContactsOnUpdate()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.location])
+  useEffect(() => {
+    subscribeContactsOnUpdate()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contactItems])
 
   return <React.Fragment>{init && props.children}</React.Fragment>
 }

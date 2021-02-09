@@ -34,7 +34,7 @@ export const TemplateMessengerMessagesStyled = styled.div<IProps>`
 export const TemplateMessengerMessagesWrapperStyled = styled.div<IProps>`
   height: auto;
   max-height: 100%;
-  overflow-y: auto;
+  //overflow-y: auto;
 `
 export const TemplateMessengerSendboxStyled = styled.div<IProps>`
   ${({ theme }) => css`

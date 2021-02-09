@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 
+import { Scrollbars } from 'react-custom-scrollbars'
+
 import PartMessengerFooter from '../../parts/PartMessengerFooter/PartMessengerFooter'
 import SendBoxContainer from '../../containers/SendBoxContainer'
 import MessagesContainer from '../../containers/MessagesContainer'
@@ -22,6 +24,7 @@ interface IProps {
 
 const TemplateMessenger = (props: IProps) => {
   const [init, setInit] = useState(false)
+  const [scrollbarHeight, setScrollbarHeight] = useState(0)
 
   const templateMessengerMessagesRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesWrapperRef = useRef<HTMLDivElement>(null)
@@ -40,18 +43,7 @@ const TemplateMessenger = (props: IProps) => {
       templateMessengerMessagesRef.current.style.height = `calc(100% - ${templateMessengerSendboxHeight}px)`
       templateMessengerMessagesRef.current.style.maxHeight = `calc(100% - ${templateMessengerSendboxHeight}px)`
 
-      if (!init) {
-        setTimeout(() => {
-          if (
-            templateMessengerMessagesEndRef &&
-            templateMessengerMessagesEndRef.current
-          ) {
-            templateMessengerMessagesEndRef.current.scrollIntoView({
-              behavior: 'smooth',
-            })
-          }
-        }, 10)
-      }
+      setScrollbarHeight(templateMessengerMessagesRef.current.clientHeight)
     }
 
     if (!init) setInit(true)
@@ -74,14 +66,26 @@ const TemplateMessenger = (props: IProps) => {
         <TemplateMessengerMessagesWrapperStyled
           ref={templateMessengerMessagesWrapperRef}
         >
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <MessagesContainer messageItems={props.messageItems} />
-                <div ref={templateMessengerMessagesEndRef} />
+          <Scrollbars
+            style={{ height: scrollbarHeight }}
+            hideTracksWhenNotNeeded={true}
+            autoHide={true}
+            renderView={(props) => (
+              <div
+                {...props}
+                style={{ ...props.style, overflowX: 'hidden', marginBottom: 0 }}
+              />
+            )}
+          >
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-12">
+                  <MessagesContainer messageItems={props.messageItems} />
+                  <div ref={templateMessengerMessagesEndRef} />
+                </div>
               </div>
             </div>
-          </div>
+          </Scrollbars>
         </TemplateMessengerMessagesWrapperStyled>
       </TemplateMessengerMessagesStyled>
       <TemplateMessengerSendboxStyled ref={templateMessengerSendboxRef}>
