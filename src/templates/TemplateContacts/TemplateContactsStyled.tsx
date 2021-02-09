@@ -11,7 +11,14 @@ export const TemplateContactsStyled = styled.div<IProps>`
     padding-bottom: 47px;
   `}
 `
-export const TemplateContactsHeaderStyled = styled.div<IProps>``
+export const TemplateContactsHeaderStyled = styled.div<IProps>`
+  ${() => css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  `}
+`
 export const TemplateContactsContentStyled = styled.div<IProps>``
 export const TemplateContactsFooterStyled = styled.div<IProps>`
   ${() => css`
