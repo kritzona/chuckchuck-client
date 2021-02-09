@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { userFetchAccountAction } from '../store/user/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -23,15 +23,15 @@ const AuthContainer = (props: IProps) => {
   const contactItems = useSelector((state: RootState) => state.contact.items)
   const dispatch = useDispatch()
 
-  const updateUserData = () => {
+  const updateUserData = useCallback(() => {
     const { userId, userAccessToken } = fetchUserStorage()
 
     if (userId && userAccessToken) {
       dispatch(userFetchAccountAction(userId, userAccessToken))
       dispatch(contactFetchItemsAction(userId, userAccessToken))
     }
-  }
-  const updateUserLastVisited = () => {
+  }, [dispatch])
+  const subscribeContactsOnUpdate = useCallback(() => {
     const { userId, userAccessToken } = fetchUserStorage()
 
     if (userId && userAccessToken) {
@@ -50,14 +50,19 @@ const AuthContainer = (props: IProps) => {
         )
       })
     }
-  }
+  }, [contactItems, socket, dispatch])
 
   if (!init) {
     updateUserData()
-    updateUserLastVisited()
+    subscribeContactsOnUpdate()
 
     setInit(true)
   }
+
+  useEffect(() => {
+    updateUserData()
+    subscribeContactsOnUpdate()
+  }, [props.location])
 
   return <React.Fragment>{init && props.children}</React.Fragment>
 }
