@@ -44,3 +44,4 @@ export const TemplateMessengerSendboxStyled = styled.div<IProps>`
     bottom: 0;
   `}
 `
+export const TemplateMessengerMessagesContainerStyled = styled.div<IProps>``

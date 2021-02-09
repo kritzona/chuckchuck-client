@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { IContactItem } from '../store/contact/types'
 import {
+  messageAddItemAction,
   messengerFetchMessagesAction,
   messengerInitAction,
 } from '../store/messenger/actions'
 import initWebsocket from '../utils/init-websocket'
 import { userStorage } from '../utils/user-storage'
+import { IMessageItem } from '../store/messenger/types'
 
 interface IProps {}
 interface IParams {
@@ -46,11 +48,9 @@ const TemplateMessengerContainer = (props: IProps) => {
 
         socket.on(
           `sended-message:dialog-${dialogId}`,
-          (payload: { senderId: string }) => {
-            if (payload.senderId !== userId) {
-              dispatch(
-                messengerFetchMessagesAction(dialogId, userId, userAccessToken),
-              )
+          (payload: { message: IMessageItem }) => {
+            if (payload.message.senderId !== userId) {
+              dispatch(messageAddItemAction(payload.message))
             }
           },
         )

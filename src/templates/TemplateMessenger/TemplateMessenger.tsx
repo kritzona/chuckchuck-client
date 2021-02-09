@@ -12,6 +12,7 @@ import {
   TemplateMessengerMessagesWrapperStyled,
   TemplateMessengerSendboxStyled,
   TemplateMessengerStyled,
+  TemplateMessengerMessagesContainerStyled,
 } from './TemplateMessengerStyled'
 import { IContactItem } from '../../store/contact/types'
 import { IMessageItem } from '../../store/messenger/types'
@@ -24,12 +25,14 @@ interface IProps {
 
 const TemplateMessenger = (props: IProps) => {
   const [init, setInit] = useState(false)
-  const [scrollbarHeight, setScrollbarHeight] = useState(0)
+  const [scrollbarMinHeight, setScrollbarMinHeight] = useState(0)
+  const [scrollbarMaxHeight, setScrollbarMaxHeight] = useState(0)
 
   const templateMessengerMessagesRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesWrapperRef = useRef<HTMLDivElement>(null)
   const templateMessengerMessagesEndRef = useRef<HTMLDivElement>(null)
   const templateMessengerSendboxRef = useRef<HTMLDivElement>(null)
+  const templateMessengerMessagesContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let templateMessengerSendboxHeight = 0
@@ -43,7 +46,7 @@ const TemplateMessenger = (props: IProps) => {
       templateMessengerMessagesRef.current.style.height = `calc(100% - ${templateMessengerSendboxHeight}px)`
       templateMessengerMessagesRef.current.style.maxHeight = `calc(100% - ${templateMessengerSendboxHeight}px)`
 
-      setScrollbarHeight(templateMessengerMessagesRef.current.clientHeight)
+      setScrollbarMaxHeight(templateMessengerMessagesRef.current.clientHeight)
     }
 
     if (!init) setInit(true)
@@ -57,6 +60,15 @@ const TemplateMessenger = (props: IProps) => {
         templateMessengerMessagesEndRef.current.scrollIntoView({})
       }
     }, 10)
+
+    if (
+      templateMessengerMessagesContainerRef &&
+      templateMessengerMessagesContainerRef.current
+    ) {
+      setScrollbarMinHeight(
+        templateMessengerMessagesContainerRef.current.clientHeight,
+      )
+    }
   }, [props.messageItems])
 
   return (
@@ -67,7 +79,13 @@ const TemplateMessenger = (props: IProps) => {
           ref={templateMessengerMessagesWrapperRef}
         >
           <Scrollbars
-            style={{ height: scrollbarHeight }}
+            style={{
+              minHeight:
+                scrollbarMinHeight <= scrollbarMaxHeight
+                  ? scrollbarMinHeight
+                  : scrollbarMaxHeight,
+              maxHeight: scrollbarMaxHeight,
+            }}
             hideTracksWhenNotNeeded={true}
             autoHide={true}
             renderView={(props) => (
@@ -80,7 +98,11 @@ const TemplateMessenger = (props: IProps) => {
             <div className="container">
               <div className="row">
                 <div className="col-lg-12">
-                  <MessagesContainer messageItems={props.messageItems} />
+                  <TemplateMessengerMessagesContainerStyled
+                    ref={templateMessengerMessagesContainerRef}
+                  >
+                    <MessagesContainer messageItems={props.messageItems} />
+                  </TemplateMessengerMessagesContainerStyled>
                   <div ref={templateMessengerMessagesEndRef} />
                 </div>
               </div>
