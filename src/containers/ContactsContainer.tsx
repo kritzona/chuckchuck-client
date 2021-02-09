@@ -11,7 +11,6 @@ interface IProps {}
 const ContactsContainer = (props: IProps) => {
   const history = useHistory()
   const contactItems = useSelector((state: RootState) => state.contact.items)
-  const dispatch = useDispatch()
 
   const [init, setInit] = useState(false)
 

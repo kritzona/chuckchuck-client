@@ -1,5 +1,6 @@
 import avatarImageSource from '../../assets/images/avatar.png'
 import { EUserActionTypes, IUserState, TUserAction } from './types'
+import { cleanUserStorage } from '../../utils/user-storage'
 
 const initialState: IUserState = {
   id: -1,
@@ -24,10 +25,7 @@ const userReducer = (state = initialState, action: TUserAction) => {
       }
       return state
     case EUserActionTypes.LOGOUT:
-      localStorage.removeItem('chuckchuck:user:id')
-      localStorage.removeItem('chuckchuck:user:access-token')
-      sessionStorage.removeItem('chuckchuck:user:id')
-      sessionStorage.removeItem('chuckchuck:user:access-token')
+      cleanUserStorage()
       state = initialState
       return state
     default:

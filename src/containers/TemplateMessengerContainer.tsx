@@ -9,6 +9,7 @@ import {
   messengerInitAction,
 } from '../store/messenger/actions'
 import initWebsocket from '../utils/init-websocket'
+import { fetchUserStorage } from '../utils/user-storage'
 
 interface IProps {}
 interface IParams {
@@ -36,12 +37,7 @@ const TemplateMessengerContainer = (props: IProps) => {
 
   useEffect(() => {
     if (!init) {
-      const userId =
-        localStorage.getItem('chuckchuck:user:id') ||
-        sessionStorage.getItem('chuckchuck:user:id')
-      const userAccessToken =
-        localStorage.getItem('chuckchuck:user:access-token') ||
-        sessionStorage.getItem('chuckchuck:user:access-token')
+      const { userId, userAccessToken } = fetchUserStorage()
 
       if (userId && userAccessToken) {
         dispatch(messengerInitAction(dialogId, contactId))
@@ -53,7 +49,6 @@ const TemplateMessengerContainer = (props: IProps) => {
           `sended-message:dialog-${dialogId}`,
           (payload: { senderId: string }) => {
             if (payload.senderId !== userId) {
-              console.log('update')
               dispatch(
                 messengerFetchMessagesAction(dialogId, userId, userAccessToken),
               )

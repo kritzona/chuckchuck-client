@@ -16,7 +16,11 @@ import {
 } from './WireframeMainStyled'
 import MessengerHeaderContainer from '../../containers/MessengerHeaderContainer'
 
-interface IProps {}
+interface IProps {
+  match: {}
+  location: {}
+  history: {}
+}
 
 const WireframeMain = (props: IProps) => {
   const wireframeMainHeaderRef = useRef<HTMLDivElement>(null)

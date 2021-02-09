@@ -7,9 +7,13 @@ import {
 } from '../store/contact/actions'
 import { RootState } from '../store/store'
 import initWebsocket from '../utils/init-websocket'
-import userAPI from '../api/UserAPI'
+import { fetchUserStorage } from '../utils/user-storage'
+import { withRouter } from 'react-router-dom'
 
 interface IProps {
+  match: {}
+  location: {}
+  history: {}
   children?: React.ReactNode
 }
 
@@ -19,30 +23,16 @@ const AuthContainer = (props: IProps) => {
   const contactItems = useSelector((state: RootState) => state.contact.items)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (!init) {
-      const userId =
-        localStorage.getItem('chuckchuck:user:id') ||
-        sessionStorage.getItem('chuckchuck:user:id')
-      const userAccessToken =
-        localStorage.getItem('chuckchuck:user:access-token') ||
-        sessionStorage.getItem('chuckchuck:user:access-token')
+  const updateUserData = () => {
+    const { userId, userAccessToken } = fetchUserStorage()
 
-      if (userId && userAccessToken) {
-        dispatch(userFetchAccountAction(userId, userAccessToken))
-        dispatch(contactFetchItemsAction(userId, userAccessToken))
-      }
-
-      setInit(true)
+    if (userId && userAccessToken) {
+      dispatch(userFetchAccountAction(userId, userAccessToken))
+      dispatch(contactFetchItemsAction(userId, userAccessToken))
     }
-  }, [init, dispatch])
-  useEffect(() => {
-    const userId =
-      localStorage.getItem('chuckchuck:user:id') ||
-      sessionStorage.getItem('chuckchuck:user:id')
-    const userAccessToken =
-      localStorage.getItem('chuckchuck:user:access-token') ||
-      sessionStorage.getItem('chuckchuck:user:access-token')
+  }
+  const updateUserLastVisited = () => {
+    const { userId, userAccessToken } = fetchUserStorage()
 
     if (userId && userAccessToken) {
       contactItems.forEach((item) => {
@@ -60,9 +50,16 @@ const AuthContainer = (props: IProps) => {
         )
       })
     }
-  }, [contactItems])
+  }
+
+  if (!init) {
+    updateUserData()
+    updateUserLastVisited()
+
+    setInit(true)
+  }
 
   return <React.Fragment>{init && props.children}</React.Fragment>
 }
 
-export default AuthContainer
+export default withRouter(AuthContainer)
