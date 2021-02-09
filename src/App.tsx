@@ -12,11 +12,15 @@ import { RootState } from './store/store'
 import WireframeMain from './wireframes/WireframeMain/WireframeMain'
 import AuthContainer from './containers/AuthContainer'
 import NotificationsContainer from './containers/NotificationsContainer'
+import Preloader from './components/organisms/Preloader/Preloader'
 
 interface IProps {}
 
 const App = (props: IProps) => {
   const theme = useSelector((state: RootState) => state.root.theme)
+  const enabledPreloader = useSelector(
+    (state: RootState) => state.root.preloader.enabled,
+  )
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -52,6 +56,7 @@ const App = (props: IProps) => {
           <AuthContainer>
             <WireframeMain />
           </AuthContainer>
+          {enabledPreloader && <Preloader />}
           <NotificationsContainer />
         </ThemeProvider>
       </ThemeContext.Provider>

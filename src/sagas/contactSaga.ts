@@ -9,11 +9,14 @@ import {
   EContactActionTypes,
   IContactFetchItemsAction,
 } from '../store/contact/types'
-import initWebsocket from '../utils/init-websocket'
-
-const socket = initWebsocket()
+import {
+  rootDisablePreloaderAction,
+  rootEnablePreloaderAction,
+} from '../store/root/actions'
 
 function* fetchItemsAsync(action: IContactFetchItemsAction) {
+  yield put(rootEnablePreloaderAction())
+
   const contacts: IUserAPIContactItem[] = yield call(
     userAPI.fetchContacts,
     action.payload.userId,
@@ -37,6 +40,8 @@ function* fetchItemsAsync(action: IContactFetchItemsAction) {
       )
     }
   }
+
+  yield put(rootDisablePreloaderAction())
 }
 
 function* contactSaga() {

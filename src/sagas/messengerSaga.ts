@@ -9,8 +9,14 @@ import {
   messageAddItemAction,
   messageAddItemsAction,
 } from '../store/messenger/actions'
+import {
+  rootDisablePreloaderAction,
+  rootEnablePreloaderAction,
+} from '../store/root/actions'
 
 function* fetchMessagesAsync(action: IMessengerFetchMessagesAction) {
+  yield put(rootEnablePreloaderAction())
+
   try {
     const messages: IMessageItem[] = yield call(
       dialogAPI.fetchMessages,
@@ -25,6 +31,8 @@ function* fetchMessagesAsync(action: IMessengerFetchMessagesAction) {
   } catch (error) {
     console.log(error)
   }
+
+  yield put(rootDisablePreloaderAction())
 }
 function* sendMessageAsync(action: IMessengerSendMessageAction) {
   try {
