@@ -1,4 +1,4 @@
-export const fetchUserStorage = () => {
+export const userStorage = () => {
   const userId =
     localStorage.getItem('chuckchuck:user:id') ||
     sessionStorage.getItem('chuckchuck:user:id')

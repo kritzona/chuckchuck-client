@@ -7,7 +7,7 @@ import {
 } from '../store/contact/actions'
 import { RootState } from '../store/store'
 import initWebsocket from '../utils/init-websocket'
-import { fetchUserStorage } from '../utils/user-storage'
+import { userStorage } from '../utils/user-storage'
 import { withRouter } from 'react-router-dom'
 
 interface IProps {
@@ -19,21 +19,25 @@ interface IProps {
 
 const AuthContainer = (props: IProps) => {
   const socket = initWebsocket()
+  const { userId, userAccessToken } = userStorage()
+
   const [init, setInit] = useState(false)
+
+  const user = useSelector((state: RootState) => state.user)
   const contactItems = useSelector((state: RootState) => state.contact.items)
   const dispatch = useDispatch()
 
   const updateUserData = useCallback(() => {
-    const { userId, userAccessToken } = fetchUserStorage()
-
     if (userId && userAccessToken) {
       dispatch(userFetchAccountAction(userId, userAccessToken))
+    }
+  }, [dispatch, userId, userAccessToken])
+  const updateContacts = useCallback(() => {
+    if (userId && userAccessToken) {
       dispatch(contactFetchItemsAction(userId, userAccessToken))
     }
-  }, [dispatch])
+  }, [dispatch, userId, userAccessToken])
   const subscribeContactsOnUpdate = useCallback(() => {
-    const { userId, userAccessToken } = fetchUserStorage()
-
     if (userId && userAccessToken) {
       contactItems.forEach((item) => {
         socket.off(`updated-user:user-${item.id}`)
@@ -54,6 +58,7 @@ const AuthContainer = (props: IProps) => {
 
   if (!init) {
     updateUserData()
+    updateContacts()
     subscribeContactsOnUpdate()
 
     setInit(true)
@@ -67,6 +72,11 @@ const AuthContainer = (props: IProps) => {
     subscribeContactsOnUpdate()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contactItems])
+  useEffect(() => {
+    if (user.isAuth) {
+      updateContacts()
+    }
+  }, [user.isAuth])
 
   return <React.Fragment>{init && props.children}</React.Fragment>
 }

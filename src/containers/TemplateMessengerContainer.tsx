@@ -9,7 +9,7 @@ import {
   messengerInitAction,
 } from '../store/messenger/actions'
 import initWebsocket from '../utils/init-websocket'
-import { fetchUserStorage } from '../utils/user-storage'
+import { userStorage } from '../utils/user-storage'
 
 interface IProps {}
 interface IParams {
@@ -19,6 +19,7 @@ interface IParams {
 
 const TemplateMessengerContainer = (props: IProps) => {
   const socket = initWebsocket()
+  const { userId, userAccessToken } = userStorage()
 
   const [init, setInit] = useState(false)
   const { contactId, dialogId } = useParams<IParams>()
@@ -37,8 +38,6 @@ const TemplateMessengerContainer = (props: IProps) => {
 
   useEffect(() => {
     if (!init) {
-      const { userId, userAccessToken } = fetchUserStorage()
-
       if (userId && userAccessToken) {
         dispatch(messengerInitAction(dialogId, contactId))
         dispatch(

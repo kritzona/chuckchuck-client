@@ -3,10 +3,12 @@ import { useHistory } from 'react-router-dom'
 import TemplateSignIn from '../templates/TemplateSignIn/TemplateSignIn'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
+import { userStorage } from '../utils/user-storage'
 
 interface IProps {}
 
 const TemplateSignInContainer = (props: IProps) => {
+  const { userId, userAccessToken } = userStorage()
   const history = useHistory()
   const user = useSelector((state: RootState) => state.user)
 
@@ -16,7 +18,11 @@ const TemplateSignInContainer = (props: IProps) => {
     }
   }, [user, history])
 
-  return <React.Fragment>{!user.isAuth && <TemplateSignIn />}</React.Fragment>
+  return (
+    <React.Fragment>
+      {(!userId || !userAccessToken) && !user.isAuth && <TemplateSignIn />}
+    </React.Fragment>
+  )
 }
 
 export default TemplateSignInContainer

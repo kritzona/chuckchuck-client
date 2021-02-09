@@ -25,7 +25,6 @@ const userReducer = (state = initialState, action: TUserAction) => {
       }
       return state
     case EUserActionTypes.LOGOUT:
-      cleanUserStorage()
       state = initialState
       return state
     default:

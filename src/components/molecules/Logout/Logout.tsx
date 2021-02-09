@@ -5,6 +5,7 @@ import LogoutStyled from './LogoutStyled'
 import ShortButton from '../../atoms/ShortButton/ShortButton'
 import { useDispatch } from 'react-redux'
 import { userLogoutAction } from '../../../store/user/actions'
+import { cleanUserStorage } from '../../../utils/user-storage'
 
 interface IProps {}
 
@@ -12,6 +13,7 @@ const Logout = (props: IProps) => {
   const dispatch = useDispatch()
 
   const handleClick = () => {
+    cleanUserStorage()
     dispatch(userLogoutAction())
   }
 
