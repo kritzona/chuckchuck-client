@@ -7,7 +7,6 @@ import {
   AccountWestStyled,
 } from './AccountStyled'
 import User from '../../molecules/User/User'
-import Text from '../../atoms/Text/Text'
 import ShortButton from '../../atoms/ShortButton/ShortButton'
 
 import settingsLightIconSource from '../../../assets/icons/settings-light.svg'
