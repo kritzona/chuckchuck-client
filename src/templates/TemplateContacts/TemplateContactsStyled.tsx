@@ -28,3 +28,14 @@ export const TemplateContactsFooterStyled = styled.div<IProps>`
     left: 0;
   `}
 `
+export const TemplateContactsAccountStyled = styled.div<IProps>`
+  ${({ theme }) => css`
+    box-sizing: border-box;
+    display: none;
+    padding-top: ${theme.sizes.stepSize}px;
+
+    @media (max-width: 991.98px) {
+      display: block;
+    }
+  `}
+`

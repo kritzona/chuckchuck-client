@@ -4,10 +4,11 @@ interface IProps {
   theme: DefaultTheme
   circle?: boolean
   woBackground?: boolean
+  iconAlign?: 'left' | 'center' | 'right'
 }
 
 export const ShortButtonStyled = styled.button<IProps>`
-  ${({ theme, circle, woBackground }) => css`
+  ${({ theme, circle, woBackground, iconAlign }) => css`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,7 +33,19 @@ export const ShortButtonStyled = styled.button<IProps>`
     ${!woBackground &&
     css`
       background-color: ${theme.colors.compColor};
-      justify-content: center;
+
+      ${(!iconAlign || iconAlign === 'center') &&
+      css`
+        justify-content: center;
+      `}
+      ${iconAlign === 'left' &&
+      css`
+        justify-content: flex-start;
+      `}
+      ${iconAlign === 'right' &&
+      css`
+        justify-content: flex-end;
+      `}
 
       & > img[data-icon-theme='light'] {
         display: none;
@@ -111,6 +124,19 @@ export const ShortButtonStyled = styled.button<IProps>`
       background-color: transparent;
       justify-content: flex-start;
 
+      ${(!iconAlign || iconAlign === 'left') &&
+      css`
+        justify-content: flex-start;
+      `}
+      ${iconAlign === 'center' &&
+      css`
+        justify-content: center;
+      `}
+      ${iconAlign === 'right' &&
+      css`
+        justify-content: flex-end;
+      `}
+
       ${(!theme.name || theme.name === 'light') &&
       css`
         & > img[data-icon-theme='light'] {
@@ -140,7 +166,6 @@ export const ShortButtonStyled = styled.button<IProps>`
       @media screen and (max-width: 991.98px) {
         &:hover {
           background-color: transparent;
-          justify-content: flex-start;
         }
         &:active,
         &:disabled {

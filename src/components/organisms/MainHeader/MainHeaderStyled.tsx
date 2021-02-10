@@ -28,3 +28,12 @@ export const MainHeaderSideStyled = styled.div<IProps>`
     }
   `}
 `
+export const MainHeaderAccountStyled = styled.div<IProps>`
+  ${() => css`
+    display: none;
+
+    @media (min-width: 992px) {
+      display: block;
+    }
+  `}
+`

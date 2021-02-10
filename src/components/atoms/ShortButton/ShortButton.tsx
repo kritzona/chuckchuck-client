@@ -6,6 +6,7 @@ interface IProps {
   darkIconSource: string
   circle?: boolean
   woBackground?: boolean
+  iconAlign?: 'left' | 'center' | 'right'
   onClick?: () => void
 }
 
@@ -21,6 +22,7 @@ const ShortButton = (props: IProps) => {
       circle={props.circle}
       woBackground={props.woBackground}
       onClick={() => handleClick()}
+      iconAlign={props.iconAlign}
     >
       <ShortButtonIconStyled
         src={props.lightIconSource}

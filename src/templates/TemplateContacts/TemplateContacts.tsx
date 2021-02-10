@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  TemplateContactsAccountStyled,
   TemplateContactsContentStyled,
   TemplateContactsFooterStyled,
   TemplateContactsHeaderStyled,
@@ -14,6 +15,7 @@ import ShortButton from '../../components/atoms/ShortButton/ShortButton'
 
 import addLightIconSource from '../../assets/icons/add-light.svg'
 import addDarkIconSource from '../../assets/icons/add-dark.svg'
+import AccountContainer from '../../containers/AccountContainer'
 
 interface IProps {}
 
@@ -23,6 +25,13 @@ const TemplateContacts = (props: IProps) => {
       <TemplateContactsContentStyled>
         <PartContent>
           <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <TemplateContactsAccountStyled>
+                  <AccountContainer />
+                </TemplateContactsAccountStyled>
+              </div>
+            </div>
             <div className="row">
               <div className="col-lg-12">
                 <TemplateContactsHeaderStyled>
