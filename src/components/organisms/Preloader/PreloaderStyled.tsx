@@ -7,9 +7,9 @@ interface IProps {
 const PreloaderStyled = styled.div<IProps>`
   ${({ theme }) => css`
     width: 100%;
-    height: 100vh;
+    height: 100%;
     position: fixed;
-    z-index: 2000000;
+    z-index: 1000000;
     top: 0;
     left: 0;
     background-color: ${theme.colors.backgroundColor};

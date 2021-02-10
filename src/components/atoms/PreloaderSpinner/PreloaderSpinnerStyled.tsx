@@ -22,7 +22,6 @@ const PreloaderSpinnerStyled = styled.div<IProps>`
     position: relative;
     width: 150px;
     height: 150px;
-    margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 3px solid transparent;
     border-top-color: #9370db;

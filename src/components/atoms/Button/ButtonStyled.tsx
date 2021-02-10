@@ -45,6 +45,31 @@ const ButtonStyled = styled.button<IProps>`
       cursor: not-allowed;
       border-color: ${theme.colors.greyColor};
     }
+
+    @media screen and (max-width: 991.98px) {
+      &:hover {
+        background: ${theme.colors.compColor};
+        outline: none;
+        color: ${theme.colors.blackColor};
+        box-shadow: none;
+        border-color: ${theme.colors.compColor};
+      }
+      &:active {
+        background: ${theme.colors.activeCompColor};
+        outline: none;
+        color: ${theme.colors.whiteColor};
+        box-shadow: ${theme.effects.boxShadow};
+        border-color: ${theme.colors.activeCompColor};
+      }
+      &:disabled {
+        background: ${theme.colors.greyColor};
+        outline: none;
+        color: ${theme.colors.whiteColor};
+        box-shadow: none;
+        cursor: not-allowed;
+        border-color: ${theme.colors.greyColor};
+      }
+    }
   `}
 `
 
