@@ -17,14 +17,15 @@ const spinKeyframes = keyframes`
   }
 `
 const PreloaderSpinnerStyled = styled.div<IProps>`
-  ${() => css`
+  ${({ theme }) => css`
     display: block;
     position: relative;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: 96px;
+    height: 32px;
+    margin: 0;
+    border-radius: 100%;
     border: 3px solid transparent;
-    border-top-color: #9370db;
+    border-top-color: ${theme.colors.primaryColor};
     animation: ${spinKeyframes} 2s linear infinite;
 
     &::before {
@@ -36,7 +37,7 @@ const PreloaderSpinnerStyled = styled.div<IProps>`
       bottom: 5px;
       border-radius: 50%;
       border: 3px solid transparent;
-      border-top-color: #ba55d3;
+      border-top-color: ${theme.colors.compColor};
       animation: ${spinKeyframes} 3s linear infinite;
     }
     &:after {
@@ -48,7 +49,7 @@ const PreloaderSpinnerStyled = styled.div<IProps>`
       bottom: 15px;
       border-radius: 50%;
       border: 3px solid transparent;
-      border-top-color: #ff00ff;
+      border-top-color: ${theme.colors.hoverCompColor};
       animation: ${spinKeyframes} 1.5s linear infinite;
     }
   `}

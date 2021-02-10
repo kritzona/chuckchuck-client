@@ -1,12 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, Suspense } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 
-import Home from '../../views/Home/Home'
-import UIKit from '../../views/UIKit/UIKit'
-import Contacts from '../../views/Contacts/Contacts'
-import Messenger from '../../views/Messenger/Messenger'
 import PartHeader from '../../parts/PartHeader/PartHeader'
-import MainHeader from '../../components/organisms/MainHeader/MainHeader'
 import PartMain from '../../parts/PartMain/PartMain'
 
 import {
@@ -14,13 +9,24 @@ import {
   WireframeMainHeaderStyled,
   WireframeMainStyled,
 } from './WireframeMainStyled'
-import MessengerHeaderContainer from '../../containers/MessengerHeaderContainer'
+import Preloader from '../../components/organisms/Preloader/Preloader'
 
 interface IProps {
   match: {}
   location: {}
   history: {}
 }
+
+const Home = React.lazy(() => import('../../views/Home/Home'))
+const UIKit = React.lazy(() => import('../../views/UIKit/UIKit'))
+const Contacts = React.lazy(() => import('../../views/Contacts/Contacts'))
+const Messenger = React.lazy(() => import('../../views/Messenger/Messenger'))
+const MainHeader = React.lazy(
+  () => import('../../components/organisms/MainHeader/MainHeader'),
+)
+const MessengerHeaderContainer = React.lazy(
+  () => import('../../containers/MessengerHeaderContainer'),
+)
 
 const WireframeMain = (props: IProps) => {
   const wireframeMainHeaderRef = useRef<HTMLDivElement>(null)
@@ -44,16 +50,24 @@ const WireframeMain = (props: IProps) => {
         <PartHeader>
           <Switch>
             <Route exact path="/">
-              <MainHeader />
+              <Suspense fallback={<Preloader />}>
+                <MainHeader />
+              </Suspense>
             </Route>
             <Route path="/ui-kit">
-              <MainHeader />
+              <Suspense fallback={<Preloader />}>
+                <MainHeader />
+              </Suspense>
             </Route>
             <Route path="/contacts">
-              <MainHeader />
+              <Suspense fallback={<Preloader />}>
+                <MainHeader />
+              </Suspense>
             </Route>
             <Route path="/messenger/:contactId/:dialogId">
-              <MessengerHeaderContainer />
+              <Suspense fallback={<Preloader />}>
+                <MessengerHeaderContainer />
+              </Suspense>
             </Route>
           </Switch>
         </PartHeader>
@@ -62,16 +76,24 @@ const WireframeMain = (props: IProps) => {
         <PartMain>
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Suspense fallback={<Preloader />}>
+                <Home />
+              </Suspense>
             </Route>
             <Route path="/ui-kit">
-              <UIKit />
+              <Suspense fallback={<Preloader />}>
+                <UIKit />
+              </Suspense>
             </Route>
             <Route path="/contacts">
-              <Contacts />
+              <Suspense fallback={<Preloader />}>
+                <Contacts />
+              </Suspense>
             </Route>
             <Route path="/messenger/:contactId/:dialogId">
-              <Messenger />
+              <Suspense fallback={<Preloader />}>
+                <Messenger />
+              </Suspense>
             </Route>
           </Switch>
         </PartMain>
