@@ -15,7 +15,9 @@ const Notifications = (props: IProps) => {
           <div className="offset-lg-3" />
           <div className="col-lg-6">
             {props.items.map((item) => (
-              <Notification status={item.status}>{item.message}</Notification>
+              <Notification key={item.id} status={item.status}>
+                {item.message}
+              </Notification>
             ))}
           </div>
           <div className="offset-lg-3" />

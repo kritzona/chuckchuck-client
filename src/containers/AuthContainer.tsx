@@ -54,6 +54,7 @@ const AuthContainer = (props: IProps) => {
         )
       })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contactItems, socket, dispatch])
 
   if (!init) {
@@ -76,6 +77,7 @@ const AuthContainer = (props: IProps) => {
     if (user.isAuth) {
       updateContacts()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.isAuth])
 
   return <React.Fragment>{init && props.children}</React.Fragment>

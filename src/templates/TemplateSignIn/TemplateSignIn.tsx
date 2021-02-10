@@ -11,7 +11,6 @@ import {
 import PartContent from '../../parts/PartContent/PartContent'
 import PartFooter from '../../parts/PartFooter/PartFooter'
 import Footer from '../../components/organisms/Footer/Footer'
-import PreloaderSpinner from '../../components/atoms/PreloaderSpinner/PreloaderSpinner'
 
 const TemplateSignIn = () => {
   return (
