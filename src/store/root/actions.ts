@@ -2,6 +2,7 @@ import {
   ERootActionTypes,
   IRootDisablePreloaderAction,
   IRootEnablePreloaderAction,
+  IRootSetDateNowAction,
   IRootToggleThemeAction,
 } from './types'
 
@@ -13,4 +14,7 @@ export const rootEnablePreloaderAction = (): IRootEnablePreloaderAction => ({
 })
 export const rootDisablePreloaderAction = (): IRootDisablePreloaderAction => ({
   type: ERootActionTypes.DISABLE_PRELOADER,
+})
+export const rootSetDateNowAction = (): IRootSetDateNowAction => ({
+  type: ERootActionTypes.SET_DATE_NOW,
 })

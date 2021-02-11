@@ -30,6 +30,7 @@ function* loginAsync(action: IUserLoginAction) {
       action.payload.password,
       action.payload.remember,
     )
+
     if (authData) {
       yield put(userFetchAccountAction(authData.id, authData.accessToken))
     } else {

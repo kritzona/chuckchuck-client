@@ -7,7 +7,10 @@ import themes from './themes/themes'
 import { GlobalStyle } from './themes/GlobalStyle/GlobalStyle'
 import AppStyled from './AppStyled'
 
-import { rootToggleThemeAction } from './store/root/actions'
+import {
+  rootSetDateNowAction,
+  rootToggleThemeAction,
+} from './store/root/actions'
 import { RootState } from './store/store'
 import WireframeMain from './wireframes/WireframeMain/WireframeMain'
 import AuthContainer from './containers/AuthContainer'
@@ -27,9 +30,15 @@ const App = (props: IProps) => {
     updateVH()
     window.addEventListener('resize', updateVH)
 
+    const setDateNowInterval = setInterval(() => {
+      dispatch(rootSetDateNowAction())
+    }, 1000)
+
     return () => {
       window.removeEventListener('resize', updateVH)
+      clearInterval(setDateNowInterval)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const updateVH = () => {

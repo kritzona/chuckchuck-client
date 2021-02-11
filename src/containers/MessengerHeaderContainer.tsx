@@ -12,8 +12,9 @@ interface IParams {
 }
 
 const MessengerHeaderContainer = (props: IProps) => {
-  const [dateNow, setDateNow] = useState(Date.now())
-
+  const dateNow = useSelector((state: RootState) =>
+    state.root.dateNow.getTime(),
+  )
   const { contactId } = useParams<IParams>()
   const contactItem = useSelector((state: RootState):
     | IContactItem
@@ -21,16 +22,6 @@ const MessengerHeaderContainer = (props: IProps) => {
     return state.contact.items.find(
       (item: IContactItem) => item.id === contactId,
     )
-  })
-
-  useEffect(() => {
-    const updateDateNow = setInterval(() => {
-      setDateNow(Date.now())
-    }, 1000)
-
-    return () => {
-      clearInterval(updateDateNow)
-    }
   })
 
   return (

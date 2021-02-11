@@ -1,6 +1,6 @@
 const config = {
   backend: {
-    host: 'http://localhost',
+    host: 'http://192.168.114.146',
     port: 3000,
     apiFolder: '/api',
     servicesFolder: '/services',

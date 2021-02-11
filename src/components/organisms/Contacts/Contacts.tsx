@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { IContactItem } from '../../../store/contact/types'
 import { ContactsItemStyled, ContactsStyled } from './ContactsStyled'
 import Contact from '../../molecules/Contact/Contact'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../store/store'
 
 interface IProps {
   items: IContactItem[]
@@ -9,23 +11,15 @@ interface IProps {
 }
 
 const Contacts = (props: IProps) => {
-  const [dateNow, setDateNow] = useState(Date.now())
+  const dateNow = useSelector((state: RootState) =>
+    state.root.dateNow.getTime(),
+  )
 
   const handleClick = (item: IContactItem) => {
     if (props.onClick) {
       props.onClick(item)
     }
   }
-
-  useEffect(() => {
-    const updateDateNow = setInterval(() => {
-      setDateNow(Date.now())
-    }, 1000)
-
-    return () => {
-      clearInterval(updateDateNow)
-    }
-  })
 
   return (
     <ContactsStyled>

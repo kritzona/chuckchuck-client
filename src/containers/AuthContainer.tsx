@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { userFetchAccountAction } from '../store/user/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -9,6 +9,7 @@ import { RootState } from '../store/store'
 import initWebsocket from '../utils/init-websocket'
 import { userStorage } from '../utils/user-storage'
 import { withRouter } from 'react-router-dom'
+import SocketContext from '../contexts/SocketContext'
 
 interface IProps {
   match: {}
@@ -18,7 +19,7 @@ interface IProps {
 }
 
 const AuthContainer = (props: IProps) => {
-  const socket = initWebsocket()
+  const socket = useContext(SocketContext)
   const { userId, userAccessToken } = userStorage()
 
   const [init, setInit] = useState(false)

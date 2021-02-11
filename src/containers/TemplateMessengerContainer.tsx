@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import TemplateMessenger from '../templates/TemplateMessenger/TemplateMessenger'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +12,7 @@ import {
 import initWebsocket from '../utils/init-websocket'
 import { userStorage } from '../utils/user-storage'
 import { IMessageItem } from '../store/messenger/types'
+import SocketContext from '../contexts/SocketContext'
 
 interface IProps {}
 interface IParams {
@@ -20,7 +21,7 @@ interface IParams {
 }
 
 const TemplateMessengerContainer = (props: IProps) => {
-  const socket = initWebsocket()
+  const socket = useContext(SocketContext)
   const { userId, userAccessToken } = userStorage()
 
   const [init, setInit] = useState(false)
@@ -58,7 +59,7 @@ const TemplateMessengerContainer = (props: IProps) => {
         setInit(true)
       }
     }
-  }, [init, dialogId, contactId, dispatch, socket, userAccessToken, userId])
+  }, [init, dialogId, contactId, dispatch, userAccessToken, userId, socket])
 
   return (
     <React.Fragment>
