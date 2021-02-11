@@ -11,6 +11,19 @@ export const userStorage = () => {
     userAccessToken,
   }
 }
+export const initUserStorage = (
+  userId: string,
+  userAccessToken: string,
+  remember: boolean,
+) => {
+  if (remember) {
+    localStorage.setItem('chuckchuck:user:id', userId)
+    localStorage.setItem('chuckchuck:user:access-token', userAccessToken)
+  } else {
+    sessionStorage.setItem('chuckchuck:user:id', userId)
+    sessionStorage.setItem('chuckchuck:user:access-token', userAccessToken)
+  }
+}
 export const cleanUserStorage = () => {
   localStorage.removeItem('chuckchuck:user:id')
   localStorage.removeItem('chuckchuck:user:access-token')

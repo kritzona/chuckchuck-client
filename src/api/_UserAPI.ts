@@ -1,6 +1,7 @@
 import _RestAPI, { ERestAPIStatuses } from './_RestAPI'
+import { initUserStorage } from '../utils/user-storage'
 
-interface IUserAPIItem {
+export interface IUserAPIItem {
   id: string
   login: string
   firstName: string
@@ -10,12 +11,28 @@ interface IUserAPIItem {
   about: string
   avatar: string
   createdAt: string
+  lastVisitedAt: string
 }
-interface IUserAPIItemWithAccessToken extends IUserAPIItem {
+export interface IUserAPIItemWithAccessToken extends IUserAPIItem {
   accessToken: string
 }
-interface IUserAPILoginSuccessResponse {
+export interface IUserAPIContactItem {
+  id: string
+  login: string
+  firstName: string
+  lastName: string
+  avatar: string
+  dialogId: string
+  lastVisitedAt: string
+}
+export interface IUserAPILoginResponse {
   item: IUserAPIItemWithAccessToken
+}
+export interface IUserAPIAccountResponse {
+  item: IUserAPIItem
+}
+export interface IUserAPIContactsResponse {
+  items: IUserAPIContactItem[]
 }
 
 class _UserAPI extends _RestAPI {
@@ -23,6 +40,8 @@ class _UserAPI extends _RestAPI {
     super(object)
 
     this.login = this.login.bind(this)
+    this.fetchAccount = this.fetchAccount.bind(this)
+    this.fetchContacts = this.fetchContacts.bind(this)
   }
 
   public async login(
@@ -32,7 +51,7 @@ class _UserAPI extends _RestAPI {
   ): Promise<IUserAPIItemWithAccessToken | false> {
     try {
       const url = super.generateUrl(this.servicesUrl, ['login'])
-      const response = await super.postRequest<IUserAPILoginSuccessResponse>(
+      const response = await super.postRequest<IUserAPILoginResponse>(
         url,
         { login, password },
         {},
@@ -41,19 +60,7 @@ class _UserAPI extends _RestAPI {
       switch (response.status) {
         case ERestAPIStatuses.SUCCESS:
           const userItem = response.data.item
-          if (remember) {
-            localStorage.setItem('chuckchuck:user:id', userItem.id)
-            localStorage.setItem(
-              'chuckchuck:user:access-token',
-              userItem.accessToken,
-            )
-          } else {
-            sessionStorage.setItem('chuckchuck:user:id', userItem.id)
-            sessionStorage.setItem(
-              'chuckchuck:user:access-token',
-              userItem.accessToken,
-            )
-          }
+          initUserStorage(userItem.id, userItem.accessToken, remember)
 
           return userItem
         case ERestAPIStatuses.ERROR:
@@ -63,6 +70,51 @@ class _UserAPI extends _RestAPI {
       return false
     }
   }
+
+  public async fetchAccount(
+    userId: string | number,
+    userAccessToken: string,
+  ): Promise<IUserAPIItem | false> {
+    try {
+      const response = await super.show<IUserAPIAccountResponse>(userId, [], {
+        accessToken: userAccessToken,
+      })
+
+      switch (response.status) {
+        case ERestAPIStatuses.SUCCESS:
+          return response.data.item
+        case ERestAPIStatuses.ERROR:
+          return false
+      }
+    } catch (error) {
+      return false
+    }
+  }
+
+  public async fetchContacts(
+    userId: string | number,
+    userAccessToken: string,
+  ): Promise<IUserAPIContactItem[] | false> {
+    try {
+      const response = await super.index<IUserAPIContactsResponse>(
+        [userId, 'contacts'],
+        {
+          accessToken: userAccessToken,
+        },
+      )
+
+      switch (response.status) {
+        case ERestAPIStatuses.SUCCESS:
+          return response.data.items
+        case ERestAPIStatuses.ERROR:
+          return false
+      }
+    } catch (error) {
+      return false
+    }
+  }
 }
+
+const userAPI = new _UserAPI('users')
 
 export default _UserAPI

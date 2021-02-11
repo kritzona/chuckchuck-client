@@ -1,7 +1,7 @@
 const config = {
   backend: {
-    host: 'https://floating-sands-91585.herokuapp.com',
-    port: null,
+    host: 'https://localhost',
+    port: 3000,
     apiFolder: '/api',
     servicesFolder: '/services',
   },
