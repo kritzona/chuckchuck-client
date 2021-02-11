@@ -33,6 +33,7 @@ const Contact = (props: IProps) => {
       {props.lastMessage && (
         <Message
           message={props.lastMessage.content}
+          date={new Date()}
           align="left"
           fullWidth={true}
         />

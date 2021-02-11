@@ -76,7 +76,7 @@ const UIKit = () => {
             <InputStatus />
           </div>
           <div className="col-lg-3">
-            <MessageBox message="Hello, Kitty!" />
+            <MessageBox message="Hello, Kitty!" date={new Date()} />
           </div>
           <div className="col-lg-3">
             <Logotype />
@@ -112,7 +112,11 @@ const UIKit = () => {
             />
           </div>
           <div className="col-lg-4">
-            <Message message="Hello, Kitty!!!" align="right" />
+            <Message
+              message="Hello, Kitty!!!"
+              date={new Date()}
+              align="right"
+            />
           </div>
           <div className="col-lg-4">
             <MessengerHeaderContainer />

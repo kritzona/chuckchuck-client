@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import dialogAPI from '../api/DialogAPI'
+import dialogAPI, { IDialogAPIMessageItem } from '../api/DialogAPI'
 import {
   EMessengerActionTypes,
   IMessageItem,
@@ -19,7 +19,7 @@ function* fetchMessagesAsync(action: IMessengerFetchMessagesAction) {
   yield put(rootEnablePreloaderAction())
 
   try {
-    const messages: IMessageItem[] = yield call(
+    const messages: IDialogAPIMessageItem[] = yield call(
       dialogAPI.fetchMessages,
       action.payload.dialogId,
       action.payload.contactId,
@@ -27,7 +27,17 @@ function* fetchMessagesAsync(action: IMessengerFetchMessagesAction) {
     )
 
     if (messages) {
-      yield put(messageAddItemsAction(messages))
+      yield put(
+        messageAddItemsAction(
+          messages.map((message) => ({
+            id: message.id,
+            senderId: message.senderId,
+            recipientId: message.recipientId,
+            content: message.content,
+            departureDate: new Date(message.createdAt),
+          })),
+        ),
+      )
     }
   } catch (error) {
     console.log(error)
@@ -46,7 +56,15 @@ function* sendMessageAsync(action: IMessengerSendMessageAction) {
     )
 
     if (sendedMessage) {
-      yield put(messageAddItemAction(sendedMessage))
+      yield put(
+        messageAddItemAction({
+          id: sendedMessage.id,
+          senderId: sendedMessage.senderId,
+          recipientId: sendedMessage.recipientId,
+          content: sendedMessage.content,
+          departureDate: new Date(sendedMessage.createdAt),
+        }),
+      )
     }
   } catch (error) {
     console.log(error)

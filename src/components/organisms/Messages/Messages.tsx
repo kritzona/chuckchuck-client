@@ -14,13 +14,15 @@ const Messages = (props: IProps) => {
 
   return (
     <MessagesStyled>
-      {props.items.map((item) => (
-        <Message
-          key={item.id}
-          message={item.content}
-          align={item.senderId === user.id ? 'right' : 'left'}
-        />
-      ))}
+      {user.isAuth &&
+        props.items.map((item) => (
+          <Message
+            key={item.id}
+            message={item.content}
+            date={item.departureDate}
+            align={item.senderId === user.id ? 'right' : 'left'}
+          />
+        ))}
     </MessagesStyled>
   )
 }

@@ -1,16 +1,16 @@
 import RestAPI, { ERestAPIStatuses } from './RestAPI'
 
-interface IDialogAPIMessageItem {
+export interface IDialogAPIMessageItem {
   id: string
   senderId: string
   recipientId: string
   content: string
   createdAt: string
 }
-interface IDialogAPIMessagesResponse {
+export interface IDialogAPIMessagesResponse {
   items: IDialogAPIMessageItem[]
 }
-interface IDialogAPISendedMessageResponse {
+export interface IDialogAPISendedMessageResponse {
   item: IDialogAPIMessageItem
 }
 

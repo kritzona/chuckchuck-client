@@ -12,6 +12,7 @@ import {
 import { userStorage } from '../utils/user-storage'
 import { IMessageItem } from '../store/messenger/types'
 import SocketContext from '../contexts/SocketContext'
+import { IDialogAPIMessageItem } from '../api/DialogAPI'
 
 interface IProps {}
 interface IParams {
@@ -48,9 +49,17 @@ const TemplateMessengerContainer = (props: IProps) => {
 
         socket.on(
           `sended-message:dialog-${dialogId}`,
-          (payload: { message: IMessageItem }) => {
+          (payload: { message: IDialogAPIMessageItem }) => {
             if (payload.message.senderId !== userId) {
-              dispatch(messageAddItemAction(payload.message))
+              dispatch(
+                messageAddItemAction({
+                  id: payload.message.id,
+                  senderId: payload.message.senderId,
+                  recipientId: payload.message.recipientId,
+                  content: payload.message.content,
+                  departureDate: new Date(payload.message.createdAt),
+                }),
+              )
             }
           },
         )
