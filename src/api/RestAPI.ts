@@ -1,16 +1,25 @@
-import axios from 'axios'
 import config from '../config'
+import axios from 'axios'
 
+export enum ERestAPIStatuses {
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+export interface IRestAPISuccessResponse<T> {
+  status: ERestAPIStatuses.SUCCESS
+  data: T
+}
 export interface IRestAPIErrorResponse {
-  status: 'error'
+  status: ERestAPIStatuses.ERROR
   message: string
 }
-export interface IRestAPISuccessResponse {
-  status: 'success'
-  data: any
-}
+export type TRestAPIResponse<T> =
+  | IRestAPISuccessResponse<T>
+  | IRestAPIErrorResponse
 
-export type TRestAPIResponse = IRestAPIErrorResponse | IRestAPISuccessResponse
+export interface IRestAPIQuery {
+  [key: string]: string | number
+}
 
 abstract class RestAPI {
   protected object: string
@@ -33,133 +42,142 @@ abstract class RestAPI {
     this.servicesUrl = `${this.backendUrl}${config.backend.servicesFolder}`
 
     this.index = this.index.bind(this)
+    this.show = this.show.bind(this)
+    this.create = this.create.bind(this)
+    this.edit = this.edit.bind(this)
+    this.destroy = this.destroy.bind(this)
+    this.generateUrl = this.generateUrl.bind(this)
+    this.getRequest = this.getRequest.bind(this)
+    this.postRequest = this.postRequest.bind(this)
+    this.patchRequest = this.patchRequest.bind(this)
+    this.deleteRequest = this.deleteRequest.bind(this)
   }
 
-  protected async index(accessToken: string): Promise<TRestAPIResponse> {
-    return await axios
-      .get(`${this.apiObjectUrl}`)
-      .then((response) => {
-        const _response: IRestAPISuccessResponse = {
-          status: 'success',
-          data: response.data.data,
-        }
+  protected async index<T>(
+    additionParams: (string | number)[] = [],
+    queries: IRestAPIQuery = {},
+  ): Promise<TRestAPIResponse<T>> {
+    const url = this.generateUrl(this.apiObjectUrl, additionParams)
 
-        return _response
+    return await this.getRequest<T>(url, queries)
+  }
+  protected async show<T>(
+    id: string | number,
+    additionParams: (string | number)[] = [],
+    queries: IRestAPIQuery = {},
+  ): Promise<TRestAPIResponse<T>> {
+    const url = this.generateUrl(this.apiObjectUrl, [id, ...additionParams])
+
+    return await this.getRequest<T>(url, queries)
+  }
+  protected async create<T>(
+    additionParams: (string | number)[] = [],
+    body: IRestAPIQuery = {},
+    queries: IRestAPIQuery = {},
+  ): Promise<TRestAPIResponse<T>> {
+    const url = this.generateUrl(this.apiObjectUrl, additionParams)
+
+    return await this.postRequest<T>(url, body, queries)
+  }
+  protected async edit<T>(
+    additionParams: (string | number)[] = [],
+    body: IRestAPIQuery = {},
+    queries: IRestAPIQuery = {},
+  ): Promise<TRestAPIResponse<T>> {
+    const url = this.generateUrl(this.apiObjectUrl, additionParams)
+
+    return await this.patchRequest<T>(url, body, queries)
+  }
+  protected async destroy<T>(
+    id: string | number,
+    additionParams: (string | number)[] = [],
+    queries: IRestAPIQuery = {},
+  ): Promise<TRestAPIResponse<T>> {
+    const url = this.generateUrl(this.apiObjectUrl, [id, ...additionParams])
+
+    return await this.deleteRequest<T>(url, queries)
+  }
+
+  protected generateUrl(mainUrl: string, additionParams: (string | number)[]) {
+    return `${mainUrl}/${additionParams.join('/')}`
+  }
+
+  protected async getRequest<T>(
+    url: string,
+    queries: IRestAPIQuery,
+  ): Promise<TRestAPIResponse<T>> {
+    return await axios
+      .get(url, {
+        params: { ...queries },
+      })
+      .then((response) => {
+        const responseData: IRestAPISuccessResponse<T> = response.data
+        return responseData
       })
       .catch((error) => {
-        const _response: IRestAPIErrorResponse = {
-          status: 'error',
-          message: error.response.data.message,
-        }
-
-        return _response
+        const responseData: IRestAPIErrorResponse = error.response.data
+        return responseData
       })
   }
-  protected async show(
-    id: string | number,
-    userId: string | number | null,
-    accessToken: string,
-    childrenObject?: string,
-    childrenObjectId?: string,
-  ): Promise<TRestAPIResponse> {
+  protected async postRequest<T>(
+    url: string,
+    body: IRestAPIQuery,
+    queries: IRestAPIQuery,
+  ): Promise<TRestAPIResponse<T>> {
     return await axios
-      .get(
-        `${this.apiObjectUrl}/${id}${
-          childrenObject && !childrenObjectId ? `/${childrenObject}` : ''
-        }${
-          childrenObject && childrenObjectId
-            ? `/${childrenObject}/${childrenObjectId}`
-            : ''
-        }`,
+      .post(
+        url,
+        { ...body },
         {
-          params: {
-            userId: userId ? userId : null,
-            accessToken,
-          },
+          params: { ...queries },
         },
       )
       .then((response) => {
-        const _response: IRestAPISuccessResponse = {
-          status: 'success',
-          data: response.data.data,
-        }
-
-        return _response
+        const responseData: IRestAPISuccessResponse<T> = response.data
+        return responseData
       })
       .catch((error) => {
-        const _response: IRestAPIErrorResponse = {
-          status: 'error',
-          message: error.response.data.message,
-        }
-
-        return _response
+        const responseData: IRestAPIErrorResponse = error.response.data
+        return responseData
       })
   }
-  protected async create(properties: {}): Promise<TRestAPIResponse> {
+  protected async patchRequest<T>(
+    url: string,
+    body: IRestAPIQuery,
+    queries: IRestAPIQuery,
+  ): Promise<TRestAPIResponse<T>> {
     return await axios
-      .post(`${this.apiObjectUrl}`, properties)
+      .patch(
+        url,
+        { ...body },
+        {
+          params: { ...queries },
+        },
+      )
       .then((response) => {
-        const _response: IRestAPISuccessResponse = {
-          status: 'success',
-          data: response.data.data,
-        }
-
-        return _response
+        const responseData: IRestAPISuccessResponse<T> = response.data
+        return responseData
       })
       .catch((error) => {
-        const _response: IRestAPIErrorResponse = {
-          status: 'error',
-          message: error.response.data.message,
-        }
-
-        return _response
+        const responseData: IRestAPIErrorResponse = error.response.data
+        return responseData
       })
   }
-  protected async edit(
-    id: string,
-    editedProperties: {},
-    accessToken: string,
-  ): Promise<TRestAPIResponse> {
+  protected async deleteRequest<T>(
+    url: string,
+    queries: IRestAPIQuery,
+  ): Promise<TRestAPIResponse<T>> {
     return await axios
-      .put(`${this.apiObjectUrl}/${id}`, editedProperties)
+      .delete(url, {
+        params: { ...queries },
+      })
       .then((response) => {
-        const _response: IRestAPISuccessResponse = {
-          status: 'success',
-          data: response.data.data,
-        }
-
-        return _response
+        const responseData: IRestAPISuccessResponse<T> = response.data
+        return responseData
       })
       .catch((error) => {
-        const _response: IRestAPIErrorResponse = {
-          status: 'error',
-          message: error.response.data.message,
-        }
-
-        return _response
-      })
-  }
-  protected async destroy(
-    id: string,
-    accessToken: string,
-  ): Promise<TRestAPIResponse> {
-    return await axios
-      .delete(`${this.apiObjectUrl}/${id}`)
-      .then((response) => {
-        const _response: IRestAPISuccessResponse = {
-          status: 'success',
-          data: response.data.data,
-        }
-
-        return _response
-      })
-      .catch((error) => {
-        const _response: IRestAPIErrorResponse = {
-          status: 'error',
-          message: error.response.data.message,
-        }
-
-        return _response
+        const responseData: IRestAPIErrorResponse = error.response.data
+        return responseData
       })
   }
 }

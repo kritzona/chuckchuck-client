@@ -18,6 +18,7 @@ import {
   rootDisablePreloaderAction,
   rootEnablePreloaderAction,
 } from '../store/root/actions'
+import { cleanUserStorage } from '../utils/user-storage'
 
 function* loginAsync(action: IUserLoginAction) {
   try {
@@ -49,7 +50,7 @@ function* loginAsync(action: IUserLoginAction) {
     yield put(rootDisablePreloaderAction())
   } catch (error) {
     console.log(error)
-    yield put(userLogoutAction())
+    yield logout()
   }
 }
 function* fetchAccountAsync(action: IUserFetchAccountAction) {
@@ -65,6 +66,8 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
     if (item) {
       yield put(userAuthAction(item))
     } else {
+      yield logout()
+
       const dateNow = Date.now()
       yield put(
         notificationAddItemAction({
@@ -79,8 +82,13 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
 
     yield put(rootDisablePreloaderAction())
   } catch (error) {
-    yield put(userLogoutAction())
+    yield logout()
   }
+}
+
+function logout() {
+  cleanUserStorage()
+  put(userLogoutAction())
 }
 
 function* userSaga() {

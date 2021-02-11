@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import dialogAPI from '../api/DialogAPI'
 import {
+  EMessengerActionTypes,
   IMessageItem,
   IMessengerFetchMessagesAction,
   IMessengerSendMessageAction,
@@ -53,8 +54,8 @@ function* sendMessageAsync(action: IMessengerSendMessageAction) {
 }
 
 function* messengerSaga() {
-  yield takeLatest('messenger/FETCH_MESSAGES', fetchMessagesAsync)
-  yield takeLatest('messenger/SEND_MESSAGE', sendMessageAsync)
+  yield takeLatest(EMessengerActionTypes.FETCH_MESSAGES, fetchMessagesAsync)
+  yield takeLatest(EMessengerActionTypes.SEND_MESSAGE, sendMessageAsync)
 }
 
 export default messengerSaga
