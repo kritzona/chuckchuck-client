@@ -1,24 +1,25 @@
 import config from '../config'
 import axios from 'axios'
 
-enum ERestAPIStatuses {
+export enum ERestAPIStatuses {
   SUCCESS = 'success',
   ERROR = 'error',
 }
-interface IRestAPISuccessResponse<T> {
+export interface IRestAPISuccessResponse<T> {
   status: ERestAPIStatuses.SUCCESS
   data: T
 }
-interface IRestAPIErrorResponse {
+export interface IRestAPIErrorResponse {
   status: ERestAPIStatuses.ERROR
   message: string
 }
-type TRestAPIResponse<T> = IRestAPISuccessResponse<T> | IRestAPIErrorResponse
+export type TRestAPIResponse<T> =
+  | IRestAPISuccessResponse<T>
+  | IRestAPIErrorResponse
 
-interface IRestAPIQuery {
+export interface IRestAPIQuery {
   [key: string]: string | number
 }
-type TRestAPIQueries = IRestAPIQuery[]
 
 abstract class _RestAPI {
   protected object: string
@@ -39,63 +40,71 @@ abstract class _RestAPI {
     this.apiObjectUrl = `${this.apiUrl}/${this.object}`
 
     this.servicesUrl = `${this.backendUrl}${config.backend.servicesFolder}`
+
+    this.index = this.index.bind(this)
+    this.show = this.show.bind(this)
+    this.create = this.create.bind(this)
+    this.edit = this.edit.bind(this)
+    this.destroy = this.destroy.bind(this)
+    this.generateUrl = this.generateUrl.bind(this)
+    this.getRequest = this.getRequest.bind(this)
+    this.postRequest = this.postRequest.bind(this)
+    this.patchRequest = this.patchRequest.bind(this)
+    this.deleteRequest = this.deleteRequest.bind(this)
   }
 
   protected async index<T>(
     additionParams: (string | number)[] = [],
-    queries: TRestAPIQueries = [],
+    queries: IRestAPIQuery = {},
   ): Promise<TRestAPIResponse<T>> {
-    const url = _RestAPI.generateUrl(this.apiObjectUrl, additionParams)
+    const url = this.generateUrl(this.apiObjectUrl, additionParams)
 
     return await this.getRequest<T>(url, queries)
   }
   protected async show<T>(
     id: string | number,
     additionParams: (string | number)[] = [],
-    queries: TRestAPIQueries = [],
+    queries: IRestAPIQuery = {},
   ): Promise<TRestAPIResponse<T>> {
-    const url = _RestAPI.generateUrl(this.apiObjectUrl, [id, ...additionParams])
+    const url = this.generateUrl(this.apiObjectUrl, [id, ...additionParams])
 
     return await this.getRequest<T>(url, queries)
   }
   protected async create<T>(
     additionParams: (string | number)[] = [],
-    body: TRestAPIQueries = [],
-    queries: TRestAPIQueries = [],
+    body: IRestAPIQuery = {},
+    queries: IRestAPIQuery = {},
   ): Promise<TRestAPIResponse<T>> {
-    const url = _RestAPI.generateUrl(this.apiObjectUrl, additionParams)
+    const url = this.generateUrl(this.apiObjectUrl, additionParams)
 
     return await this.postRequest<T>(url, body, queries)
   }
   protected async edit<T>(
     additionParams: (string | number)[] = [],
-    body: TRestAPIQueries = [],
-    queries: TRestAPIQueries = [],
+    body: IRestAPIQuery = {},
+    queries: IRestAPIQuery = {},
   ): Promise<TRestAPIResponse<T>> {
-    const url = _RestAPI.generateUrl(this.apiObjectUrl, additionParams)
+    const url = this.generateUrl(this.apiObjectUrl, additionParams)
 
     return await this.patchRequest<T>(url, body, queries)
   }
   protected async destroy<T>(
     id: string | number,
     additionParams: (string | number)[] = [],
-    queries: TRestAPIQueries = [],
+    queries: IRestAPIQuery = {},
   ): Promise<TRestAPIResponse<T>> {
-    const url = _RestAPI.generateUrl(this.apiObjectUrl, [id, ...additionParams])
+    const url = this.generateUrl(this.apiObjectUrl, [id, ...additionParams])
 
     return await this.deleteRequest<T>(url, queries)
   }
 
-  protected static generateUrl(
-    mainUrl: string,
-    additionParams: (string | number)[],
-  ) {
+  protected generateUrl(mainUrl: string, additionParams: (string | number)[]) {
     return `${mainUrl}/${additionParams.join('/')}`
   }
 
   protected async getRequest<T>(
     url: string,
-    queries: TRestAPIQueries,
+    queries: IRestAPIQuery,
   ): Promise<TRestAPIResponse<T>> {
     return await axios
       .get(url, {
@@ -112,8 +121,8 @@ abstract class _RestAPI {
   }
   protected async postRequest<T>(
     url: string,
-    body: TRestAPIQueries,
-    queries: TRestAPIQueries,
+    body: IRestAPIQuery,
+    queries: IRestAPIQuery,
   ): Promise<TRestAPIResponse<T>> {
     return await axios
       .post(
@@ -134,8 +143,8 @@ abstract class _RestAPI {
   }
   protected async patchRequest<T>(
     url: string,
-    body: TRestAPIQueries,
-    queries: TRestAPIQueries,
+    body: IRestAPIQuery,
+    queries: IRestAPIQuery,
   ): Promise<TRestAPIResponse<T>> {
     return await axios
       .patch(
@@ -156,7 +165,7 @@ abstract class _RestAPI {
   }
   protected async deleteRequest<T>(
     url: string,
-    queries: TRestAPIQueries,
+    queries: IRestAPIQuery,
   ): Promise<TRestAPIResponse<T>> {
     return await axios
       .delete(url, {
@@ -172,3 +181,5 @@ abstract class _RestAPI {
       })
   }
 }
+
+export default _RestAPI
