@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import MessengerHeader from '../components/organisms/MessengerHeader/MessengerHeader'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'

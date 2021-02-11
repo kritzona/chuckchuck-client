@@ -1,8 +1,6 @@
 import React from 'react'
+import websocket from '../utils/websocket'
 
-const SocketContext = React.createContext({
-  off(...args: any) {},
-  on(...args: any) {},
-})
+const SocketContext = React.createContext(websocket)
 
 export default SocketContext

@@ -9,7 +9,6 @@ import {
   messengerFetchMessagesAction,
   messengerInitAction,
 } from '../store/messenger/actions'
-import initWebsocket from '../utils/init-websocket'
 import { userStorage } from '../utils/user-storage'
 import { IMessageItem } from '../store/messenger/types'
 import SocketContext from '../contexts/SocketContext'

@@ -6,7 +6,6 @@ import {
   contactUpdateLastVisitedAtAction,
 } from '../store/contact/actions'
 import { RootState } from '../store/store'
-import initWebsocket from '../utils/init-websocket'
 import { userStorage } from '../utils/user-storage'
 import { withRouter } from 'react-router-dom'
 import SocketContext from '../contexts/SocketContext'

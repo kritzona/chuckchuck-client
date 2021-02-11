@@ -13,7 +13,6 @@ import {
   rootDisablePreloaderAction,
   rootEnablePreloaderAction,
 } from '../store/root/actions'
-import { userLogoutAction } from '../store/user/actions'
 
 function* fetchItemsAsync(action: IContactFetchItemsAction) {
   yield put(rootEnablePreloaderAction())
