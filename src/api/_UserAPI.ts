@@ -1,4 +1,4 @@
-import _RestAPI, { ERestAPIStatuses, TRestAPIResponse } from './_RestAPI'
+import _RestAPI, { ERestAPIStatuses } from './_RestAPI'
 
 interface IUserAPIItem {
   id: string
