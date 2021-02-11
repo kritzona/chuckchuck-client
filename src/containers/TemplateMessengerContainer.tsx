@@ -10,7 +10,6 @@ import {
   messengerInitAction,
 } from '../store/messenger/actions'
 import { userStorage } from '../utils/user-storage'
-import { IMessageItem } from '../store/messenger/types'
 import SocketContext from '../contexts/SocketContext'
 import { IDialogAPIMessageItem } from '../api/DialogAPI'
 

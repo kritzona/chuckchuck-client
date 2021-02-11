@@ -2,7 +2,6 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 import dialogAPI, { IDialogAPIMessageItem } from '../api/DialogAPI'
 import {
   EMessengerActionTypes,
-  IMessageItem,
   IMessengerFetchMessagesAction,
   IMessengerSendMessageAction,
 } from '../store/messenger/types'
