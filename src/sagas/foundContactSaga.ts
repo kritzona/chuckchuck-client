@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest, cancel } from 'redux-saga/effects'
 import userAPI, { IUserAPIFoundContactItem } from '../api/UserAPI'
 import {
   foundContactAddItemsAction,
@@ -20,21 +20,24 @@ function* searchAsync(action: IFoundContactSearchAction) {
       action.payload.userId,
       action.payload.userAccessToken,
     )
-    const foundContactItems: IFoundContactItem[] = _foundContactItems.map(
-      (_foundContactItem) => {
-        return {
-          id: _foundContactItem.id,
-          login: _foundContactItem.login,
-          firstName: _foundContactItem.firstName,
-          lastName: _foundContactItem.lastName,
-          avatar: _foundContactItem.avatar,
-          isOnline: true,
-          lastVisitedAt: new Date(_foundContactItem.lastVisitedAt),
-        }
-      },
-    )
 
-    yield put(foundContactAddItemsAction(foundContactItems))
+    if (_foundContactItems) {
+      const foundContactItems: IFoundContactItem[] = _foundContactItems.map(
+        (_foundContactItem) => {
+          return {
+            id: _foundContactItem.id,
+            login: _foundContactItem.login,
+            firstName: _foundContactItem.firstName,
+            lastName: _foundContactItem.lastName,
+            avatar: _foundContactItem.avatar,
+            isOnline: true,
+            lastVisitedAt: new Date(_foundContactItem.lastVisitedAt),
+          }
+        },
+      )
+
+      yield put(foundContactAddItemsAction(foundContactItems))
+    }
   } catch (error) {
     console.log(error)
   }

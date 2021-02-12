@@ -1,5 +1,5 @@
 import config from '../config'
-import axios from 'axios'
+import axios, { CancelToken } from 'axios'
 
 export enum ERestAPIStatuses {
   SUCCESS = 'success',
@@ -56,10 +56,11 @@ abstract class RestAPI {
   protected async index<T>(
     additionParams: (string | number)[] = [],
     queries: IRestAPIQuery = {},
+    cancelToken?: CancelToken,
   ): Promise<TRestAPIResponse<T>> {
     const url = this.generateUrl(this.apiObjectUrl, additionParams)
 
-    return await this.getRequest<T>(url, queries)
+    return await this.getRequest<T>(url, queries, cancelToken)
   }
   protected async show<T>(
     id: string | number,
@@ -105,10 +106,12 @@ abstract class RestAPI {
   protected async getRequest<T>(
     url: string,
     queries: IRestAPIQuery,
+    cancelToken?: CancelToken,
   ): Promise<TRestAPIResponse<T>> {
     return await axios
       .get(url, {
         params: { ...queries },
+        cancelToken,
       })
       .then((response) => {
         const responseData: IRestAPISuccessResponse<T> = response.data
