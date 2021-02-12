@@ -1,6 +1,5 @@
 import avatarImageSource from '../../assets/images/avatar.png'
 import { EUserActionTypes, IUserState, TUserAction } from './types'
-import { cleanUserStorage } from '../../utils/user-storage'
 
 const initialState: IUserState = {
   id: -1,
