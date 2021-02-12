@@ -1,5 +1,3 @@
-import { IContactItem } from '../contact/types'
-
 export enum EFoundContactActionTypes {
   ADD_ITEM = 'found-contact/ADD_ITEM',
   ADD_ITEMS = 'found-contact/ADD_ITEMS',
@@ -8,7 +6,15 @@ export enum EFoundContactActionTypes {
   SEARCH = 'found-contact/SEARCH',
 }
 
-export interface IFoundContactItem extends IContactItem {}
+export interface IFoundContactItem {
+  id: string | number
+  login: string
+  firstName: string
+  lastName: string
+  avatar: string | null
+  isOnline: boolean
+  lastVisitedAt: Date
+}
 export interface IFoundContactState {
   items: IFoundContactItem[]
 }
