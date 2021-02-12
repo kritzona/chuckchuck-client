@@ -36,6 +36,11 @@ export interface IFoundContactResetItemsAction {
 }
 export interface IFoundContactSearchAction {
   type: EFoundContactActionTypes.SEARCH
+  payload: {
+    searchText: string
+    userId: string | number
+    userAccessToken: string
+  }
 }
 
 export type TFoundContactAction =

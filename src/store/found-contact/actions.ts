@@ -35,6 +35,15 @@ export const foundContactRemoveItemAction = (
 export const foundContactResetItemsAction = (): IFoundContactResetItemsAction => ({
   type: EFoundContactActionTypes.RESET_ITEMS,
 })
-export const foundContactSearchAction = (): IFoundContactSearchAction => ({
+export const foundContactSearchAction = (
+  searchText: string,
+  userId: string | number,
+  userAccessToken: string,
+): IFoundContactSearchAction => ({
   type: EFoundContactActionTypes.SEARCH,
+  payload: {
+    searchText,
+    userId,
+    userAccessToken,
+  },
 })
