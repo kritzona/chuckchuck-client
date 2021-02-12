@@ -1,6 +1,6 @@
 const config = {
   backend: {
-    host: 'https://chuckchuck-server.herokuapp.com/',
+    host: 'https://chuckchuck-server.herokuapp.com',
     port: null,
     apiFolder: '/api',
     servicesFolder: '/services',
