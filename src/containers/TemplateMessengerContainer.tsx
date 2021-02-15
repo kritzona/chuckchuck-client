@@ -67,12 +67,12 @@ const TemplateMessengerContainer = (props: IProps) => {
         setInit(true)
       }
     }
-  }, [init, dialogId, contactId, dispatch, userAccessToken, userId, socket])
-  useEffect(() => {
+
     return () => {
       socket.off(`sended-message:dialog-${dialogId}`)
     }
-  })
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <React.Fragment>
