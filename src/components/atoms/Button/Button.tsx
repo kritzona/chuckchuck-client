@@ -4,6 +4,7 @@ import Text from '../Text/Text'
 import ButtonStyled from './ButtonStyled'
 
 interface IProps {
+  type?: 'button' | 'reset' | 'submit'
   value?: string
   fullWidth?: boolean
   woBackground?: boolean
@@ -11,7 +12,11 @@ interface IProps {
 
 const Button = (props: IProps) => {
   return (
-    <ButtonStyled fullWidth={props.fullWidth} woBackground={props.woBackground}>
+    <ButtonStyled
+      type={props.type}
+      fullWidth={props.fullWidth}
+      woBackground={props.woBackground}
+    >
       <Text type="text-small-bold">
         {props.value ? props.value : 'Отправить'}
       </Text>

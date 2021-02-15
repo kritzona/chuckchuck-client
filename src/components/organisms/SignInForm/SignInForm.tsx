@@ -18,8 +18,6 @@ const SignInForm = (props: IProps) => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
 
-    // console.log(login, password, remember)
-    // history.push('/messenger')
     if (props.onSubmit) {
       props.onSubmit(login, password, remember)
     }
@@ -55,7 +53,12 @@ const SignInForm = (props: IProps) => {
         checked={remember}
         onClick={() => handleRememberClick()}
       />
-      <Button value="Войти" fullWidth={true} />
+      <Button type="submit" value="Войти" fullWidth={true} />
+      <Button
+        value="Создать аккаунт"
+        fullWidth={true}
+        woBackground={true}
+      ></Button>
     </SignInFormStyled>
   )
 }
