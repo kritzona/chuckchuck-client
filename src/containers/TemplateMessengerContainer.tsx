@@ -46,6 +46,7 @@ const TemplateMessengerContainer = (props: IProps) => {
           messengerFetchMessagesAction(dialogId, userId, userAccessToken),
         )
 
+        socket.off(`sended-message:dialog-${dialogId}`)
         socket.on(
           `sended-message:dialog-${dialogId}`,
           (payload: { message: IDialogAPIMessageItem }) => {
@@ -67,6 +68,11 @@ const TemplateMessengerContainer = (props: IProps) => {
       }
     }
   }, [init, dialogId, contactId, dispatch, userAccessToken, userId, socket])
+  useEffect(() => {
+    return () => {
+      socket.off(`sended-message:dialog-${dialogId}`)
+    }
+  })
 
   return (
     <React.Fragment>
