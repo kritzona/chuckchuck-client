@@ -8,6 +8,7 @@ import SignInFormStyled from './SignInFormStyled'
 
 interface IProps {
   onSubmit?: (login: string, password: string, remember: boolean) => void
+  onSignUpClick?: () => void
 }
 
 const SignInForm = (props: IProps) => {
@@ -18,19 +19,14 @@ const SignInForm = (props: IProps) => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
 
-    if (props.onSubmit) {
-      props.onSubmit(login, password, remember)
-    }
+    if (props.onSubmit) props.onSubmit(login, password, remember)
   }
-  const handleLoginInput = (value: string) => {
-    setLogin(value)
+  const handleSignUpClick = () => {
+    if (props.onSignUpClick) props.onSignUpClick()
   }
-  const handlePasswordInput = (value: string) => {
-    setPassword(value)
-  }
-  const handleRememberClick = () => {
-    setRemember(!remember)
-  }
+  const handleLoginInput = (value: string) => setLogin(value)
+  const handlePasswordInput = (value: string) => setPassword(value)
+  const handleRememberClick = () => setRemember(!remember)
 
   return (
     <SignInFormStyled onSubmit={(event: FormEvent) => handleSubmit(event)}>
@@ -58,6 +54,7 @@ const SignInForm = (props: IProps) => {
         value="Создать аккаунт"
         fullWidth={true}
         woBackground={true}
+        onClick={() => handleSignUpClick()}
       ></Button>
     </SignInFormStyled>
   )

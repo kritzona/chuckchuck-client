@@ -8,14 +8,20 @@ interface IProps {
   value?: string
   fullWidth?: boolean
   woBackground?: boolean
+  onClick?: () => void
 }
 
 const Button = (props: IProps) => {
+  const handleClick = () => {
+    if (props.onClick) props.onClick()
+  }
+
   return (
     <ButtonStyled
       type={props.type}
       fullWidth={props.fullWidth}
       woBackground={props.woBackground}
+      onClick={() => handleClick()}
     >
       <Text type="text-small-bold">
         {props.value ? props.value : 'Отправить'}

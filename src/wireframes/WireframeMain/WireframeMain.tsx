@@ -18,6 +18,7 @@ interface IProps {
 }
 
 const Home = React.lazy(() => import('../../views/Home/Home'))
+const SignUp = React.lazy(() => import('../../views/SignUp/SignUp'))
 const UIKit = React.lazy(() => import('../../views/UIKit/UIKit'))
 const Contacts = React.lazy(() => import('../../views/Contacts/Contacts'))
 const Messenger = React.lazy(() => import('../../views/Messenger/Messenger'))
@@ -54,6 +55,11 @@ const WireframeMain = (props: IProps) => {
                 <MainHeader />
               </Suspense>
             </Route>
+            <Route path="/sign-up">
+              <Suspense fallback={<Preloader />}>
+                <MainHeader />
+              </Suspense>
+            </Route>
             <Route path="/ui-kit">
               <Suspense fallback={<Preloader />}>
                 <MainHeader />
@@ -78,6 +84,11 @@ const WireframeMain = (props: IProps) => {
             <Route exact path="/">
               <Suspense fallback={<Preloader />}>
                 <Home />
+              </Suspense>
+            </Route>
+            <Route path="/sign-up">
+              <Suspense fallback={<Preloader />}>
+                <SignUp />
               </Suspense>
             </Route>
             <Route path="/ui-kit">
