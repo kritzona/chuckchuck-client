@@ -1,6 +1,5 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest, delay } from 'redux-saga/effects'
 import userAPI, { IUserAPIFoundContactItem } from '../api/UserAPI'
-import { contactFetchItemsAction } from '../store/contact/actions'
 import {
   foundContactAddItemsAction,
   foundContactResetItemsAction,
@@ -15,6 +14,10 @@ import {
   rootDisablePreloaderAction,
   rootEnablePreloaderAction,
 } from '../store/root/actions'
+import {
+  notificationAddItemAction,
+  notificationRemoveItemAction,
+} from '../store/notification/actions'
 
 function* searchAsync(action: IFoundContactSearchAction) {
   try {
@@ -59,6 +62,20 @@ function* bindAsync(action: IFoundContactBindAction) {
       action.payload.userId,
       action.payload.userAccessToken,
     )
+    if (bindedContact) {
+      yield put(rootDisablePreloaderAction())
+
+      const dateNow = Date.now()
+      yield put(
+        notificationAddItemAction({
+          id: dateNow,
+          status: 'success',
+          message: 'Контакт добавлен',
+        }),
+      )
+      yield delay(2500)
+      yield put(notificationRemoveItemAction(dateNow))
+    }
 
     yield put(rootDisablePreloaderAction())
   } catch (error) {

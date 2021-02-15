@@ -18,6 +18,9 @@ const ContactsContainer = (props: IProps) => {
       setInit(true)
     }
   }, [init])
+  useEffect(() => {
+    console.log(contactItems)
+  }, [contactItems])
 
   const handleClick = (item: IContactItem) => {
     history.push(`/messenger/${item.id}/${item.dialogId}`)

@@ -9,6 +9,7 @@ import { RootState } from '../store/store'
 import { userStorage } from '../utils/user-storage'
 import { withRouter } from 'react-router-dom'
 import SocketContext from '../contexts/SocketContext'
+import AuthContext from '../contexts/AuthContext'
 
 interface IProps {
   match: {}
@@ -80,7 +81,19 @@ const AuthContainer = (props: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.isAuth])
 
-  return <React.Fragment>{init && props.children}</React.Fragment>
+  return (
+    <React.Fragment>
+      <AuthContext.Provider
+        value={{
+          refreshContacts: () => {
+            updateContacts()
+          },
+        }}
+      >
+        {init && props.children}
+      </AuthContext.Provider>
+    </React.Fragment>
+  )
 }
 
 export default withRouter(AuthContainer)

@@ -1,19 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SearchContactModal from '../components/organisms/SearchContactModal/SearchContactModal'
-import { contactFetchItemsAction } from '../store/contact/actions'
 import {
   foundContactBindAction,
   foundContactSearchAction,
 } from '../store/found-contact/actions'
 import { RootState } from '../store/store'
 import { userStorage } from '../utils/user-storage'
+import AuthContext from '../contexts/AuthContext'
 
 interface IProps {
   onClose?: () => void
 }
 
 const SearchContactContainer = (props: IProps) => {
+  const auth = useContext(AuthContext)
   const { userId, userAccessToken } = userStorage()
   const foundContactItems = useSelector(
     (state: RootState) => state.foundContact.items,
@@ -29,9 +30,10 @@ const SearchContactContainer = (props: IProps) => {
     dispatch(
       foundContactBindAction(contactId, userId || '', userAccessToken || ''),
     )
-    dispatch(contactFetchItemsAction(userId || '', userAccessToken || ''))
-
-    if (props.onClose) props.onClose()
+    setTimeout(() => {
+      auth.refreshContacts()
+      if (props.onClose) props.onClose()
+    }, 1000)
   }
 
   return (

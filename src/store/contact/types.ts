@@ -40,7 +40,7 @@ export interface IContactUpdateLastVisitedAtAction {
 }
 export interface IContactFetchItemsAction {
   type: EContactActionTypes.FETCH_ITEMS
-  payload: { userId: string; userAccessToken: string }
+  payload: { userId: string | number; userAccessToken: string }
 }
 
 export type TContactAction =

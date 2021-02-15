@@ -21,7 +21,7 @@ export const contactResetItemsAction = (): IContactResetItemsAction => {
   }
 }
 export const contactFetchItemsAction = (
-  userId: string,
+  userId: string | number,
   userAccessToken: string,
 ): IContactFetchItemsAction => {
   return {
