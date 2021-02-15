@@ -18,6 +18,7 @@ import {
   notificationAddItemAction,
   notificationRemoveItemAction,
 } from '../store/notification/actions'
+import { contactFetchItemsAction } from '../store/contact/actions'
 
 function* searchAsync(action: IFoundContactSearchAction) {
   try {
@@ -63,6 +64,13 @@ function* bindAsync(action: IFoundContactBindAction) {
       action.payload.userAccessToken,
     )
     if (bindedContact) {
+      yield delay(1000)
+      yield put(
+        contactFetchItemsAction(
+          action.payload.userId,
+          action.payload.userAccessToken,
+        ),
+      )
       yield put(rootDisablePreloaderAction())
 
       const dateNow = Date.now()

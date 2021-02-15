@@ -30,10 +30,8 @@ const SearchContactContainer = (props: IProps) => {
     dispatch(
       foundContactBindAction(contactId, userId || '', userAccessToken || ''),
     )
-    setTimeout(() => {
-      auth.refreshContacts()
-      if (props.onClose) props.onClose()
-    }, 1000)
+
+    if (props.onClose) props.onClose()
   }
 
   return (
