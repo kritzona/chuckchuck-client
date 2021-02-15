@@ -69,7 +69,9 @@ const TemplateContacts = (props: IProps) => {
 
       {shownSearchContactModal && (
         <ModalWindow onClose={() => handleSearchContactModalClose()}>
-          <SearchContactContainer />
+          <SearchContactContainer
+            onClose={() => handleSearchContactModalClose()}
+          />
         </ModalWindow>
       )}
     </TemplateContactsStyled>

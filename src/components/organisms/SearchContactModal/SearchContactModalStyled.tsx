@@ -26,6 +26,7 @@ export const SearchContactModalUserStyled = styled.div<IProps>`
     background-color: ${theme.colors.backgroundMiddleColor};
     border-radius: ${theme.sizes.borderRadius}px;
     box-shadow: ${theme.effects.boxShadow};
+    cursor: pointer;
 
     &:not(:first-child) {
       margin-top: ${theme.sizes.stepSize}px;

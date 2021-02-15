@@ -1,11 +1,17 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SearchContactModal from '../components/organisms/SearchContactModal/SearchContactModal'
-import { foundContactSearchAction } from '../store/found-contact/actions'
+import { contactFetchItemsAction } from '../store/contact/actions'
+import {
+  foundContactBindAction,
+  foundContactSearchAction,
+} from '../store/found-contact/actions'
 import { RootState } from '../store/store'
 import { userStorage } from '../utils/user-storage'
 
-interface IProps {}
+interface IProps {
+  onClose?: () => void
+}
 
 const SearchContactContainer = (props: IProps) => {
   const { userId, userAccessToken } = userStorage()
@@ -19,11 +25,20 @@ const SearchContactContainer = (props: IProps) => {
       foundContactSearchAction(value, userId || '', userAccessToken || ''),
     )
   }
+  const handleBindContact = (contactId: string | number) => {
+    dispatch(
+      foundContactBindAction(contactId, userId || '', userAccessToken || ''),
+    )
+    dispatch(contactFetchItemsAction(userId || '', userAccessToken || ''))
+
+    if (props.onClose) props.onClose()
+  }
 
   return (
     <SearchContactModal
       foundContactItems={foundContactItems}
-      onSearchInput={(value: string) => handleSearchInput(value)}
+      onSearchInput={(...attrs) => handleSearchInput(...attrs)}
+      onBindContact={(...attrs) => handleBindContact(...attrs)}
     />
   )
 }

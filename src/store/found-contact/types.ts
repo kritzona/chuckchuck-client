@@ -4,6 +4,7 @@ export enum EFoundContactActionTypes {
   REMOVE_ITEM = 'found-contact/REMOVE_ITEM',
   RESET_ITEMS = 'found-contact/RESET_ITEMS',
   SEARCH = 'found-contact/SEARCH',
+  BIND = 'found-contact/BIND',
 }
 
 export interface IFoundContactItem {
@@ -48,6 +49,14 @@ export interface IFoundContactSearchAction {
     userAccessToken: string
   }
 }
+export interface IFoundContactBindAction {
+  type: EFoundContactActionTypes.BIND
+  payload: {
+    contactId: string | number
+    userId: string | number
+    userAccessToken: string
+  }
+}
 
 export type TFoundContactAction =
   | IFoundContactAddItemAction
@@ -55,3 +64,4 @@ export type TFoundContactAction =
   | IFoundContactRemoveItemAction
   | IFoundContactResetItemsAction
   | IFoundContactSearchAction
+  | IFoundContactBindAction

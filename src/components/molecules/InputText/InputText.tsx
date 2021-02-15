@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputField from '../../atoms/InputField/InputField'
 import InputLabel from '../../atoms/InputLabel/InputLabel'
 import InputTextElement from '../../atoms/InputTextElement/InputTextElement'
@@ -12,6 +12,7 @@ interface IProps {
   placeholder?: string
   value?: string
   onInput?: (value: string) => void
+  inFocus?: boolean
 }
 
 const InputText = (props: IProps) => {
@@ -59,6 +60,11 @@ const InputText = (props: IProps) => {
       props.onInput(value)
     }
   }
+
+  useEffect(() => {
+    if (props.inFocus) handleInputFieldClick()
+    // eslint-disable-next-line
+  }, [props.inFocus])
 
   return (
     <InputTextStyled>

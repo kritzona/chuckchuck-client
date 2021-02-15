@@ -14,11 +14,15 @@ import { IFoundContactItem } from '../../../store/found-contact/types'
 interface IProps {
   foundContactItems: IFoundContactItem[]
   onSearchInput?: (value: string) => void
+  onBindContact?: (contactId: string | number) => void
 }
 
 const SearchContactModal = (props: IProps) => {
   const handleInput = (value: string) => {
     if (props.onSearchInput) props.onSearchInput(value)
+  }
+  const handleContactClick = (contactId: string | number) => {
+    if (props.onBindContact) props.onBindContact(contactId)
   }
 
   return (
@@ -28,12 +32,16 @@ const SearchContactModal = (props: IProps) => {
           type="text"
           placeholder="Поиск контакта"
           onInput={(value: string) => handleInput(value)}
+          inFocus={true}
         />
       </SearchContactModalHeaderStyled>
       <SearchContactModalContentStyled>
         <SearchContactModalUsersStyled>
           {props.foundContactItems.map((foundContactItem) => (
-            <SearchContactModalUserStyled key={foundContactItem.id}>
+            <SearchContactModalUserStyled
+              key={foundContactItem.id}
+              onClick={() => handleContactClick(foundContactItem.id)}
+            >
               <User
                 firstName={foundContactItem.firstName}
                 lastName={foundContactItem.lastName}

@@ -2,6 +2,7 @@ import {
   EFoundContactActionTypes,
   IFoundContactAddItemAction,
   IFoundContactAddItemsAction,
+  IFoundContactBindAction,
   IFoundContactItem,
   IFoundContactRemoveItemAction,
   IFoundContactResetItemsAction,
@@ -43,6 +44,18 @@ export const foundContactSearchAction = (
   type: EFoundContactActionTypes.SEARCH,
   payload: {
     searchText,
+    userId,
+    userAccessToken,
+  },
+})
+export const foundContactBindAction = (
+  contactId: string | number,
+  userId: string | number,
+  userAccessToken: string,
+): IFoundContactBindAction => ({
+  type: EFoundContactActionTypes.BIND,
+  payload: {
+    contactId,
     userId,
     userAccessToken,
   },
