@@ -3,10 +3,11 @@ import styled, { css, DefaultTheme } from 'styled-components'
 interface IProps {
   theme: DefaultTheme
   fullWidth?: boolean
+  woBackground?: boolean
 }
 
 const ButtonStyled = styled.button<IProps>`
-  ${({ theme, fullWidth }) => css`
+  ${({ theme, fullWidth, woBackground }) => css`
     color: ${theme.colors.blackColor};
     background: ${theme.colors.compColor};
     margin: 0;
