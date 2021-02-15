@@ -3,9 +3,17 @@ import Logotype from '../../atoms/Logotype/Logotype'
 import Text from '../../atoms/Text/Text'
 import LogotypeWithNameStyled from './LogotypeWithNameStyled'
 
-const LogotypeWithName = () => {
+interface IProps {
+  onClick?: () => void
+}
+
+const LogotypeWithName = (props: IProps) => {
+  const handleClick = () => {
+    if (props.onClick) props.onClick()
+  }
+
   return (
-    <LogotypeWithNameStyled>
+    <LogotypeWithNameStyled onClick={() => handleClick()}>
       <Logotype />
       <Text type="text-small-bold">ChuckChuck</Text>
     </LogotypeWithNameStyled>

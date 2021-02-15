@@ -1,4 +1,4 @@
-import { call, put, takeLatest, cancel } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 import userAPI, { IUserAPIFoundContactItem } from '../api/UserAPI'
 import {
   foundContactAddItemsAction,

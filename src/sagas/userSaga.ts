@@ -2,6 +2,7 @@ import { call, takeLatest, put, delay } from 'redux-saga/effects'
 import {
   userAuthAction,
   userFetchAccountAction,
+  userLoginAction,
   userLogoutAction,
 } from '../store/user/actions'
 import userAPI from '../api/UserAPI'
@@ -13,6 +14,7 @@ import {
   EUserActionTypes,
   IUserFetchAccountAction,
   IUserLoginAction,
+  IUserRegisterAction,
 } from '../store/user/types'
 import {
   rootDisablePreloaderAction,
@@ -54,6 +56,44 @@ function* loginAsync(action: IUserLoginAction) {
     yield logout()
   }
 }
+
+function* registerAsync(action: IUserRegisterAction) {
+  try {
+    yield put(rootEnablePreloaderAction())
+
+    const registeredUserItem = yield call(
+      userAPI.register,
+      action.payload.login,
+      action.payload.firstName,
+      action.payload.lastName,
+      action.payload.password,
+    )
+    if (registeredUserItem) {
+      yield put(
+        userLoginAction(action.payload.login, action.payload.password, true),
+      )
+    } else {
+      yield put(rootDisablePreloaderAction())
+
+      const dateNow = Date.now()
+      yield put(
+        notificationAddItemAction({
+          id: dateNow,
+          status: 'error',
+          message: 'Введены неверные данные',
+        }),
+      )
+      yield delay(2500)
+      yield put(notificationRemoveItemAction(dateNow))
+    }
+
+    yield put(rootDisablePreloaderAction())
+  } catch (error) {
+    console.log(error)
+    yield logout()
+  }
+}
+
 function* fetchAccountAsync(action: IUserFetchAccountAction) {
   try {
     yield put(rootEnablePreloaderAction())
@@ -95,6 +135,7 @@ function logout() {
 function* userSaga() {
   yield takeLatest(EUserActionTypes.LOGIN, loginAsync)
   yield takeLatest(EUserActionTypes.FETCH_ACCOUNT, fetchAccountAsync)
+  yield takeLatest(EUserActionTypes.REGISTER, registerAsync)
 }
 
 export default userSaga

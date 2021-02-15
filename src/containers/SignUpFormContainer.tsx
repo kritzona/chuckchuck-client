@@ -1,18 +1,23 @@
 import React from 'react'
 import SignUpForm from '../components/organisms/SignUpForm/SignUpForm'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { userRegisterAction } from '../store/user/actions'
 
 interface IProps {}
 
 const SignUpFormContainer = (props: IProps) => {
   const history = useHistory()
+  const dispatch = useDispatch()
 
   const handleSubmit = (
     login: string,
     firstName: string,
     lastName: string,
     password: string,
-  ) => console.log(login, firstName, lastName, password)
+  ) => {
+    dispatch(userRegisterAction(login, firstName, lastName, password))
+  }
   const handleSignInClick = () => history.push('/')
 
   return (

@@ -4,6 +4,7 @@ import {
   IUserFetchAccountAction,
   IUserLoginAction,
   IUserLogoutAction,
+  IUserRegisterAction,
   IUserState,
 } from './types'
 
@@ -28,6 +29,20 @@ export const userLoginAction = (
     payload: { login, password, remember },
   }
 }
+export const userRegisterAction = (
+  login: string,
+  firstName: string,
+  lastName: string,
+  password: string,
+): IUserRegisterAction => ({
+  type: EUserActionTypes.REGISTER,
+  payload: {
+    login,
+    firstName,
+    lastName,
+    password,
+  },
+})
 export const userFetchAccountAction = (
   id: string,
   accessToken: string,

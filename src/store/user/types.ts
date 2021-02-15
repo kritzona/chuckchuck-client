@@ -1,6 +1,7 @@
 export enum EUserActionTypes {
   AUTH = 'user/AUTH',
   LOGIN = 'user/LOGIN',
+  REGISTER = 'user/REGISTER',
   LOGOUT = 'user/LOGOUT',
   FETCH_ACCOUNT = 'user/FETCH_ACCOUNT',
 }
@@ -22,6 +23,15 @@ export interface IUserLoginAction {
   type: EUserActionTypes.LOGIN
   payload: { login: string; password: string; remember: boolean }
 }
+export interface IUserRegisterAction {
+  type: EUserActionTypes.REGISTER
+  payload: {
+    login: string
+    firstName: string
+    lastName: string
+    password: string
+  }
+}
 export interface IUserLogoutAction {
   type: EUserActionTypes.LOGOUT
 }
@@ -34,4 +44,5 @@ export type TUserAction =
   | IUserAuthAction
   | IUserLogoutAction
   | IUserLoginAction
+  | IUserRegisterAction
   | IUserFetchAccountAction

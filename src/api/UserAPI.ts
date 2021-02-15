@@ -33,8 +33,12 @@ export interface IUserAPIFoundContactItem {
   avatar: string
   lastVisitedAt: string
 }
+
 export interface IUserAPILoginResponse {
   item: IUserAPIItemWithAccessToken
+}
+export interface IUserAPIRegisterResponse {
+  item: IUserAPIItem
 }
 export interface IUserAPIAccountResponse {
   item: IUserAPIItem
@@ -51,6 +55,7 @@ class UserAPI extends RestAPI {
     super(object)
 
     this.login = this.login.bind(this)
+    this.register = this.register.bind(this)
     this.fetchAccount = this.fetchAccount.bind(this)
     this.fetchContacts = this.fetchContacts.bind(this)
     this.search = this.search.bind(this)
@@ -75,6 +80,31 @@ class UserAPI extends RestAPI {
           initUserStorage(userItem.id, userItem.accessToken, remember)
 
           return userItem
+        case ERestAPIStatuses.ERROR:
+          return false
+      }
+    } catch (error) {
+      return false
+    }
+  }
+
+  public async register(
+    login: string,
+    firstName: string,
+    lastName: string,
+    password: string,
+  ): Promise<IUserAPIItem | false> {
+    try {
+      const response = await super.create<IUserAPIRegisterResponse>([], {
+        login,
+        firstName,
+        lastName,
+        password,
+      })
+
+      switch (response.status) {
+        case ERestAPIStatuses.SUCCESS:
+          return response.data.item
         case ERestAPIStatuses.ERROR:
           return false
       }
