@@ -14,7 +14,11 @@ const notificationReducer = (
 ) => {
   switch (action.type) {
     case ENotificationActionTypes.ADD_ITEM:
-      state.items = [...state.items, action.payload]
+      const date = new Date()
+      state.items = [
+        ...state.items,
+        { id: date.getTime(), ...action.payload, createdAt: date },
+      ]
       return state
     case ENotificationActionTypes.REMOVE_ITEM:
       state.items = state.items.filter((item) => item.id !== action.payload)

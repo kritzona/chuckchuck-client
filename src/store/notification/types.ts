@@ -5,12 +5,15 @@ export enum ENotificationActionTypes {
 }
 
 export interface INotificationItem {
-  id: number
   status: 'info' | 'success' | 'error'
   message: string
 }
+export interface INotificationItemWithDate extends INotificationItem {
+  id: number
+  createdAt: Date
+}
 export interface INotificationState {
-  items: INotificationItem[]
+  items: INotificationItemWithDate[]
 }
 
 export interface INotificationAddItemAction {

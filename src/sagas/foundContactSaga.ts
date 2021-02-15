@@ -73,16 +73,12 @@ function* bindAsync(action: IFoundContactBindAction) {
       )
       yield put(rootDisablePreloaderAction())
 
-      const dateNow = Date.now()
       yield put(
         notificationAddItemAction({
-          id: dateNow,
           status: 'success',
           message: 'Контакт добавлен',
         }),
       )
-      yield delay(2500)
-      yield put(notificationRemoveItemAction(dateNow))
     }
 
     yield put(rootDisablePreloaderAction())

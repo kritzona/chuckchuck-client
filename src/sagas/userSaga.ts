@@ -38,16 +38,12 @@ function* loginAsync(action: IUserLoginAction) {
     } else {
       yield put(rootDisablePreloaderAction())
 
-      const dateNow = Date.now()
       yield put(
         notificationAddItemAction({
-          id: dateNow,
           status: 'error',
           message: 'Неверный логин / пароль',
         }),
       )
-      yield delay(2500)
-      yield put(notificationRemoveItemAction(dateNow))
     }
 
     yield put(rootDisablePreloaderAction())
@@ -75,16 +71,12 @@ function* registerAsync(action: IUserRegisterAction) {
     } else {
       yield put(rootDisablePreloaderAction())
 
-      const dateNow = Date.now()
       yield put(
         notificationAddItemAction({
-          id: dateNow,
           status: 'error',
           message: 'Введены неверные данные',
         }),
       )
-      yield delay(2500)
-      yield put(notificationRemoveItemAction(dateNow))
     }
 
     yield put(rootDisablePreloaderAction())
@@ -109,16 +101,12 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
     } else {
       yield logout()
 
-      const dateNow = Date.now()
       yield put(
         notificationAddItemAction({
-          id: dateNow,
           status: 'error',
           message: 'Недействительный токен',
         }),
       )
-      yield delay(2500)
-      yield put(notificationRemoveItemAction(dateNow))
     }
 
     yield put(rootDisablePreloaderAction())
@@ -127,9 +115,9 @@ function* fetchAccountAsync(action: IUserFetchAccountAction) {
   }
 }
 
-function logout() {
-  cleanUserStorage()
-  put(userLogoutAction())
+function* logout() {
+  yield cleanUserStorage()
+  yield put(userLogoutAction())
 }
 
 function* userSaga() {
