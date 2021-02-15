@@ -49,6 +49,9 @@ export interface IUserAPIContactsResponse {
 export interface IUserAPISearchResponse {
   items: IUserAPIFoundContactItem[]
 }
+export interface IUserAPIAddContactResponse {
+  item: {}
+}
 
 class UserAPI extends RestAPI {
   public constructor(object: string) {
@@ -59,6 +62,7 @@ class UserAPI extends RestAPI {
     this.fetchAccount = this.fetchAccount.bind(this)
     this.fetchContacts = this.fetchContacts.bind(this)
     this.search = this.search.bind(this)
+    this.addContact = this.addContact.bind(this)
   }
 
   public async login(
@@ -171,6 +175,30 @@ class UserAPI extends RestAPI {
       switch (response.status) {
         case ERestAPIStatuses.SUCCESS:
           return response.data.items
+        case ERestAPIStatuses.ERROR:
+          return false
+      }
+    } catch (error) {
+      return false
+    }
+  }
+
+  public async addContact(
+    contactId: string | number,
+    userId: string | number,
+    userAccessToken: string,
+  ): Promise<boolean> {
+    try {
+      const response = await super.create<IUserAPIAddContactResponse>(
+        [userId, 'contacts'],
+        {
+          contactId,
+        },
+      )
+
+      switch (response.status) {
+        case ERestAPIStatuses.SUCCESS:
+          return true
         case ERestAPIStatuses.ERROR:
           return false
       }
