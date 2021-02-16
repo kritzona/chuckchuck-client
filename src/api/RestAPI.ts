@@ -114,7 +114,9 @@ abstract class RestAPI {
     accessToken?: string,
     cancelToken?: CancelToken,
   ): Promise<TRestAPIResponse<T>> {
-    const headers: { [key: string]: string } = {}
+    const headers: { [key: string]: string } = {
+      ContextType: 'application/x-www-form-urlencoded',
+    }
     if (accessToken) {
       headers.Authorization = `Bearer ${accessToken}`
     }
@@ -141,7 +143,9 @@ abstract class RestAPI {
     queries: IRestAPIQuery,
     accessToken?: string,
   ): Promise<TRestAPIResponse<T>> {
-    const headers: { [key: string]: string } = {}
+    const headers: { [key: string]: string } = {
+      ContextType: 'multipart/form-data',
+    }
     if (accessToken) {
       headers.Authorization = `Bearer ${accessToken}`
     }
@@ -171,7 +175,9 @@ abstract class RestAPI {
     queries: IRestAPIQuery,
     accessToken?: string,
   ): Promise<TRestAPIResponse<T>> {
-    const headers: { [key: string]: string } = {}
+    const headers: { [key: string]: string } = {
+      ContextType: 'multipart/form-data',
+    }
     if (accessToken) {
       headers.Authorization = `Bearer ${accessToken}`
     }
@@ -200,7 +206,9 @@ abstract class RestAPI {
     queries: IRestAPIQuery,
     accessToken?: string,
   ): Promise<TRestAPIResponse<T>> {
-    const headers: { [key: string]: string } = {}
+    const headers: { [key: string]: string } = {
+      ContextType: 'application/x-www-form-urlencoded',
+    }
     if (accessToken) {
       headers.Authorization = `Bearer ${accessToken}`
     }
