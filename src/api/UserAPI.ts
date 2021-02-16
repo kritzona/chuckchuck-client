@@ -122,9 +122,12 @@ class UserAPI extends RestAPI {
     userAccessToken: string,
   ): Promise<IUserAPIItem | false> {
     try {
-      const response = await super.show<IUserAPIAccountResponse>(userId, [], {
-        accessToken: userAccessToken,
-      })
+      const response = await super.show<IUserAPIAccountResponse>(
+        userId,
+        [],
+        {},
+        userAccessToken,
+      )
 
       switch (response.status) {
         case ERestAPIStatuses.SUCCESS:
@@ -144,9 +147,8 @@ class UserAPI extends RestAPI {
     try {
       const response = await super.index<IUserAPIContactsResponse>(
         [userId, 'contacts'],
-        {
-          accessToken: userAccessToken,
-        },
+        {},
+        userAccessToken,
       )
 
       switch (response.status) {
@@ -166,11 +168,14 @@ class UserAPI extends RestAPI {
     userAccessToken: string,
   ): Promise<IUserAPIFoundContactItem[] | false> {
     try {
-      const response = await super.index<IUserAPISearchResponse>([], {
-        searchText,
-        userId,
-        accessToken: userAccessToken,
-      })
+      const response = await super.index<IUserAPISearchResponse>(
+        [],
+        {
+          searchText,
+          userId,
+        },
+        userAccessToken,
+      )
 
       switch (response.status) {
         case ERestAPIStatuses.SUCCESS:
@@ -192,7 +197,8 @@ class UserAPI extends RestAPI {
       const response = await super.create<IUserAPIBindContactResponse>(
         [userId, 'contacts'],
         { contactId },
-        { accessToken: userAccessToken },
+        {},
+        userAccessToken,
       )
 
       switch (response.status) {

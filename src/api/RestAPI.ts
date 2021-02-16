@@ -56,47 +56,52 @@ abstract class RestAPI {
   protected async index<T>(
     additionParams: (string | number)[] = [],
     queries: IRestAPIQuery = {},
+    accessToken?: string,
     cancelToken?: CancelToken,
   ): Promise<TRestAPIResponse<T>> {
     const url = this.generateUrl(this.apiObjectUrl, additionParams)
 
-    return await this.getRequest<T>(url, queries, cancelToken)
+    return await this.getRequest<T>(url, queries, accessToken, cancelToken)
   }
   protected async show<T>(
     id: string | number,
     additionParams: (string | number)[] = [],
     queries: IRestAPIQuery = {},
+    accessToken?: string,
   ): Promise<TRestAPIResponse<T>> {
     const url = this.generateUrl(this.apiObjectUrl, [id, ...additionParams])
 
-    return await this.getRequest<T>(url, queries)
+    return await this.getRequest<T>(url, queries, accessToken)
   }
   protected async create<T>(
     additionParams: (string | number)[] = [],
     body: IRestAPIQuery = {},
     queries: IRestAPIQuery = {},
+    accessToken?: string,
   ): Promise<TRestAPIResponse<T>> {
     const url = this.generateUrl(this.apiObjectUrl, additionParams)
 
-    return await this.postRequest<T>(url, body, queries)
+    return await this.postRequest<T>(url, body, queries, accessToken)
   }
   protected async edit<T>(
     additionParams: (string | number)[] = [],
     body: IRestAPIQuery = {},
     queries: IRestAPIQuery = {},
+    accessToken?: string,
   ): Promise<TRestAPIResponse<T>> {
     const url = this.generateUrl(this.apiObjectUrl, additionParams)
 
-    return await this.patchRequest<T>(url, body, queries)
+    return await this.patchRequest<T>(url, body, queries, accessToken)
   }
   protected async destroy<T>(
     id: string | number,
     additionParams: (string | number)[] = [],
     queries: IRestAPIQuery = {},
+    accessToken?: string,
   ): Promise<TRestAPIResponse<T>> {
     const url = this.generateUrl(this.apiObjectUrl, [id, ...additionParams])
 
-    return await this.deleteRequest<T>(url, queries)
+    return await this.deleteRequest<T>(url, queries, accessToken)
   }
 
   protected generateUrl(mainUrl: string, additionParams: (string | number)[]) {
@@ -106,12 +111,20 @@ abstract class RestAPI {
   protected async getRequest<T>(
     url: string,
     queries: IRestAPIQuery,
+    accessToken?: string,
     cancelToken?: CancelToken,
   ): Promise<TRestAPIResponse<T>> {
+    const headers: { [key: string]: string } = {}
+    if (accessToken) {
+      headers.Authorization = `Bearer ${accessToken}`
+    }
+
     return await axios
       .get(url, {
+        headers,
         params: { ...queries },
         cancelToken,
+        withCredentials: true,
       })
       .then((response) => {
         const responseData: IRestAPISuccessResponse<T> = response.data
@@ -126,13 +139,21 @@ abstract class RestAPI {
     url: string,
     body: IRestAPIQuery,
     queries: IRestAPIQuery,
+    accessToken?: string,
   ): Promise<TRestAPIResponse<T>> {
+    const headers: { [key: string]: string } = {}
+    if (accessToken) {
+      headers.Authorization = `Bearer ${accessToken}`
+    }
+
     return await axios
       .post(
         url,
         { ...body },
         {
+          headers,
           params: { ...queries },
+          withCredentials: true,
         },
       )
       .then((response) => {
@@ -148,13 +169,21 @@ abstract class RestAPI {
     url: string,
     body: IRestAPIQuery,
     queries: IRestAPIQuery,
+    accessToken?: string,
   ): Promise<TRestAPIResponse<T>> {
+    const headers: { [key: string]: string } = {}
+    if (accessToken) {
+      headers.Authorization = `Bearer ${accessToken}`
+    }
+
     return await axios
       .patch(
         url,
         { ...body },
         {
+          headers,
           params: { ...queries },
+          withCredentials: true,
         },
       )
       .then((response) => {
@@ -169,10 +198,18 @@ abstract class RestAPI {
   protected async deleteRequest<T>(
     url: string,
     queries: IRestAPIQuery,
+    accessToken?: string,
   ): Promise<TRestAPIResponse<T>> {
+    const headers: { [key: string]: string } = {}
+    if (accessToken) {
+      headers.Authorization = `Bearer ${accessToken}`
+    }
+
     return await axios
       .delete(url, {
+        headers,
         params: { ...queries },
+        withCredentials: true,
       })
       .then((response) => {
         const responseData: IRestAPISuccessResponse<T> = response.data

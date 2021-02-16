@@ -25,12 +25,13 @@ class DialogAPI extends RestAPI {
   public async fetchMessages(
     dialogId: string | number,
     userId: string | number,
-    accessToken: string,
+    userAccessToken: string,
   ): Promise<IDialogAPIMessageItem[] | false> {
     try {
       const response = await super.index<IDialogAPIMessagesResponse>(
         [dialogId, 'messages'],
-        { userId, accessToken },
+        { userId },
+        userAccessToken,
       )
 
       switch (response.status) {
@@ -47,13 +48,14 @@ class DialogAPI extends RestAPI {
     dialogId: string | number,
     content: string,
     userId: string | number,
-    accessToken: string,
+    userAccessToken: string,
   ): Promise<IDialogAPIMessageItem | false> {
     try {
       const response = await super.create<IDialogAPISendedMessageResponse>(
         [dialogId, 'messages'],
         { content },
-        { userId, accessToken },
+        { userId },
+        userAccessToken,
       )
 
       switch (response.status) {
