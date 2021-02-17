@@ -1,5 +1,6 @@
 import RestAPI, { ERestAPIStatuses } from './RestAPI'
 import { initUserStorage } from '../utils/user-storage'
+import { IDialogAPIMessageItem } from './DialogAPI'
 
 export interface IUserAPIItem {
   id: string
@@ -24,6 +25,7 @@ export interface IUserAPIContactItem {
   avatar: string
   dialogId: string
   lastVisitedAt: string
+  lastMessage: IDialogAPIMessageItem
 }
 export interface IUserAPIFoundContactItem {
   id: string

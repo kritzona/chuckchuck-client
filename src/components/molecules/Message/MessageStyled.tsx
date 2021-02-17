@@ -3,13 +3,19 @@ import styled, { css, DefaultTheme } from 'styled-components'
 interface IProps {
   theme: DefaultTheme
   align?: 'left' | 'right'
+  opacity?: boolean
 }
 
 const MessageStyled = styled.div<IProps>`
-  ${({ theme, align }) => css`
+  ${({ theme, align, opacity }) => css`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
+    ${opacity &&
+    css`
+      opacity: 0.7;
+    `}
 
     ${(!align || align === 'left') &&
     css`

@@ -7,11 +7,12 @@ interface IProps {
   date: Date
   align?: 'left' | 'right'
   fullWidth?: boolean
+  opacity?: boolean
 }
 
 const Message = (props: IProps) => {
   return (
-    <MessageStyled align={props.align}>
+    <MessageStyled align={props.align} opacity={props.opacity}>
       <MessageBox
         message={props.message}
         date={props.date}

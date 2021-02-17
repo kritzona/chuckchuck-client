@@ -16,12 +16,13 @@ export interface IContactItem {
   isOnline: boolean
   lastVisitedAt: Date
   dialogId: string | number
+  lastMessage: IMessageItem | null
 }
 export interface IContactItemWithLastMessage extends IContactItem {
   lastMessage: IMessageItem | null
 }
 export interface IContactState {
-  items: IContactItem[]
+  items: IContactItemWithLastMessage[]
 }
 
 export interface IContactAddItemAction {

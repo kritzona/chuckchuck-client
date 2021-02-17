@@ -33,9 +33,10 @@ const Contact = (props: IProps) => {
       {props.lastMessage && (
         <Message
           message={props.lastMessage.content}
-          date={new Date()}
+          date={props.lastMessage.departureDate}
           align="left"
           fullWidth={true}
+          opacity={true}
         />
       )}
       {props.lastMessage === null && (

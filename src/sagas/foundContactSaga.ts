@@ -42,6 +42,7 @@ function* searchAsync(action: IFoundContactSearchAction) {
             avatar: _foundContactItem.avatar,
             isOnline: true,
             lastVisitedAt: new Date(_foundContactItem.lastVisitedAt),
+            lastMessage: null,
           }
         },
       )

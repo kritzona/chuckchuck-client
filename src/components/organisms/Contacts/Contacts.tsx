@@ -31,7 +31,7 @@ const Contacts = (props: IProps) => {
             lastName={item.lastName}
             avatar={item.avatar}
             isOnline={dateNow - item.lastVisitedAt.getTime() <= 30000}
-            lastMessage={null}
+            lastMessage={item.lastMessage}
             onClick={() => handleClick(item)}
           />
         </ContactsItemStyled>

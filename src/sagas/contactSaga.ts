@@ -37,6 +37,15 @@ function* fetchItemsAsync(action: IContactFetchItemsAction) {
             lastVisitedAt: new Date(contact.lastVisitedAt),
             isOnline: true,
             dialogId: contact.dialogId,
+            lastMessage: contact.lastMessage
+              ? {
+                  id: contact.lastMessage.id,
+                  senderId: contact.lastMessage.senderId,
+                  recipientId: contact.lastMessage.recipientId,
+                  content: contact.lastMessage.content,
+                  departureDate: new Date(contact.lastMessage.createdAt),
+                }
+              : null,
           }),
         )
       }
