@@ -4,11 +4,12 @@ import InputLabelStyled from './InputLabelStyled'
 
 interface IProps {
   children?: React.ReactNode
+  status?: 'normal' | 'success' | 'error'
 }
 
 const InputLabel = (props: IProps) => {
   return (
-    <InputLabelStyled>
+    <InputLabelStyled status={props.status}>
       <Text type="text-small-bold">{props.children}</Text>
     </InputLabelStyled>
   )

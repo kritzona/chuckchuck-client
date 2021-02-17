@@ -23,6 +23,9 @@ const notificationReducer = (
     case ENotificationActionTypes.REMOVE_ITEM:
       state.items = state.items.filter((item) => item.id !== action.payload)
       return state
+    case ENotificationActionTypes.RESET_ITEMS:
+      state.items = []
+      return state
     default:
       return state
   }

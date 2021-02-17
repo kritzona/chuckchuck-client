@@ -8,6 +8,7 @@ interface IProps {
   value?: string
   fullWidth?: boolean
   woBackground?: boolean
+  disabled?: boolean
   onClick?: () => void
 }
 
@@ -21,6 +22,7 @@ const Button = (props: IProps) => {
       type={props.type}
       fullWidth={props.fullWidth}
       woBackground={props.woBackground}
+      disabled={props.disabled}
       onClick={() => handleClick()}
     >
       <Text type="text-small-bold">

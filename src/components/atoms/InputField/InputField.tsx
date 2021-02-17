@@ -2,20 +2,23 @@ import React from 'react'
 import InputFieldStyled from './InputFieldStyled'
 
 interface IProps {
+  children?: React.ReactNode
+  status?: 'normal' | 'success' | 'error'
   inFocus?: boolean
   onClick?: () => void
-  children?: React.ReactNode
 }
 
 const InputField = (props: IProps) => {
   const handleClick = () => {
-    if (props.onClick) {
-      props.onClick()
-    }
+    if (props.onClick) props.onClick()
   }
 
   return (
-    <InputFieldStyled inFocus={props.inFocus} onClick={() => handleClick()}>
+    <InputFieldStyled
+      status={props.status}
+      inFocus={props.inFocus}
+      onClick={() => handleClick()}
+    >
       {props.children}
     </InputFieldStyled>
   )

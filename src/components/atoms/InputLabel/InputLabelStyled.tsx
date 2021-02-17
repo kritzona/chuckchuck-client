@@ -2,7 +2,7 @@ import styled, { css, DefaultTheme } from 'styled-components'
 
 interface IProps {
   theme: DefaultTheme
-  status?: string
+  status?: 'normal' | 'success' | 'error'
   disabled?: boolean
 }
 

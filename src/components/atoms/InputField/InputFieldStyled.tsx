@@ -2,12 +2,13 @@ import styled, { css, DefaultTheme } from 'styled-components'
 
 interface IProps {
   theme: DefaultTheme
+  status?: 'normal' | 'success' | 'error'
   inFocus?: boolean
   disabled?: boolean
 }
 
 const InputFieldStyled = styled.div<IProps>`
-  ${({ theme, inFocus, disabled }) => css`
+  ${({ theme, status, inFocus, disabled }) => css`
     width: 100%;
     background-color: ${theme.colors.backgroundMiddleColor};
 
@@ -17,8 +18,18 @@ const InputFieldStyled = styled.div<IProps>`
 
     ${!inFocus &&
     !disabled &&
+    (!status || status === 'normal') &&
     css`
       border: 2px solid ${theme.colors.primaryColor};
+    `}
+
+    ${status === 'success' &&
+    css`
+      border: 2px solid ${theme.colors.successColor};
+    `}
+    ${status === 'error' &&
+    css`
+      border: 2px solid ${theme.colors.errorColor};
     `}
 
     ${inFocus &&

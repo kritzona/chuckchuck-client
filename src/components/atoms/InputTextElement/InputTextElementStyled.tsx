@@ -6,10 +6,10 @@ interface IProps {
   placeholder?: string
 }
 
-const InputTextElementStyled = styled.input.attrs<IProps>((props) => ({
+const InputTextElementStyled = styled.input.attrs((props: IProps) => ({
   type: props.type ? props.type : 'text',
   placeholder: props.placeholder ? props.placeholder : 'Введите значение',
-}))`
+}))<IProps>`
   ${({ theme }) => css`
     width: 100%;
     border: 0;

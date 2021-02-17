@@ -11,8 +11,9 @@ interface IProps {
   label?: string
   placeholder?: string
   value?: string
-  onInput?: (value: string) => void
   inFocus?: boolean
+  errors?: string[]
+  onInput?: (value: string) => void
 }
 
 const InputText = (props: IProps) => {
@@ -27,6 +28,7 @@ const InputText = (props: IProps) => {
     },
   }
   const [inFocus, setInFocus] = useState(false)
+  const [status, setStatus] = useState<'normal' | 'success' | 'error'>('normal')
 
   const handleInputFieldClick = () => {
     if (props.type === 'text') {
@@ -65,12 +67,23 @@ const InputText = (props: IProps) => {
     if (props.inFocus) handleInputFieldClick()
     // eslint-disable-next-line
   }, [props.inFocus])
+  useEffect(() => {
+    if (props.errors && props.errors.length > 0) {
+      setStatus('error')
+    } else {
+      setStatus('normal')
+    }
+  }, [props.errors])
 
   return (
     <InputTextStyled>
-      {props.label && <InputLabel>{props.label}</InputLabel>}
+      {props.label && <InputLabel status={status}>{props.label}</InputLabel>}
 
-      <InputField onClick={() => handleInputFieldClick()} inFocus={inFocus}>
+      <InputField
+        status={status}
+        onClick={() => handleInputFieldClick()}
+        inFocus={inFocus}
+      >
         {(!props.type || props.type === 'text') && (
           <InputTextElement
             type={props.textType}
