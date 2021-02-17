@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, useEffect } from 'react'
+import React, { FormEvent, useState } from 'react'
 
 import InputText from '../../molecules/InputText/InputText'
 import InputCheckbox from '../../molecules/InputCheckbox/InputCheckbox'

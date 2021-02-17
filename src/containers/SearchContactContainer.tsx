@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SearchContactModal from '../components/organisms/SearchContactModal/SearchContactModal'
 import {
@@ -7,14 +7,12 @@ import {
 } from '../store/found-contact/actions'
 import { RootState } from '../store/store'
 import { userStorage } from '../utils/user-storage'
-import AuthContext from '../contexts/AuthContext'
 
 interface IProps {
   onClose?: () => void
 }
 
 const SearchContactContainer = (props: IProps) => {
-  const auth = useContext(AuthContext)
   const { userId, userAccessToken } = userStorage()
   const foundContactItems = useSelector(
     (state: RootState) => state.foundContact.items,

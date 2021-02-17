@@ -14,10 +14,7 @@ import {
   rootDisablePreloaderAction,
   rootEnablePreloaderAction,
 } from '../store/root/actions'
-import {
-  notificationAddItemAction,
-  notificationRemoveItemAction,
-} from '../store/notification/actions'
+import { notificationAddItemAction } from '../store/notification/actions'
 import { contactFetchItemsAction } from '../store/contact/actions'
 
 function* searchAsync(action: IFoundContactSearchAction) {

@@ -5,10 +5,7 @@ import Button from '../../atoms/Button/Button'
 
 import SignUpFormStyled from './SignUpFormStyled'
 import { useDispatch } from 'react-redux'
-import {
-  notificationAddItemAction,
-  notificationResetItemsAction,
-} from '../../../store/notification/actions'
+import { notificationAddItemAction } from '../../../store/notification/actions'
 
 interface IProps {
   onSubmit?: (

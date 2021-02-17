@@ -1,4 +1,4 @@
-import { call, takeLatest, put, delay } from 'redux-saga/effects'
+import { call, takeLatest, put } from 'redux-saga/effects'
 import {
   userAuthAction,
   userFetchAccountAction,
@@ -6,10 +6,7 @@ import {
   userLogoutAction,
 } from '../store/user/actions'
 import userAPI from '../api/UserAPI'
-import {
-  notificationAddItemAction,
-  notificationRemoveItemAction,
-} from '../store/notification/actions'
+import { notificationAddItemAction } from '../store/notification/actions'
 import {
   EUserActionTypes,
   IUserFetchAccountAction,
