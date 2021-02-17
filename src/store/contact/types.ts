@@ -5,6 +5,7 @@ export enum EContactActionTypes {
   RESET_ITEMS = 'contact/RESET_ITEMS',
   FETCH_ITEMS = 'contact/FETCH_ITEMS',
   UPDATE_LAST_VISITED_AT = 'contact/UPDATE_LAST_VISITED_AT',
+  UPDATE_LAST_MESSAGE = 'contact/UPDATE_LAST_MESSAGE',
 }
 
 export interface IContactItem {
@@ -39,6 +40,13 @@ export interface IContactUpdateLastVisitedAtAction {
     lastVisitedAt: Date
   }
 }
+export interface IContactUpdateLastMessageAction {
+  type: EContactActionTypes.UPDATE_LAST_MESSAGE
+  payload: {
+    id: string | number
+    lastMessage: IMessageItem
+  }
+}
 export interface IContactFetchItemsAction {
   type: EContactActionTypes.FETCH_ITEMS
   payload: { userId: string | number; userAccessToken: string }
@@ -49,3 +57,4 @@ export type TContactAction =
   | IContactFetchItemsAction
   | IContactResetItemsAction
   | IContactUpdateLastVisitedAtAction
+  | IContactUpdateLastMessageAction

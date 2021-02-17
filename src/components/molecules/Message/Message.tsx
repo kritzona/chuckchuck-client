@@ -12,7 +12,7 @@ interface IProps {
 
 const Message = (props: IProps) => {
   return (
-    <MessageStyled align={props.align} opacity={props.opacity}>
+    <MessageStyled align={props.align} _opacity={props.opacity}>
       <MessageBox
         message={props.message}
         date={props.date}

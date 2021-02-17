@@ -3,6 +3,7 @@ import { userFetchAccountAction } from '../store/user/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   contactFetchItemsAction,
+  contactUpdateLastMessageAction,
   contactUpdateLastVisitedAtAction,
 } from '../store/contact/actions'
 import { RootState } from '../store/store'
@@ -10,6 +11,7 @@ import { userStorage } from '../utils/user-storage'
 import { withRouter } from 'react-router-dom'
 import SocketContext from '../contexts/SocketContext'
 import AuthContext from '../contexts/AuthContext'
+import { IDialogAPIMessageItem } from '../api/DialogAPI'
 
 interface IProps {
   match: {}
@@ -42,6 +44,7 @@ const AuthContainer = (props: IProps) => {
     if (userId && userAccessToken) {
       contactItems.forEach((item) => {
         socket.off(`updated-user:user-${item.id}`)
+        socket.off(`updated-last-message:user-${item.id}`)
         socket.on(
           `updated-user:user-${item.id}`,
           (payload: { lastVisitedAt: number }) => {
@@ -50,6 +53,20 @@ const AuthContainer = (props: IProps) => {
                 item.id,
                 new Date(payload.lastVisitedAt),
               ),
+            )
+          },
+        )
+        socket.on(
+          `updated-last-message:user-${item.id}`,
+          (payload: { lastMessage: IDialogAPIMessageItem }) => {
+            dispatch(
+              contactUpdateLastMessageAction(item.id, {
+                id: payload.lastMessage.id,
+                senderId: payload.lastMessage.senderId,
+                recipientId: payload.lastMessage.recipientId,
+                content: payload.lastMessage.content,
+                departureDate: new Date(payload.lastMessage.createdAt),
+              }),
             )
           },
         )
@@ -77,6 +94,9 @@ const AuthContainer = (props: IProps) => {
   useEffect(() => {
     if (user.isAuth) {
       updateContacts()
+
+      socket.off(`updated-contacts:user-${userId}`)
+      socket.on(`updated-contacts:user-${userId}`, () => updateContacts())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.isAuth])

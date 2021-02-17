@@ -22,6 +22,14 @@ const contactReducer = (
         return item
       })
       return state
+    case EContactActionTypes.UPDATE_LAST_MESSAGE:
+      state.items = state.items.map((item) => {
+        if (item.id === action.payload.id) {
+          item.lastMessage = action.payload.lastMessage
+        }
+        return item
+      })
+      return state
     default:
       return state
   }

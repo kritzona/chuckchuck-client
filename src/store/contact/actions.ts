@@ -1,9 +1,11 @@
+import { IMessageItem } from '../messenger/types'
 import {
   EContactActionTypes,
   IContactAddItemAction,
   IContactFetchItemsAction,
   IContactItem,
   IContactResetItemsAction,
+  IContactUpdateLastMessageAction,
   IContactUpdateLastVisitedAtAction,
 } from './types'
 
@@ -38,6 +40,18 @@ export const contactUpdateLastVisitedAtAction = (
     payload: {
       id,
       lastVisitedAt,
+    },
+  }
+}
+export const contactUpdateLastMessageAction = (
+  id: string | number,
+  lastMessage: IMessageItem,
+): IContactUpdateLastMessageAction => {
+  return {
+    type: EContactActionTypes.UPDATE_LAST_MESSAGE,
+    payload: {
+      id,
+      lastMessage,
     },
   }
 }
