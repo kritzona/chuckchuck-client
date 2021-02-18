@@ -22,6 +22,7 @@ const SignUp = React.lazy(() => import('../../views/SignUp/SignUp'))
 const UIKit = React.lazy(() => import('../../views/UIKit/UIKit'))
 const Contacts = React.lazy(() => import('../../views/Contacts/Contacts'))
 const Messenger = React.lazy(() => import('../../views/Messenger/Messenger'))
+const Settings = React.lazy(() => import('../../views/Settings/Settings'))
 const MainHeader = React.lazy(
   () => import('../../components/organisms/MainHeader/MainHeader'),
 )
@@ -70,6 +71,11 @@ const WireframeMain = (props: IProps) => {
                 <MainHeader />
               </Suspense>
             </Route>
+            <Route path="/settings">
+              <Suspense fallback={<Preloader />}>
+                <MainHeader />
+              </Suspense>
+            </Route>
             <Route path="/messenger/:contactId/:dialogId">
               <Suspense fallback={<Preloader />}>
                 <MessengerHeaderContainer />
@@ -99,6 +105,11 @@ const WireframeMain = (props: IProps) => {
             <Route path="/contacts">
               <Suspense fallback={<Preloader />}>
                 <Contacts />
+              </Suspense>
+            </Route>
+            <Route path="/settings">
+              <Suspense fallback={<Preloader />}>
+                <Settings />
               </Suspense>
             </Route>
             <Route path="/messenger/:contactId/:dialogId">

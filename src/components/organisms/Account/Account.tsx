@@ -14,9 +14,14 @@ import settingsDarkIconSource from '../../../assets/icons/settings-dark.svg'
 
 interface IProps {
   user: IUserState
+  onOpenSettings?: () => void
 }
 
 const Account = (props: IProps) => {
+  const handleSettingsButtonClick = () => {
+    if (props.onOpenSettings) props.onOpenSettings()
+  }
+
   return (
     <AccountStyled>
       <AccountWestStyled>
@@ -35,6 +40,7 @@ const Account = (props: IProps) => {
           darkIconSource={settingsDarkIconSource}
           woBackground={true}
           iconAlign="center"
+          onClick={() => handleSettingsButtonClick()}
         />
       </AccountEastStyled>
     </AccountStyled>

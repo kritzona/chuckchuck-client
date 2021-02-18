@@ -8,7 +8,7 @@ import {
 } from '../store/contact/actions'
 import { RootState } from '../store/store'
 import { userStorage } from '../utils/user-storage'
-import { withRouter } from 'react-router-dom'
+import { useHistory, withRouter } from 'react-router-dom'
 import SocketContext from '../contexts/SocketContext'
 import AuthContext from '../contexts/AuthContext'
 import { IDialogAPIMessageItem } from '../api/DialogAPI'
@@ -21,6 +21,7 @@ interface IProps {
 }
 
 const AuthContainer = (props: IProps) => {
+  const history = useHistory()
   const socket = useContext(SocketContext)
   const { userId, userAccessToken } = userStorage()
 
@@ -75,14 +76,16 @@ const AuthContainer = (props: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contactItems, socket, dispatch])
 
-  if (!init) {
-    updateUserData()
-    updateContacts()
-    subscribeContactsOnUpdate()
+  useEffect(() => {
+    if (!init) {
+      updateUserData()
+      updateContacts()
+      subscribeContactsOnUpdate()
 
-    setInit(true)
-  }
-
+      setInit(true)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   useEffect(() => {
     updateUserData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -97,6 +100,8 @@ const AuthContainer = (props: IProps) => {
 
       socket.off(`updated-contacts:user-${userId}`)
       socket.on(`updated-contacts:user-${userId}`, () => updateContacts())
+    } else if (!user.isAuth && (!userId || !userAccessToken)) {
+      history.push('/')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.isAuth])
