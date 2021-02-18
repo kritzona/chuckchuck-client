@@ -16,9 +16,7 @@ const Contacts = (props: IProps) => {
   )
 
   const handleClick = (item: IContactItem) => {
-    if (props.onClick) {
-      props.onClick(item)
-    }
+    if (props.onClick) props.onClick(item)
   }
 
   return (

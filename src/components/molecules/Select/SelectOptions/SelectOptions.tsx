@@ -16,14 +16,10 @@ interface IProps {
 
 const SelectOptions = (props: IProps) => {
   const handleInputCheckboxClick = (id: number | string) => {
-    if (props.onChange) {
-      props.onChange(id)
-    }
+    if (props.onChange) props.onChange(id)
   }
   const handleInputRadioClick = (id: number | string) => {
-    if (props.onChange) {
-      props.onChange(id)
-    }
+    if (props.onChange) props.onChange(id)
   }
 
   return (

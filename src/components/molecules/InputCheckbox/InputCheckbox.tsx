@@ -11,9 +11,7 @@ interface IProps {
 
 const InputCheckbox = (props: IProps) => {
   const handleClick = () => {
-    if (props.onClick) {
-      props.onClick()
-    }
+    if (props.onClick) props.onClick()
   }
 
   return (

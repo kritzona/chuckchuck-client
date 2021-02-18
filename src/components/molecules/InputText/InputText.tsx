@@ -18,14 +18,10 @@ interface IProps {
 
 const InputText = (props: IProps) => {
   let inputTextElementRef = {
-    current: {
-      focus: () => null,
-    },
+    current: { focus: () => null },
   }
   let inputTextareaElementRef = {
-    current: {
-      focus: () => null,
-    },
+    current: { focus: () => null },
   }
   const [inFocus, setInFocus] = useState(false)
   const [status, setStatus] = useState<'normal' | 'success' | 'error'>('normal')
@@ -39,40 +35,24 @@ const InputText = (props: IProps) => {
 
     setInFocus(true)
   }
-  const handleInputTextBuildRef = (ref: any) => {
-    inputTextElementRef = ref
-  }
-  const handleInputTextareaBuildRef = (ref: any) => {
-    inputTextareaElementRef = ref
-  }
-  const handleInputTextFocus = () => {
-    setInFocus(true)
-  }
-  const handleInputTextBlur = () => {
-    setInFocus(false)
-  }
-  const handleInputTextareaFocus = () => {
-    setInFocus(true)
-  }
-  const handleInputTextareaBlur = () => {
-    setInFocus(false)
-  }
+  const handleInputTextBuildRef = (ref: any) => (inputTextElementRef = ref)
+  const handleInputTextareaBuildRef = (ref: any) =>
+    (inputTextareaElementRef = ref)
+  const handleInputTextFocus = () => setInFocus(true)
+  const handleInputTextBlur = () => setInFocus(false)
+  const handleInputTextareaFocus = () => setInFocus(true)
+  const handleInputTextareaBlur = () => setInFocus(false)
   const handleInput = (value: string) => {
-    if (props.onInput) {
-      props.onInput(value)
-    }
+    if (props.onInput) props.onInput(value)
   }
 
   useEffect(() => {
     if (props.inFocus) handleInputFieldClick()
+
     // eslint-disable-next-line
   }, [props.inFocus])
   useEffect(() => {
-    if (props.errors && props.errors.length > 0) {
-      setStatus('error')
-    } else {
-      setStatus('normal')
-    }
+    setStatus(props.errors && props.errors.length > 0 ? 'error' : 'normal')
   }, [props.errors])
 
   return (

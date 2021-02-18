@@ -14,20 +14,14 @@ const InputTextareaElement = (props: IProps) => {
   const inputTextareaElementRef = useRef(null)
 
   useEffect(() => {
-    if (props.onBuildRef) {
-      props.onBuildRef(inputTextareaElementRef)
-    }
+    if (props.onBuildRef) props.onBuildRef(inputTextareaElementRef)
   })
 
   const handleFocus = () => {
-    if (props.onFocus) {
-      props.onFocus()
-    }
+    if (props.onFocus) props.onFocus()
   }
   const handleBlur = () => {
-    if (props.onBlur) {
-      props.onBlur()
-    }
+    if (props.onBlur) props.onBlur()
   }
   const handleChange = (event: React.ChangeEvent) => {
     const eventTarget = event.target as HTMLInputElement

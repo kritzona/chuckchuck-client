@@ -21,9 +21,7 @@ const SendBox = (props: IProps) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
 
-    if (props.onSend && inputMessage) {
-      props.onSend(inputMessage)
-    }
+    if (props.onSend && inputMessage) props.onSend(inputMessage)
 
     clearInputMessage()
   }

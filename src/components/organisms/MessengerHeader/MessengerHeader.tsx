@@ -29,7 +29,7 @@ const MessengerHeader = (props: IProps) => {
           lightIconSource={arrowLeftLightIconSource}
           darkIconSource={arrowLeftDarkIconSource}
           woBackground={true}
-          onClick={() => history.push('/contacts')}
+          onClick={() => history.push('/')}
         />
         <User
           firstName={props.contactItem.firstName}

@@ -6,7 +6,6 @@ interface IProps {
 
 export const SelectStyled = styled.div<IProps>`
   position: relative;
-  z-index: 1;
 `
 export const SelectFieldWrapperStyled = styled.div<IProps>``
 export const SelectOptionsWrapperStyled = styled.div<IProps>`

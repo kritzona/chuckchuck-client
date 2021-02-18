@@ -42,15 +42,13 @@ const Select = (props: IProps) => {
     let existCheckedOption = false
     let checkedOptionCount = 0
 
-    options.map((option: IOption) => {
+    options.forEach((option: IOption) => {
       if (option.hasOwnProperty('checked')) option.checked = false
 
       if (option.checked) {
         existCheckedOption = true
         checkedOptionCount++
       }
-
-      return null
     })
 
     switch (type) {
@@ -59,14 +57,8 @@ const Select = (props: IProps) => {
           !existCheckedOption ||
           (existCheckedOption && checkedOptionCount > 1)
         ) {
-          options.map((option: IOption, optionIndex: number) => {
-            if (optionIndex === 0) {
-              option.checked = true
-            } else {
-              option.checked = false
-            }
-
-            return null
+          options.forEach((option: IOption, optionIndex: number) => {
+            option.checked = optionIndex === 0
           })
         }
         break
@@ -80,61 +72,42 @@ const Select = (props: IProps) => {
   }, [props.options])
   useEffect(() => {
     let stringifiedValues = stringifyValues(' / ')
-
-    if (stringifiedValues) {
-      setPlaceholder(stringifiedValues)
-    } else {
-      setPlaceholder(defaultPlaceholder)
-    }
+    setPlaceholder(stringifiedValues ? stringifiedValues : defaultPlaceholder)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localOptions])
 
-  const handleSelectFieldClick = () => {
-    setActive(!active)
-  }
+  const handleSelectFieldClick = () => setActive(!active)
   const handleSelectOptionsChange = (id: number | string) => {
     changeLocalOption(id)
+
+    if (type === 'select') setActive(false)
   }
 
   const checkOutsideClick = (event: Event) => {
     let isOutside = true
     let eventComposedPath = event.composedPath()
 
-    eventComposedPath.map((eventComposedPathItem) => {
-      if (eventComposedPathItem === selectRef.current) {
-        isOutside = false
-      }
-
-      return null
+    eventComposedPath.forEach((eventComposedPathItem) => {
+      if (eventComposedPathItem === selectRef.current) isOutside = false
     })
 
-    if (isOutside) {
-      setActive(false)
-    }
+    if (isOutside) setActive(false)
   }
   const changeLocalOption = (id: number | string) => {
     let _localOptions = JSON.parse(JSON.stringify(localOptions))
 
     switch (type) {
       case 'select':
-        _localOptions.map((localOption: IOption) => {
-          if (localOption.id === id) {
-            localOption.checked = true
-          } else {
-            localOption.checked = false
-          }
-
-          return null
+        _localOptions.forEach((localOption: IOption) => {
+          localOption.checked = localOption.id === id
         })
         break
       case 'multiselect':
-        _localOptions.map((localOption: IOption) => {
+        _localOptions.forEach((localOption: IOption) => {
           if (localOption.id === id) {
             localOption.checked = !localOption.checked
           }
-
-          return null
         })
         break
     }
@@ -144,10 +117,8 @@ const Select = (props: IProps) => {
   const stringifyValues = (delimiter: string) => {
     let values: string[] = []
 
-    localOptions.map((localOption: IOption) => {
+    localOptions.forEach((localOption: IOption) => {
       if (localOption.checked) values.push(localOption.value)
-
-      return null
     })
 
     return values.join(delimiter)
