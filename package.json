@@ -7,7 +7,9 @@
     "bootstrap": "^4.5.3",
     "image-to-base64": "^2.1.1",
     "polished": "^4.1.0",
+    "raf": "^3.4.1",
     "react": "^17.0.1",
+    "react-app-polyfill": "^2.0.0",
     "react-bootstrap": "^1.4.3",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^17.0.1",
@@ -36,12 +38,14 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie >= 11"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "ie >= 11"
     ]
   },
   "devDependencies": {

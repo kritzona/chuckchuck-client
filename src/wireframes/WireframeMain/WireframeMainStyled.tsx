@@ -1,11 +1,19 @@
-import styled, { DefaultTheme } from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
+import { isIE } from '../../utils/browser'
 
 interface IProps {
   theme: DefaultTheme
 }
 
 export const WireframeMainStyled = styled.div<IProps>`
-  height: calc(var(--vh, 1vh) * 100);
+  ${!isIE() &&
+  css`
+    height: calc(var(--vh, 1vh) * 100);
+  `}
+  ${isIE() &&
+  css`
+    height: 100vh;
+  `}
 `
 export const WireframeMainHeaderStyled = styled.header<IProps>`
   width: 100%;
