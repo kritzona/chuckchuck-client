@@ -14,9 +14,9 @@ interface IProps {
 }
 
 const Account = (props: IProps) => {
-  const handleSettingsButtonClick = () => {
+  /* const handleSettingsButtonClick = () => {
     if (props.onOpenSettings) props.onOpenSettings()
-  }
+  } */
 
   return (
     <AccountStyled>
